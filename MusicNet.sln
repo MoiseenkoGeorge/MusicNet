@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicNet", "MusicNet\MusicNet.csproj", "{C410DE7F-1554-48D9-94CD-A426A041D5FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicNet.DataAccess", "MusicNet.DataAccess\MusicNet.DataAccess.csproj", "{1FF48428-5651-4609-A4ED-EEC32307C28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicNet.Services", "MusicNet.Services\MusicNet.Services.csproj", "{C4FF0347-F1B5-4FD5-A9B5-D5DA7B432CE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C410DE7F-1554-48D9-94CD-A426A041D5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C410DE7F-1554-48D9-94CD-A426A041D5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C410DE7F-1554-48D9-94CD-A426A041D5FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF48428-5651-4609-A4ED-EEC32307C28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF48428-5651-4609-A4ED-EEC32307C28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF48428-5651-4609-A4ED-EEC32307C28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF48428-5651-4609-A4ED-EEC32307C28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4FF0347-F1B5-4FD5-A9B5-D5DA7B432CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4FF0347-F1B5-4FD5-A9B5-D5DA7B432CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4FF0347-F1B5-4FD5-A9B5-D5DA7B432CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4FF0347-F1B5-4FD5-A9B5-D5DA7B432CE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
