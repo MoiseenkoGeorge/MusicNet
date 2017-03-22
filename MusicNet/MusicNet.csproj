@@ -18,5 +18,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicNet.DataAccess\MusicNet.DataAccess.csproj" />
+    <ProjectReference Include="..\MusicNet.Services\MusicNet.Services.csproj" />
+  </ItemGroup>
 
 </Project>

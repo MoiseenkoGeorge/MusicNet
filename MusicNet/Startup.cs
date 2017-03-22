@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MusicNet.DataAccess.Models;
 using React.AspNet;
 
 namespace MusicNet
@@ -17,7 +19,7 @@ namespace MusicNet
 				.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
 				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 				.AddEnvironmentVariables();
-			Configuration = builder.Build();
+			this.Configuration = builder.Build();
 		}
 
 		public IConfigurationRoot Configuration { get; }
@@ -25,7 +27,8 @@ namespace MusicNet
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Add framework services.
+			string connection = this.Configuration.GetConnectionString("DefaultConnection");
+			services.AddDbContext<AppContext>(options => options.UseSqlServer(connection, opt => opt.MigrationsAssembly("MusicNet")));
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddReact();
 			services.AddMvc();
@@ -38,7 +41,7 @@ namespace MusicNet
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 			app.UseMvc();
-			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+			loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 
 			app.UseMvc();
