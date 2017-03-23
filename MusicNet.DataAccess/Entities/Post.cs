@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MusicNet.DataAccess.Models
+namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
 	/// The Post entity.

@@ -1,4 +1,4 @@
-﻿namespace MusicNet.DataAccess.Models
+﻿namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
 	/// The PostTrack entity.

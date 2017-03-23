@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MusicNet.DataAccess.Models
+namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
 	/// The music track.

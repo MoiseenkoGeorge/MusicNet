@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MusicNet.DataAccess.Models;
+using MusicNet.DataAccess.Entities;
 using React.AspNet;
 
 namespace MusicNet

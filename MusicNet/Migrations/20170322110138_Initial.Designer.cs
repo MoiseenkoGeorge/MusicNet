@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using AppContext = MusicNet.DataAccess.Entities.AppContext;
 
 namespace MusicNet.Migrations
 {
-    [DbContext(typeof(MusicNet.DataAccess.Models.AppContext))]
+    [DbContext(typeof(AppContext))]
     [Migration("20170322110138_Initial")]
     partial class Initial
     {

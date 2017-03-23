@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using AppContext = MusicNet.DataAccess.Entities.AppContext;
 
 namespace MusicNet.Migrations
 {
-    [DbContext(typeof(DataAccess.Models.AppContext))]
+    [DbContext(typeof(AppContext))]
     partial class AppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
