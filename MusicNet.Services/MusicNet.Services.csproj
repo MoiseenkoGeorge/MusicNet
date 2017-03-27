@@ -8,4 +8,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MusicNet.DataAccess\MusicNet.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
