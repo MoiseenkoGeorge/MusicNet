@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using MusicNet.DataAccess.Entities;
 using React.AspNet;
 
@@ -40,7 +41,24 @@ namespace MusicNet
 			app.UseReact(config => { });
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
+
+			app.UseJwtBearerAuthentication(new JwtBearerOptions()
+			{
+				AutomaticAuthenticate = true,
+				AutomaticChallenge = true,
+				TokenValidationParameters = new TokenValidationParameters()
+				{
+					ValidateIssuer = true,
+					ValidIssuer = AuthOptions.ISSUER,
+					ValidateAudience = true,
+					ValidAudience = AuthOptions.AUDIENCE,
+					ValidateLifetime = true,
+					IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+					ValidateIssuerSigningKey = true
+				}
+			});
 			app.UseMvc();
+
 			loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 

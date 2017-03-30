@@ -16,6 +16,7 @@ namespace MusicNet.DataAccess.Entities
 		public User()
 		{
 			this.Posts = new HashSet<Post>();
+			this.Subscriptions = new HashSet<Subscription>();
 		}
 
 		/// <summary>
@@ -46,6 +47,7 @@ namespace MusicNet.DataAccess.Entities
 		/// <summary>
 		/// The Creation Date.
 		/// </summary>
+		[Required]
 		public DateTime CreationDate { get; set; }
 
 		/// <summary>
@@ -53,5 +55,16 @@ namespace MusicNet.DataAccess.Entities
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		public ICollection<Post> Posts { get; set; }
+
+		/// <summary>
+		/// The User Subscriptions.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public ICollection<Subscription> Subscriptions { get; set; }
+
+		/// <summary>
+		/// The User Comments.
+		/// </summary>
+		public ICollection<Comment> Comments { get; set; }
 	}
 }

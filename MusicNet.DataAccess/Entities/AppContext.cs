@@ -22,6 +22,7 @@ namespace MusicNet.DataAccess.Entities
 		/// </summary>
 		public DbSet<Track> Tracks { get; set; }
 
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AppContext"/> class.
 		/// </summary>
@@ -38,14 +39,36 @@ namespace MusicNet.DataAccess.Entities
 				.WithOne(p => p.User)
 				.HasForeignKey(p => p.UserId);
 
+			modelBuilder.Entity<User>()
+				.HasMany(u => u.Comments)
+				.WithOne(c => c.User)
+				.HasForeignKey(c => c.UserId);
+
+			modelBuilder.Entity<Subscription>()
+				.HasKey(x => new { x.PublisherId, x.SubscriberId });
+
 			modelBuilder.Entity<Post>()
 				.HasOne(p => p.User)
-				.WithMany(u => u.Posts);
+				.WithMany(u => u.Posts)
+				.HasForeignKey(p => p.UserId);
+
+			modelBuilder.Entity<Post>()
+				.HasMany(p => p.Comments)
+				.WithOne(c => c.Post)
+				.HasForeignKey(c => c.PostId);
+
+			modelBuilder.Entity<Comment>()
+				.HasOne(c => c.Post)
+				.WithMany(p => p.Comments)
+				.HasForeignKey(c => c.PostId);
+
+			modelBuilder.Entity<Comment>()
+				.HasOne(c => c.User)
+				.WithMany(u => u.Comments)
+				.HasForeignKey(c => c.UserId);
 
 			modelBuilder.Entity<PostTrack>()
 				.HasKey(x => new { x.PostId, x.TrackId });
-
 		}
-		
 	}
 }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="React.AspNet" Version="3.0.1" />
@@ -21,6 +22,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MusicNet.DataAccess\MusicNet.DataAccess.csproj" />
     <ProjectReference Include="..\MusicNet.Services\MusicNet.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

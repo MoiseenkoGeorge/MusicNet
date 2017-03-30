@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicNet.DataAccess.Entities
 {
@@ -12,12 +14,14 @@ namespace MusicNet.DataAccess.Entities
 		/// </summary>
 		public Track()
 		{
-			this.PostTracks = new HashSet<PostTrack>();
+			this.Posts = new HashSet<PostTrack>();
 		}
 
 		/// <summary>
 		/// The Id.
 		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public string Id { get; set; }
 
 		/// <summary>
@@ -43,6 +47,6 @@ namespace MusicNet.DataAccess.Entities
 		/// <summary>
 		/// The Post Tracks.
 		/// </summary>
-		public ICollection<PostTrack> PostTracks { get; set; }
+		public ICollection<PostTrack> Posts { get; set; }
 	}
 }
