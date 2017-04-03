@@ -5,21 +5,21 @@ using Newtonsoft.Json;
 
 namespace MusicNet.Controllers
 {
-	[Route("api/[controller]")]
-	public class AuthController : Controller
-	{
-		// POST api/values
-		[HttpPost("/token")]
-		public async Task Token([FromBody]string value)
-		{
-			var userName = Request.Form["username"];
-			var password = Request.Form["password"];
+	//[Route("api/[controller]")]
+	//public class AuthController : Controller
+	//{
+	//	// POST api/values
+	//	[HttpPost("/token")]
+	//	public async Task Token([FromBody]string value)
+	//	{
+	//		var userName = Request.Form["username"];
+	//		var password = Request.Form["password"];
 
 
-			Response.ContentType = "application/json";
-			await Response.WriteAsync(JsonConvert.SerializeObject())
-		}
-	}
+	//		Response.ContentType = "application/json";
+	//		await Response.WriteAsync(JsonConvert.SerializeObject())
+	//	}
+	//}
 
 
 }

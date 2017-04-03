@@ -8,7 +8,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	/// The Post entity.
 	/// </summary>
-	public class Post
+	public class Post : IEntity
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Post"/> class.

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MusicNet
+namespace MusicNet.Registrars
 {
 	/// <summary>
 	/// Authentication Options Class.

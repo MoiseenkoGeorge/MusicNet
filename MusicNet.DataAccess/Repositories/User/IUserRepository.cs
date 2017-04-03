@@ -1,11 +1,11 @@
-﻿using MusicNet.DataAccess.Models;
+﻿using MusicNet.DataAccess.Entities;
 
-namespace MusicNet.DataAccess.Repositories
+namespace MusicNet.DataAccess.Repositories.User
 {
 	/// <summary>
 	/// The user repository interface.
 	/// </summary>
-	public interface IUserRepository : IRepository<UserModel>
+	public interface IUserRepository : IRepository<Entities.User>
 	{
 		
 	}

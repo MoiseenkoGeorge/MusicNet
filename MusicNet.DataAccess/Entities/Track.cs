@@ -7,7 +7,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	/// The music track.
 	/// </summary>
-	public class Track
+	public class Track : IEntity
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Track"/> class.

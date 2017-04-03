@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using MusicNet.DataAccess.Entities;
+using MusicNet.Registrars;
 using React.AspNet;
 
 namespace MusicNet
@@ -29,7 +30,7 @@ namespace MusicNet
 		public void ConfigureServices(IServiceCollection services)
 		{
 			string connection = this.Configuration.GetConnectionString("DefaultConnection");
-			services.AddDbContext<AppContext>(options => options.UseSqlServer(connection, opt => opt.MigrationsAssembly("MusicNet")));
+			services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection, opt => opt.MigrationsAssembly("MusicNet.DataAccess")));
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddReact();
 			services.AddMvc();

@@ -7,10 +7,10 @@
   <ItemGroup>
     <Folder Include="DAOs\" />
     <Folder Include="Mappers\" />
-    <Folder Include="UoWs\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
   </ItemGroup>

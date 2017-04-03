@@ -5,7 +5,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	/// The Application Context.
 	/// </summary>
-	public class AppContext : DbContext
+	public class ApplicationContext : DbContext
 	{
 		/// <summary>
 		/// The Users DbSet.
@@ -24,10 +24,10 @@ namespace MusicNet.DataAccess.Entities
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AppContext"/> class.
+		/// Initializes a new instance of the <see cref="ApplicationContext"/> class.
 		/// </summary>
 		/// <param name="options"></param>
-		public AppContext(DbContextOptions<AppContext> options)
+		public ApplicationContext(DbContextOptions<ApplicationContext> options)
 			: base(options)
 		{
 		}
@@ -44,8 +44,15 @@ namespace MusicNet.DataAccess.Entities
 				.WithOne(c => c.User)
 				.HasForeignKey(c => c.UserId);
 
+			modelBuilder.Entity<User>()
+				.HasMany(u => u.Subscriptions)
+				.WithOne(s => s.Publisher)
+				.HasForeignKey(s => s.PublisherId);
+
 			modelBuilder.Entity<Subscription>()
-				.HasKey(x => new { x.PublisherId, x.SubscriberId });
+				.HasOne(s => s.Publisher)
+				.WithMany(u => u.Subscriptions)
+				.HasForeignKey(u => u.PublisherId);
 
 			modelBuilder.Entity<Post>()
 				.HasOne(p => p.User)

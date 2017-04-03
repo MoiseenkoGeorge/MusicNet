@@ -7,7 +7,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	/// The Comment.
 	/// </summary>
-	public class Comment
+	public class Comment : IEntity
 	{
 		/// <summary>
 		/// The comment Id.

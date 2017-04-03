@@ -1,10 +1,19 @@
-﻿namespace MusicNet.DataAccess.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
 	/// The Subscription 
 	/// </summary>
 	public class Subscription
 	{
+		/// <summary>
+		/// The Id.
+		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public string Id { get; set; }
 		/// <summary>
 		/// The subscriber Id.
 		/// </summary>

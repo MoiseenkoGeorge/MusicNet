@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using MusicNet.DataAccess.Entities;
 
 namespace MusicNet.DataAccess.Repositories
 {
@@ -17,11 +19,24 @@ namespace MusicNet.DataAccess.Repositories
 		IEnumerable<TEntity> GetAll();
 
 		/// <summary>
+		/// Async get all entities.
+		/// </summary>
+		/// <returns></returns>
+		Task<IEnumerable<TEntity>> GetAllAsync();
+
+		/// <summary>
 		/// Get entity by Id.
 		/// </summary>
 		/// <param name="key">The key.</param>
 		/// <returns>The <see cref="TEntity"/> instance.</returns>
 		TEntity GetById(string key);
+
+		/// <summary>
+		/// Async get by id.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		Task<TEntity> GetByIdAsync(string key);
 
 		/// <summary>
 		/// Get entity By Predicate.
@@ -31,21 +46,46 @@ namespace MusicNet.DataAccess.Repositories
 		TEntity GetByPredicate(Expression<Func<TEntity, bool>> p);
 
 		/// <summary>
+		/// Async Get by predicate.
+		/// </summary>
+		/// <param name="p"></param>
+		/// <returns></returns>
+		Task<TEntity> GetByPredicateAsync(Expression<Func<TEntity, bool>> p);
+
+		/// <summary>
 		/// Create entity.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		void Create(TEntity entity);
+		TEntity Create(TEntity entity);
+
+		/// <summary>
+		/// Async create entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		Task<TEntity> CreateAsync(TEntity entity);
 
 		/// <summary>
 		/// Delete entity.
 		/// </summary>
-		/// <param name="entity">The entity.</param>
-		void Delete(TEntity entity);
+		/// <param name="key">The key.</param>
+		void Delete(string key);
+
+		/// <summary>
+		/// Async delete entity.
+		/// </summary>
+		/// <param name="key">The key.</param>
+		Task DeleteAsync(string key);
 
 		/// <summary>
 		/// Update entity.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		void Update(TEntity entity);
+		TEntity Update(TEntity entity);
+
+		/// <summary>
+		/// Async update entity.
+		/// As </summary>
+		/// <param name="entity">The entity.</param>
+		Task<TEntity> UpdateAsync(TEntity entity);
 	}
 }

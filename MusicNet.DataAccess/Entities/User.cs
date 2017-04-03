@@ -8,7 +8,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	/// The User.
 	/// </summary>
-	public class User
+	public class User : IEntity
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="User"/> class.

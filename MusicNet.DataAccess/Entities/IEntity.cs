@@ -1,4 +1,4 @@
-﻿namespace MusicNet.DataAccess.Repositories
+﻿namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
 	/// The entity interface.
