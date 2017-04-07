@@ -74,7 +74,7 @@ namespace MusicNet.DataAccess.Repositories
 		/// Async delete entity.
 		/// </summary>
 		/// <param name="key">The key.</param>
-		Task DeleteAsync(string key);
+		void DeleteAsync(string key);
 
 		/// <summary>
 		/// Update entity.

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MusicNet.DataAccess.Repositories.User
 {
@@ -36,20 +37,22 @@ namespace MusicNet.DataAccess.Repositories.User
 			return user;
 		}
 
-		public Task<Entities.User> GetByIdAsync(string key)
+		public async Task<Entities.User> GetByIdAsync(string key)
 		{
-			return Task.Run(() => this.GetById(key));
+			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
+			return user;
 		}
 
 		public Entities.User GetByPredicate(Expression<Func<Entities.User, bool>> p)
 		{
-			Entities.User user = this._context.Set<Entities.User>().SingleOrDefault(p.Compile());
+			Entities.User user = this._context.Set<Entities.User>().SingleOrDefault(p);
 			return user;
 		}
 
-		public Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
+		public async Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
 		{
-			return Task.Run(() => this.GetByPredicate(p));
+			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(p);
+			return user;
 		}
 
 		public Entities.User Create(Entities.User entity)
@@ -58,9 +61,10 @@ namespace MusicNet.DataAccess.Repositories.User
 			return result.Entity;
 		}
 
-		public Task<Entities.User> CreateAsync(Entities.User entity)
+		public async Task<Entities.User> CreateAsync(Entities.User entity)
 		{
-			return Task.Run(() => this.Create(entity));
+			EntityEntry<Entities.User> result = await this._context.Set<Entities.User>().AddAsync(entity);
+			return result.Entity;
 		}
 
 		public void Delete(string key)
@@ -72,9 +76,13 @@ namespace MusicNet.DataAccess.Repositories.User
 			}
 		}
 
-		public Task DeleteAsync(string key)
+		public async void DeleteAsync(string key)
 		{
-			return Task.Run(() => this.Delete(key));
+			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
+			if (user != null)
+			{
+				this._context.Set<Entities.User>().Remove(user);
+			}
 		}
 
 		public Entities.User Update(Entities.User entity)
@@ -84,7 +92,7 @@ namespace MusicNet.DataAccess.Repositories.User
 
 		public Task<Entities.User> UpdateAsync(Entities.User entity)
 		{
-			return Task.Run(() => this.Update(entity));
+			throw new NotImplementedException();
 		}
 	}
 }

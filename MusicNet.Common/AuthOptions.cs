@@ -1,7 +1,8 @@
 ﻿using System.Text;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MusicNet.Registrars
+namespace MusicNet.Common
 {
 	/// <summary>
 	/// Authentication Options Class.
@@ -35,6 +36,25 @@ namespace MusicNet.Registrars
 		public static SymmetricSecurityKey GetSymmetricSecurityKey()
 		{
 			return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
+		}
+
+		public static JwtBearerOptions GetJwtBearerOptions()
+		{
+			return new JwtBearerOptions()
+			{
+				AutomaticAuthenticate = true,
+				AutomaticChallenge = true,
+				TokenValidationParameters = new TokenValidationParameters()
+				{
+					ValidateIssuer = true,
+					ValidIssuer = ISSUER,
+					ValidateAudience = true,
+					ValidAudience = AUDIENCE,
+					ValidateLifetime = true,
+					IssuerSigningKey = GetSymmetricSecurityKey(),
+					ValidateIssuerSigningKey = true
+				}
+			};
 		}
 	}
 }

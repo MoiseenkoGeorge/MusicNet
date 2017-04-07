@@ -1,4 +1,5 @@
-﻿using MusicNet.DataAccess.Repositories.Post;
+﻿using MusicNet.DataAccess.Repositories.Comment;
+using MusicNet.DataAccess.Repositories.Post;
 using MusicNet.DataAccess.Repositories.User;
 
 namespace MusicNet.DataAccess.UoWs
@@ -6,7 +7,7 @@ namespace MusicNet.DataAccess.UoWs
 	/// <summary>
 	/// The Users UOW interface.
 	/// </summary>
-	public interface IUsersUnitOfWork : IUnitOfWork
+	public interface IBaseUnitOfWork : IUnitOfWork
 	{
 		/// <summary>
 		/// The User Repository.
@@ -17,5 +18,10 @@ namespace MusicNet.DataAccess.UoWs
 		/// The Post Repository.
 		/// </summary>
 		IPostRepository Posts { get; }
+
+		/// <summary>
+		/// The Comments Repository.
+		/// </summary>
+		ICommentRepository Comments { get; }
 	}
 }

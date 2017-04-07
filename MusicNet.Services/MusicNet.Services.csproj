@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MusicNet.Common\MusicNet.Common.csproj" />
     <ProjectReference Include="..\MusicNet.DataAccess\MusicNet.DataAccess.csproj" />
   </ItemGroup>
 

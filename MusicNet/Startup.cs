@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using MusicNet.DataAccess.Entities;
-using MusicNet.Registrars;
+using MusicNet.Common;
+using MusicNet.Infrastructure.Extensions;
 using React.AspNet;
 
 namespace MusicNet
@@ -29,9 +27,10 @@ namespace MusicNet
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			string connection = this.Configuration.GetConnectionString("DefaultConnection");
-			services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection, opt => opt.MigrationsAssembly("MusicNet.DataAccess")));
-			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			string connectionString = this.Configuration.GetConnectionString("DefaultConnection");
+			services.AddDbRegistrar(connectionString);
+			services.AddDependencyRegistrar();
+			services.AddAutoMapper();
 			services.AddReact();
 			services.AddMvc();
 		}
@@ -43,21 +42,7 @@ namespace MusicNet
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 
-			app.UseJwtBearerAuthentication(new JwtBearerOptions()
-			{
-				AutomaticAuthenticate = true,
-				AutomaticChallenge = true,
-				TokenValidationParameters = new TokenValidationParameters()
-				{
-					ValidateIssuer = true,
-					ValidIssuer = AuthOptions.ISSUER,
-					ValidateAudience = true,
-					ValidAudience = AuthOptions.AUDIENCE,
-					ValidateLifetime = true,
-					IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-					ValidateIssuerSigningKey = true
-				}
-			});
+			app.UseJwtBearerAuthentication(AuthOptions.GetJwtBearerOptions());
 			app.UseMvc();
 
 			loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
