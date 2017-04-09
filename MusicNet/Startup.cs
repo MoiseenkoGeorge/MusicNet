@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MusicNet.Common;
 using MusicNet.Infrastructure.Extensions;
-using React.AspNet;
 
 namespace MusicNet
 {
@@ -31,14 +30,12 @@ namespace MusicNet
 			services.AddDbRegistrar(connectionString);
 			services.AddDependencyRegistrar();
 			services.AddAutoMapper();
-			services.AddReact();
 			services.AddMvc();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
-			app.UseReact(config => { });
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 

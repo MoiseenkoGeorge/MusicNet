@@ -42,13 +42,35 @@ namespace MusicNet.Controllers
 				{
 					string token = this._authService.GetJwtToken(registredUserModel);
 					return this.Json(
-						new {access_token = token, user_name = userModel.Name});
+						new { AccessToken = token, UserName = userModel.Name });
+				}
+			}
+
+			return this.BadRequest(this.ModelState);
+		}
+
+		[HttpPost("/login")]
+		public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
+		{
+			Guard.ArgumentNotNull(loginViewModel, nameof(loginViewModel));
+
+			if (this.ModelState.IsValid)
+			{
+				UserModel userModel = this._mapper.Map<LoginViewModel, UserModel>(loginViewModel);
+				UserModel signedInUserModel = await this._userService.LoginAsync(userModel);
+				if (signedInUserModel == null)
+				{
+					this.ModelState.AddModelError("", "Incorrect Login or Password.");
+				}
+				else
+				{
+					string token = this._authService.GetJwtToken(signedInUserModel);
+					return this.Json(
+						new { AccessToken = token, UserName = userModel.Name });
 				}
 			}
 
 			return this.BadRequest(this.ModelState);
 		}
 	}
-
-
 }

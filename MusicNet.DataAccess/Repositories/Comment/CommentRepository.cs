@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MusicNet.DataAccess.Entities;
 
 namespace MusicNet.DataAccess.Repositories.Comment
 {
@@ -60,7 +61,7 @@ namespace MusicNet.DataAccess.Repositories.Comment
 			throw new NotImplementedException();
 		}
 
-		public Task DeleteAsync(string key)
+		void IRepository<Entities.Comment>.DeleteAsync(string key)
 		{
 			throw new NotImplementedException();
 		}

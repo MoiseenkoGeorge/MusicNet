@@ -57,12 +57,14 @@ namespace MusicNet.DataAccess.Repositories.User
 
 		public Entities.User Create(Entities.User entity)
 		{
+			entity.CreationDate = DateTime.Now;
 			var result = this._context.Set<Entities.User>().Add(entity);
 			return result.Entity;
 		}
 
 		public async Task<Entities.User> CreateAsync(Entities.User entity)
 		{
+			entity.CreationDate = DateTime.Now;
 			EntityEntry<Entities.User> result = await this._context.Set<Entities.User>().AddAsync(entity);
 			return result.Entity;
 		}

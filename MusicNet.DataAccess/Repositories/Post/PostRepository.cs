@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MusicNet.DataAccess.Entities;
 
 namespace MusicNet.DataAccess.Repositories.Post
 {
@@ -59,7 +60,7 @@ namespace MusicNet.DataAccess.Repositories.Post
 			throw new NotImplementedException();
 		}
 
-		public Task DeleteAsync(string key)
+		void IRepository<Entities.Post>.DeleteAsync(string key)
 		{
 			throw new NotImplementedException();
 		}

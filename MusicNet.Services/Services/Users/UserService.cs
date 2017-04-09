@@ -34,13 +34,20 @@ namespace MusicNet.Services.Services.Users
 			return userModel;
 		}
 
-		public async Task<UserModel> GetUserByEmailAsync(string email)
+		public async Task<UserModel> LoginAsync(UserModel userModel)
 		{
-			Guard.ArgumentNotNullOrWhiteSpace(email, nameof(email));
+			Guard.ArgumentNotNull(userModel, nameof(userModel));
+			Guard.ArgumentNotNull(userModel.Name, nameof(userModel.Name));
+			Guard.ArgumentNotNull(userModel.Password, nameof(userModel.Password));
 
-			User userEntity = await this._uow.Users.GetByPredicateAsync((user) => user.Email == email);
-			UserModel userModel = this._mapper.Map<User, UserModel>(userEntity);
-			return userModel;
+			User user = await this._uow.Users.GetByPredicateAsync((u) => u.Name == userModel.Name);
+			if(user == null)
+			{
+				return null;
+			}
+
+			userModel.Password = this.GetHash(userModel.Password);
+			return string.Equals(userModel.Password, user.Password, StringComparison.OrdinalIgnoreCase) ? userModel : null;
 		}
 
 		public async Task<UserModel> CreateUserAsync(UserModel user)
@@ -48,7 +55,7 @@ namespace MusicNet.Services.Services.Users
 			Guard.ArgumentNotNull(user, nameof(user));
 			Guard.ArgumentNotNullOrWhiteSpace(user.Password, nameof(user.Password));
 
-			User userEntity = this._uow.Users.GetByPredicate((u) => u.Email == user.Email);
+			User userEntity = this._uow.Users.GetByPredicate((u) => u.Name == user.Name);
 			if (userEntity != null)
 			{
 				return null;

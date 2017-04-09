@@ -16,11 +16,11 @@ namespace MusicNet.Services.Services.Users
 		Task<UserModel> GetUserAsync(string id);
 
 		/// <summary>
-		/// Get user by Email Async.
+		/// Login User Async.
 		/// </summary>
-		/// <param name="email">The User email.</param>
-		/// <returns>The User model.</returns>
-		Task<UserModel> GetUserByEmailAsync(string email);
+		/// <param name="userModel">The User model.</param>
+		/// <returns>Returns signed in USer Model if Login is correct.</returns>
+		Task<UserModel> LoginAsync(UserModel userModel);
 
 		/// <summary>
 		/// To Create the user.

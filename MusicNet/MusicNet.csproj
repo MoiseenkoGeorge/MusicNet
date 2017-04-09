@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Registrars\**" />
+    <Content Remove="Registrars\**" />
+    <EmbeddedResource Remove="Registrars\**" />
+    <None Remove="Registrars\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\index.html" />
     <Content Include="wwwroot\js\app.jsx" />
   </ItemGroup>
@@ -16,7 +23,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="React.AspNet" Version="3.0.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
@@ -25,9 +31,6 @@
     <ProjectReference Include="..\MusicNet.Common\MusicNet.Common.csproj" />
     <ProjectReference Include="..\MusicNet.Infrastructure\MusicNet.Infrastructure.csproj" />
     <ProjectReference Include="..\MusicNet.Services\MusicNet.Services.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Registrars\" />
   </ItemGroup>
 
 </Project>
