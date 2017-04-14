@@ -1,6 +1,7 @@
-﻿var Map = require("immutable").Map;
+﻿//var Map = require("immutable").Map;
+import { Map } from "immutable"
 
-var reducer = function (state = Map(), action) {
+var reducer = (state = Map(), action) => {
     switch (action.type) {
         case "SET_STATE":
             return state.merge(action.state);

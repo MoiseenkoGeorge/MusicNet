@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Content Include="wwwroot\index.html" />
-    <Content Include="wwwroot\js\app.jsx" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
@@ -22,6 +21,7 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +31,12 @@
     <ProjectReference Include="..\MusicNet.Common\MusicNet.Common.csproj" />
     <ProjectReference Include="..\MusicNet.Infrastructure\MusicNet.Infrastructure.csproj" />
     <ProjectReference Include="..\MusicNet.Services\MusicNet.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
