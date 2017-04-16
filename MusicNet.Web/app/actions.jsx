@@ -1,10 +1,10 @@
-﻿var addPhone = function (phone) {
+﻿let addPhone = function (phone) {
     return {
         type: "ADD_PHONE",
         phone
     }
 };
-var deletePhone = function (phone) {
+let deletePhone = function (phone) {
     return {
         type: "DELETE_PHONE",
         phone

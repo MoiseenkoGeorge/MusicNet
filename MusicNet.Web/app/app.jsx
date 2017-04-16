@@ -1,11 +1,11 @@
-﻿var React = require("react");
-var ReactDOM = require("react-dom");
-var redux = require("redux");
-var Provider = require("react-redux").Provider;
-var reducer = require("./reducer");
-var AppView = require("./appview");
+﻿import { React } from "react";
+import { ReactDOM } from "react-dom";
+import { Redux } from "redux";
+import { Provider } from "react-redux";
+import { Reducer } from "./reducer";
+import { AppView } from "./appview";
 
-var store = redux.createStore(reducer);
+var store = redux.createStore(Reducer);
 
 store.dispatch({
     type: "SET_STATE",
