@@ -1,11 +1,11 @@
-﻿import { React } from "react";
-import { ReactDOM } from "react-dom";
+﻿import React from "react";
+import ReactDOM from "react-dom";
 import { Redux } from "redux";
 import { Provider } from "react-redux";
 import { Reducer } from "./reducer";
 import { AppView } from "./appview";
 
-var store = redux.createStore(Reducer);
+var store = Redux.createStore(Reducer);
 
 store.dispatch({
     type: "SET_STATE",
