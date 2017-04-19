@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MusicNet.DataAccess.Entities;
 
 namespace MusicNet.DataAccess.Repositories.Post
 {
@@ -15,6 +14,7 @@ namespace MusicNet.DataAccess.Repositories.Post
 		{
 			this._context = context;
 		}
+
 		public IEnumerable<Entities.Post> GetAll()
 		{
 			throw new NotImplementedException();

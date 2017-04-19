@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MusicNet.DataAccess.Entities;
 
 namespace MusicNet.DataAccess.Repositories.Comment
 {

@@ -3,34 +3,33 @@
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The Application Context.
+	///     The Application Context.
 	/// </summary>
 	public class ApplicationContext : DbContext
 	{
 		/// <summary>
-		/// The Users DbSet.
-		/// </summary>
-		public DbSet<User> Users { get; set; }
-
-		/// <summary>
-		/// The Posts DbSet.
-		/// </summary>
-		public DbSet<Post> Posts { get; set; }
-
-		/// <summary>
-		/// The Tracks DbSet.
-		/// </summary>
-		public DbSet<Track> Tracks { get; set; }
-
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ApplicationContext"/> class.
+		///     Initializes a new instance of the <see cref="ApplicationContext" /> class.
 		/// </summary>
 		/// <param name="options"></param>
 		public ApplicationContext(DbContextOptions<ApplicationContext> options)
 			: base(options)
 		{
 		}
+
+		/// <summary>
+		///     The Users DbSet.
+		/// </summary>
+		public DbSet<User> Users { get; set; }
+
+		/// <summary>
+		///     The Posts DbSet.
+		/// </summary>
+		public DbSet<Post> Posts { get; set; }
+
+		/// <summary>
+		///     The Tracks DbSet.
+		/// </summary>
+		public DbSet<Track> Tracks { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -75,7 +74,7 @@ namespace MusicNet.DataAccess.Entities
 				.HasForeignKey(c => c.UserId);
 
 			modelBuilder.Entity<PostTrack>()
-				.HasKey(x => new { x.PostId, x.TrackId });
+				.HasKey(x => new {x.PostId, x.TrackId});
 		}
 	}
 }

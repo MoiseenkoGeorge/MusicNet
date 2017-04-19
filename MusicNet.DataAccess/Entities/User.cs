@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The User.
+	///     The User.
 	/// </summary>
 	public class User : IEntity
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="User"/> class.
+		///     Initializes a new instance of the <see cref="User" /> class.
 		/// </summary>
 		public User()
 		{
@@ -20,51 +21,51 @@ namespace MusicNet.DataAccess.Entities
 		}
 
 		/// <summary>
-		/// The User Id.
-		/// </summary>
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
-
-		/// <summary>
-		/// The User Email.
+		///     The User Email.
 		/// </summary>
 		[Required]
 		public string Email { get; set; }
 
 		/// <summary>
-		/// The User Password.
+		///     The User Password.
 		/// </summary>
 		[Required]
 		public string Password { get; set; }
 
 		/// <summary>
-		/// The User Name.
+		///     The User Name.
 		/// </summary>
 		[Required]
 		public string Name { get; set; }
 
 		/// <summary>
-		/// The Creation Date.
+		///     The Creation Date.
 		/// </summary>
 		[Required]
 		public DateTime CreationDate { get; set; }
 
 		/// <summary>
-		/// The User Posts.
+		///     The User Posts.
 		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		public ICollection<Post> Posts { get; set; }
 
 		/// <summary>
-		/// The User Subscriptions.
+		///     The User Subscriptions.
 		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		public ICollection<Subscription> Subscriptions { get; set; }
 
 		/// <summary>
-		/// The User Comments.
+		///     The User Comments.
 		/// </summary>
 		public ICollection<Comment> Comments { get; set; }
+
+		/// <summary>
+		///     The User Id.
+		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public string Id { get; set; }
 	}
 }

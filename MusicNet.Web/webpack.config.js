@@ -7,7 +7,7 @@ const BUILD_PATH = path.resolve(__dirname, '../MusicNet/wwwroot/js');
 const APP_PATH = path.resolve(__dirname, 'app');
 
 module.exports = {
-    entry: "./app/app.jsx", // входная точка - исходный файл
+    entry: "./src/index.jsx", // входная точка - исходный файл
     output: {
         path: BUILD_PATH,     // путь к каталогу выходных файлов
         filename: "bundle.js"       // название создаваемого файла

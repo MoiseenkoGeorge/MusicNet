@@ -8,7 +8,8 @@ namespace MusicNet.Infrastructure.Extensions
 	{
 		public static void RegisterDataBase(IServiceCollection serviceCollection, string connectionString)
 		{
-			serviceCollection.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString, opt => opt.MigrationsAssembly("MusicNet.DataAccess")));
+			serviceCollection.AddDbContext<ApplicationContext>(
+				options => options.UseSqlServer(connectionString, opt => opt.MigrationsAssembly("MusicNet.DataAccess")));
 		}
 	}
 }

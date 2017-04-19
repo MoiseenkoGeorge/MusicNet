@@ -5,51 +5,51 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The Comment.
+	///     The Comment.
 	/// </summary>
 	public class Comment : IEntity
 	{
 		/// <summary>
-		/// The comment Id.
-		/// </summary>
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
-
-		/// <summary>
-		/// The Post Id.
+		///     The Post Id.
 		/// </summary>
 		public string PostId { get; set; }
 
 		/// <summary>
-		/// The Post.
+		///     The Post.
 		/// </summary>
 		public Post Post { get; set; }
 
 		/// <summary>
-		/// The User Id.
+		///     The User Id.
 		/// </summary>
 		public string UserId { get; set; }
 
 		/// <summary>
-		/// The User.
+		///     The User.
 		/// </summary>
 		[ForeignKey("UserId")]
 		public User User { get; set; }
 
 		/// <summary>
-		/// The Creation Date.
+		///     The Creation Date.
 		/// </summary>
 		public DateTime CreationDate { get; set; }
 
 		/// <summary>
-		/// The Last Modified date.
+		///     The Last Modified date.
 		/// </summary>
 		public DateTime LastModifiedDate { get; set; }
 
 		/// <summary>
-		/// The Text.
+		///     The Text.
 		/// </summary>
 		public string Text { get; set; }
+
+		/// <summary>
+		///     The comment Id.
+		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public string Id { get; set; }
 	}
 }

@@ -15,27 +15,27 @@ namespace MusicNet.Services.Services.Auth
 			Guard.ArgumentNotNull(userModel, nameof(userModel));
 
 			var identity = this.GetIdentity(userModel);
-			DateTime nowDateTime = DateTime.UtcNow;
-			JwtSecurityToken jwt = new JwtSecurityToken(
-				issuer: AuthOptions.ISSUER,
-				audience: AuthOptions.AUDIENCE,
+			var nowDateTime = DateTime.UtcNow;
+			var jwt = new JwtSecurityToken(
+				AuthOptions.ISSUER,
+				AuthOptions.AUDIENCE,
 				notBefore: nowDateTime,
 				claims: identity.Claims,
 				expires: nowDateTime.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
 				signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512)
-				);
+			);
 			var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 			return encodedJwt;
 		}
 
 		private ClaimsIdentity GetIdentity(UserModel userModel)
 		{
-			List<Claim> claims = new List<Claim>()
+			var claims = new List<Claim>
 			{
 				new Claim(ClaimsIdentity.DefaultNameClaimType, userModel.Name)
 			};
 
-			ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token");
+			var claimsIdentity = new ClaimsIdentity(claims, "Token");
 			return claimsIdentity;
 		}
 	}

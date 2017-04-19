@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The music track.
+	///     The music track.
 	/// </summary>
 	public class Track : IEntity
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Track"/> class.
+		///     Initializes a new instance of the <see cref="Track" /> class.
 		/// </summary>
 		public Track()
 		{
@@ -18,35 +18,35 @@ namespace MusicNet.DataAccess.Entities
 		}
 
 		/// <summary>
-		/// The Id.
-		/// </summary>
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
-
-		/// <summary>
-		/// The Track Name.
+		///     The Track Name.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// The Track Album.
+		///     The Track Album.
 		/// </summary>
 		public string Album { get; set; }
 
 		/// <summary>
-		/// The Track Author.
+		///     The Track Author.
 		/// </summary>
 		public string Author { get; set; }
 
 		/// <summary>
-		/// The Track Url.
+		///     The Track Url.
 		/// </summary>
 		public string Url { get; set; }
 
 		/// <summary>
-		/// The Post Tracks.
+		///     The Post Tracks.
 		/// </summary>
 		public ICollection<PostTrack> Posts { get; set; }
+
+		/// <summary>
+		///     The Id.
+		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public string Id { get; set; }
 	}
 }

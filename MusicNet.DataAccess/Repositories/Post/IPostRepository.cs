@@ -1,12 +1,9 @@
-﻿using MusicNet.DataAccess.Entities;
-
-namespace MusicNet.DataAccess.Repositories.Post
+﻿namespace MusicNet.DataAccess.Repositories.Post
 {
 	/// <summary>
-	/// The post repository interface.
+	///     The post repository interface.
 	/// </summary>
 	public interface IPostRepository : IRepository<Entities.Post>
 	{
-		
 	}
 }

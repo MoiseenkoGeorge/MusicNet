@@ -1,13 +1,19 @@
-﻿import * as React from "react";
-import * as ReactDom from "react-dom";
-import { Router, Route, browserHistory } from "react-router";
-import { App } from "./App";
-import { NotFound } from "./components/NotFound"
+﻿import React from "react";
+import ReactDOM from "react-dom";
+import Root from "./containers/Root";
+import configureStore from "./store/configureStore";
+import { loginUserSuccess } from "./actions";
 
-ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <Route path="*" component={NotFound} />
-        </Route>
-    </Router>
-), document.getElementById('container'))
+const target = document.getElementById('root');
+const store = configureStore(window.__INITIAL_STATE__);
+
+const node = (
+    <Root store={store} />
+);
+
+let token = localStorage.getItem('token');
+if (token !== null) {
+    store.dispatch(loginUserSuccess(token));
+}
+
+ReactDOM.render(node, target);

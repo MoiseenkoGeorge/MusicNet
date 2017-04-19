@@ -33,32 +33,32 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="src\actions.jsx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\App.jsx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\appview.jsx">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="src\actions\index.jsx" />
+    <Content Include="src\components\AuthenticatedComponent.jsx" />
     <Content Include="src\components\NotFound.jsx">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\constants\index.jsx" />
+    <Content Include="src\containers\App.jsx" />
+    <Content Include="src\containers\index.jsx" />
     <Content Include="src\containers\Root.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\index.jsx">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\reducer.jsx">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\routes\routes.jsx">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="src\reducers\auth.jsx" />
+    <Content Include="src\reducers\data.jsx" />
+    <Content Include="src\reducers\index.jsx" />
+    <Content Include="src\routes\index.jsx" />
+    <Content Include="src\store\configureStore.jsx" />
+    <Content Include="src\utils\index.jsx" />
+    <Content Include="src\views\HomeView.jsx" />
+    <Content Include="src\views\index.jsx" />
+    <Content Include="src\views\LoginView.jsx" />
+    <Content Include="src\views\ProtectedView.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="webpack.config.js">
@@ -69,7 +69,9 @@
     <Folder Include="src\" />
     <Folder Include="src\actions\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\constants\" />
     <Folder Include="src\containers\" />
+    <Folder Include="src\utils\" />
     <Folder Include="src\views\" />
     <Folder Include="src\routes\" />
     <Folder Include="src\store\" />

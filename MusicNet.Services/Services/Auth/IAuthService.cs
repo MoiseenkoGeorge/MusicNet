@@ -1,5 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using MusicNet.Services.Models;
+﻿using MusicNet.Services.Models;
 
 namespace MusicNet.Services.Services.Auth
 {

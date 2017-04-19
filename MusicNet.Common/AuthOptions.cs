@@ -5,32 +5,32 @@ using Microsoft.IdentityModel.Tokens;
 namespace MusicNet.Common
 {
 	/// <summary>
-	/// Authentication Options Class.
+	///     Authentication Options Class.
 	/// </summary>
 	public static class AuthOptions
 	{
 		/// <summary>
-		/// Token publisher.
+		///     Token publisher.
 		/// </summary>
 		public const string ISSUER = "MyAuthServer";
 
 		/// <summary>
-		/// Token Consumer.
+		///     Token Consumer.
 		/// </summary>
 		public const string AUDIENCE = "MyLocalServer";
 
 		/// <summary>
-		/// The key for encryption.
+		///     The key for encryption.
 		/// </summary>
 		private const string KEY = "mysupersecret_secretkey!3123";
 
 		/// <summary>
-		/// The token lifetime in minutes.
+		///     The token lifetime in minutes.
 		/// </summary>
 		public const int LIFETIME = 1;
 
 		/// <summary>
-		/// Getting SymmetricSecurityKey instance.
+		///     Getting SymmetricSecurityKey instance.
 		/// </summary>
 		/// <returns>The SymmetricSecurityKey object.</returns>
 		public static SymmetricSecurityKey GetSymmetricSecurityKey()
@@ -40,11 +40,11 @@ namespace MusicNet.Common
 
 		public static JwtBearerOptions GetJwtBearerOptions()
 		{
-			return new JwtBearerOptions()
+			return new JwtBearerOptions
 			{
 				AutomaticAuthenticate = true,
 				AutomaticChallenge = true,
-				TokenValidationParameters = new TokenValidationParameters()
+				TokenValidationParameters = new TokenValidationParameters
 				{
 					ValidateIssuer = true,
 					ValidIssuer = ISSUER,

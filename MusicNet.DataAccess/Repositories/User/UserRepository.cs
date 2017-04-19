@@ -4,12 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MusicNet.DataAccess.Repositories.User
 {
 	/// <summary>
-	/// The User Repository.
+	///     The User Repository.
 	/// </summary>
 	public class UserRepository : IUserRepository
 	{
@@ -33,25 +32,25 @@ namespace MusicNet.DataAccess.Repositories.User
 
 		public Entities.User GetById(string key)
 		{
-			Entities.User user = this._context.Set<Entities.User>().SingleOrDefault(u => u.Id == key);
+			var user = this._context.Set<Entities.User>().SingleOrDefault(u => u.Id == key);
 			return user;
 		}
 
 		public async Task<Entities.User> GetByIdAsync(string key)
 		{
-			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
+			var user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
 			return user;
 		}
 
 		public Entities.User GetByPredicate(Expression<Func<Entities.User, bool>> p)
 		{
-			Entities.User user = this._context.Set<Entities.User>().SingleOrDefault(p);
+			var user = this._context.Set<Entities.User>().SingleOrDefault(p);
 			return user;
 		}
 
 		public async Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
 		{
-			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(p);
+			var user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(p);
 			return user;
 		}
 
@@ -65,26 +64,22 @@ namespace MusicNet.DataAccess.Repositories.User
 		public async Task<Entities.User> CreateAsync(Entities.User entity)
 		{
 			entity.CreationDate = DateTime.Now;
-			EntityEntry<Entities.User> result = await this._context.Set<Entities.User>().AddAsync(entity);
+			var result = await this._context.Set<Entities.User>().AddAsync(entity);
 			return result.Entity;
 		}
 
 		public void Delete(string key)
 		{
-			Entities.User user = this._context.Set<Entities.User>().SingleOrDefault(u => u.Id == key);
+			var user = this._context.Set<Entities.User>().SingleOrDefault(u => u.Id == key);
 			if (user != null)
-			{
 				this._context.Set<Entities.User>().Remove(user);
-			}
 		}
 
 		public async void DeleteAsync(string key)
 		{
-			Entities.User user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
+			var user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(u => u.Id == key);
 			if (user != null)
-			{
 				this._context.Set<Entities.User>().Remove(user);
-			}
 		}
 
 		public Entities.User Update(Entities.User entity)

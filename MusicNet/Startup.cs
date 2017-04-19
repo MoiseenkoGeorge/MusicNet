@@ -15,8 +15,8 @@ namespace MusicNet
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+				.AddJsonFile("appsettings.json", false, true)
+				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
 				.AddEnvironmentVariables();
 			this.Configuration = builder.Build();
 		}
@@ -26,7 +26,7 @@ namespace MusicNet
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			string connectionString = this.Configuration.GetConnectionString("DefaultConnection");
+			var connectionString = this.Configuration.GetConnectionString("DefaultConnection");
 			services.AddDbRegistrar(connectionString);
 			services.AddDependencyRegistrar();
 			services.AddAutoMapper();

@@ -6,59 +6,60 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The Post entity.
+	///     The Post entity.
 	/// </summary>
 	public class Post : IEntity
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Post"/> class.
+		///     Initializes a new instance of the <see cref="Post" /> class.
 		/// </summary>
 		public Post()
 		{
 			this.Tracks = new HashSet<PostTrack>();
 			this.Comments = new HashSet<Comment>();
 		}
-		/// <summary>
-		/// The Id.
-		/// </summary>
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
 
 		/// <summary>
-		/// The Creation Date.
+		///     The Creation Date.
 		/// </summary>
 		public DateTime CreationDate { get; set; }
 
 		/// <summary>
-		/// The Post content.
+		///     The Post content.
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		/// The image url.
+		///     The image url.
 		/// </summary>
 		public string ImageUrl { get; set; }
 
 		/// <summary>
-		/// The user Id.
+		///     The user Id.
 		/// </summary>
 		public string UserId { get; set; }
-		
+
 		/// <summary>
-		/// The User.
+		///     The User.
 		/// </summary>
 		[ForeignKey("UserId")]
 		public User User { get; set; }
 
 		/// <summary>
-		/// The Post Tracks.
+		///     The Post Tracks.
 		/// </summary>
 		public ICollection<PostTrack> Tracks { get; set; }
 
 		/// <summary>
-		/// The Post comments.
+		///     The Post comments.
 		/// </summary>
 		public ICollection<Comment> Comments { get; set; }
+
+		/// <summary>
+		///     The Id.
+		/// </summary>
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public string Id { get; set; }
 	}
 }

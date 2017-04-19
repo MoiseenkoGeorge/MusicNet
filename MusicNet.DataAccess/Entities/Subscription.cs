@@ -4,33 +4,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The Subscription 
+	///     The Subscription
 	/// </summary>
 	public class Subscription
 	{
 		/// <summary>
-		/// The Id.
+		///     The Id.
 		/// </summary>
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public string Id { get; set; }
+
 		/// <summary>
-		/// The subscriber Id.
+		///     The subscriber Id.
 		/// </summary>
 		public string SubscriberId { get; set; }
 
 		/// <summary>
-		/// The Subscriber.
+		///     The Subscriber.
 		/// </summary>
 		public User Subscriber { get; set; }
 
 		/// <summary>
-		/// The Publisher Id.
+		///     The Publisher Id.
 		/// </summary>
 		public string PublisherId { get; set; }
 
 		/// <summary>
-		/// The Publisher.
+		///     The Publisher.
 		/// </summary>
 		public User Publisher { get; set; }
 	}

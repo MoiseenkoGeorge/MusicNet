@@ -9,7 +9,7 @@ using MusicNet.Services.Services.Users;
 
 namespace MusicNet.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/auth")]
 	public class IdentityController : Controller
 	{
 		private readonly IMapper _mapper;

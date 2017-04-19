@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MusicNet.Services.Registrars;
 
 namespace MusicNet.Infrastructure.Extensions
 {
 	/// <summary>
-	/// The dependency registrar.
+	///     The dependency registrar.
 	/// </summary>
 	public static class DependencyRegistrar
 	{
 		public static void RegisterDependencies(IServiceCollection serviceCollection)
 		{
 			// Services
-			MusicNet.Services.Registrars.DependencyRegistrars.RegisterDependencies(serviceCollection);
+			DependencyRegistrars.RegisterDependencies(serviceCollection);
 		}
 	}
 }

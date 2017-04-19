@@ -1,27 +1,27 @@
 ﻿namespace MusicNet.DataAccess.Entities
 {
 	/// <summary>
-	/// The PostTrack entity.
+	///     The PostTrack entity.
 	/// </summary>
 	public class PostTrack
 	{
 		/// <summary>
-		/// The Post Id.
+		///     The Post Id.
 		/// </summary>
 		public string PostId { get; set; }
 
 		/// <summary>
-		/// The Post.
+		///     The Post.
 		/// </summary>
 		public Post Post { get; set; }
 
 		/// <summary>
-		/// The track Id.
+		///     The track Id.
 		/// </summary>
 		public string TrackId { get; set; }
 
 		/// <summary>
-		/// The Track.
+		///     The Track.
 		/// </summary>
 		public Track Track { get; set; }
 	}
