@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace MusicNet.Controllers
 {
 	[Route("api/[controller]")]
-	[Authorize]
 	public class HomeController : Controller
 	{
 		// GET: api/values

@@ -25,7 +25,7 @@ namespace MusicNet.Controllers
 			this._authService = authService;
 		}
 
-		[HttpPost("/register")]
+		[HttpPost("register")]
 		public async Task<IActionResult> Register([FromBody] RegisterViewModel registerViewModel)
 		{
 			Guard.ArgumentNotNull(registerViewModel, nameof(registerViewModel));
@@ -49,7 +49,7 @@ namespace MusicNet.Controllers
 			return this.BadRequest(this.ModelState);
 		}
 
-		[HttpPost("/login")]
+		[HttpPost("login")]
 		public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
 		{
 			Guard.ArgumentNotNull(loginViewModel, nameof(loginViewModel));

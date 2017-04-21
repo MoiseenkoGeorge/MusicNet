@@ -1,19 +1,22 @@
-﻿import React from "react";
-import ReactDOM from "react-dom";
-import Root from "./containers/Root";
-import configureStore from "./store/configureStore";
-import { loginUserSuccess } from "./actions";
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import { routes } from './routes'
+import { loginSuccess } from './actions/UserActions' 
 
-const target = document.getElementById('root');
-const store = configureStore(window.__INITIAL_STATE__);
-
-const node = (
-    <Root store={store} />
-);
+const store = configureStore();
 
 let token = localStorage.getItem('token');
 if (token !== null) {
-    store.dispatch(loginUserSuccess(token));
+	store.dispatch(loginSuccess(token));
 }
 
-ReactDOM.render(node, target);
+render(
+	<Provider store={store}>
+		<Router history={browserHistory} routes={routes}/>
+	</Provider>,
+	document.getElementById('root')
+);

@@ -31,11 +31,13 @@ namespace MusicNet
 			services.AddDependencyRegistrar();
 			services.AddAutoMapper();
 			services.AddMvc();
+			services.AddAutoMapper(typeof(MappingRegistrar));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
+			app.UseStatusCodePagesWithReExecute("/");
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 
@@ -44,8 +46,6 @@ namespace MusicNet
 
 			loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
-
-			app.UseMvc();
 		}
 	}
 }
