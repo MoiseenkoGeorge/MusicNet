@@ -10,6 +10,7 @@ namespace MusicNet.DataAccess.UoWs
 		private readonly DbContext _context;
 
 		private ICommentRepository _commentRepository;
+
 		private bool _disposed;
 
 		private IPostRepository _postRepository;

@@ -31,7 +31,7 @@ export function loginUser(login, password, nextAddress) {
 					"Accept": "application/json",
 					"Content-Type": "application/json"
 				},
-				body: JSON.stringify({ login: login, password: password })
+				body: JSON.stringify({ name: login, password: password })
 			})
 			.then(checkHttpStatus)
 			.then(parseJSON)
@@ -116,6 +116,7 @@ export function registerUser(email, login, password) {
 }
 
 export function registerSuccess(response) {
+	localStorage.setItem("token", response.accessToken);
 	return {
 		type: REGISTER_SUCCESS,
 		payload: {

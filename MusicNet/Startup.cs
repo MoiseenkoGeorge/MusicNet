@@ -31,7 +31,7 @@ namespace MusicNet
 			services.AddDependencyRegistrar();
 			services.AddAutoMapper();
 			services.AddMvc();
-			services.AddAutoMapper(typeof(MappingRegistrar));
+			services.AddAutoMapper(typeof(MappingRegistrar), typeof(MusicNet.Services.Registrars.MappingRegistrars));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

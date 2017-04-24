@@ -5,7 +5,7 @@ namespace MusicNet.Models
     public class LoginViewModel
     {
 		[Required]
-		public string Login { get; set; }
+		public string Name { get; set; }
 
 		[Required]
 		public string Password { get; set; }

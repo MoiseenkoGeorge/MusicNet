@@ -7,22 +7,19 @@ using MusicNet.Common;
 using MusicNet.DataAccess.Entities;
 using MusicNet.DataAccess.UoWs;
 using MusicNet.Services.Models;
-using MusicNet.Services.Services.Auth;
 
 namespace MusicNet.Services.Services.Users
 {
 	public class UserService : IUserService
 	{
-		private readonly IAuthService _authService;
 		private readonly IMapper _mapper;
 
 		private readonly IBaseUnitOfWork _uow;
 
-		public UserService(IMapper mapper, IBaseUnitOfWork uow, IAuthService authService)
+		public UserService(IMapper mapper, IBaseUnitOfWork uow)
 		{
 			this._mapper = mapper;
 			this._uow = uow;
-			this._authService = authService;
 		}
 
 		public async Task<UserModel> GetUserAsync(string id)
@@ -60,6 +57,8 @@ namespace MusicNet.Services.Services.Users
 			user.Password = this.GetHash(user.Password);
 			userEntity = this._mapper.Map<UserModel, User>(user);
 			var userEntityResult = await this._uow.Users.CreateAsync(userEntity);
+			this._uow.Commit();
+			
 			var userModelResult = this._mapper.Map<User, UserModel>(userEntityResult);
 			return userModelResult;
 		}
@@ -74,7 +73,7 @@ namespace MusicNet.Services.Services.Users
 			throw new NotImplementedException();
 		}
 
-		private string GetHash(string password)
+		public string GetHash(string password)
 		{
 			var passBytes = new UTF8Encoding().GetBytes(password);
 			byte[] hashBytes;
