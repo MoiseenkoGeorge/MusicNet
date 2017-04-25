@@ -6,10 +6,10 @@ export default function requireAuthentication(Component) {
 
 	class AuthenticatedComponent extends React.Component {
 		componentWillMount() {
-			this.checkAuth(this.props.user);
+			this.checkAuth(this.props.auth);
 		}
 		componentWillReceiveProps(nextProps) {
-			this.checkAuth(nextProps.user);
+			this.checkAuth(nextProps.auth);
 		}
 		checkAuth(user) {
 			if (!user.isAuthenticated) {
@@ -25,7 +25,7 @@ export default function requireAuthentication(Component) {
 		render() {
 			return (
 				<div>
-					{this.props.user.isAuthenticated === true
+					{this.props.auth.isAuthenticated === true
 						? <Component {...this.props}/>
 						: null
 					}
@@ -36,7 +36,7 @@ export default function requireAuthentication(Component) {
 
 	function mapStateToProps(state) {
 		return {
-			user: state.user
+			auth: state.auth
 		}
 	}
 

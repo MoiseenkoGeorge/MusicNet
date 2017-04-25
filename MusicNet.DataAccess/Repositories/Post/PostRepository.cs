@@ -47,12 +47,16 @@ namespace MusicNet.DataAccess.Repositories.Post
 
 		public Entities.Post Create(Entities.Post entity)
 		{
-			throw new NotImplementedException();
+			entity.CreationDate = DateTime.Now;
+			var result = this._context.Set<Entities.Post>().Add(entity);
+			return result.Entity;
 		}
 
-		public Task<Entities.Post> CreateAsync(Entities.Post entity)
+		public async Task<Entities.Post> CreateAsync(Entities.Post entity)
 		{
-			throw new NotImplementedException();
+			entity.CreationDate = DateTime.Now;
+			var result = await this._context.Set<Entities.Post>().AddAsync(entity);
+			return result.Entity;
 		}
 
 		public void Delete(string key)

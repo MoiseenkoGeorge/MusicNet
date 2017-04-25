@@ -6,7 +6,7 @@ import {
 	REGISTER_REQUEST,
 	REGISTER_FAIL,
 	REGISTER_SUCCESS,
-} from '../constants/User'
+} from '../constants/Auth'
 
 import {
 	ROUTING
@@ -46,7 +46,8 @@ export function loginUser(login, password, nextAddress) {
 }
 
 export function loginSuccess(response) {
-	localStorage.setItem("token", response.accessToken);
+	localStorage.setItem("accessToken", response.accessToken);
+	localStorage.setItem("userName", response.userName);
 	return {
 		type: LOGIN_SUCCESS,
 		payload: {
@@ -57,7 +58,7 @@ export function loginSuccess(response) {
 }
 
 export function loginFailure(error) {
-	localStorage.removeItem('token');
+	localStorage.removeItem('accessToken');
 	return {
 		type: LOGIN_FAIL,
 		payload: {
@@ -78,7 +79,7 @@ export function redirect(address = "/") {
 }
 
 export function logout() {
-	localStorage.removeItem('token');
+	localStorage.removeItem('accessToken');
 	return {
 		type: LOGOUT_SUCCESS
 	}
@@ -116,7 +117,8 @@ export function registerUser(email, login, password) {
 }
 
 export function registerSuccess(response) {
-	localStorage.setItem("token", response.accessToken);
+	localStorage.setItem("accessToken", response.accessToken);
+	localStorage.setItem("userName", response.userName);
 	return {
 		type: REGISTER_SUCCESS,
 		payload: {

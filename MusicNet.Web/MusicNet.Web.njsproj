@@ -33,17 +33,41 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="src\actions\UserActions.jsx" />
-    <Content Include="src\components\Admin\index.jsx" />
+    <Content Include="src\actions\AuthActions.jsx" />
+    <Content Include="src\actions\ProfileActions.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Genre\index.jsx" />
-    <Content Include="src\components\Home\index.jsx" />
+    <Content Include="src\components\Feed\index.jsx" />
     <Content Include="src\components\List\index.jsx" />
     <Content Include="src\components\NavLink\index.jsx" />
     <Content Include="src\components\NotFound\index.jsx" />
+    <Content Include="src\components\Post\index.jsx" />
+    <Content Include="src\components\Profile\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\Profile\ProfileHeader.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Release\index.jsx" />
+    <Content Include="src\components\Spinner\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\constants\Profile.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\constants\Routing.jsx" />
-    <Content Include="src\constants\User.jsx" />
+    <Content Include="src\constants\Auth.jsx" />
+    <Content Include="src\containers\App\App.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\containers\App\Footer.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\containers\App\index.jsx" />
+    <Content Include="src\containers\App\NavBar.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\containers\AuthenticatedComponent\index.jsx" />
     <Content Include="src\containers\LoginPage\index.jsx" />
     <Content Include="src\containers\RegisterPage\index.jsx">
@@ -56,7 +80,10 @@
     <Content Include="README.md" />
     <Content Include="src\middlewares\redirect.jsx" />
     <Content Include="src\reducers\index.jsx" />
-    <Content Include="src\reducers\user.jsx" />
+    <Content Include="src\reducers\auth.jsx" />
+    <Content Include="src\reducers\profile.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\routes.jsx" />
     <Content Include="src\store\configureStore.jsx" />
     <Content Include="src\utils\index.jsx">
@@ -72,11 +99,13 @@
     <Folder Include="src\" />
     <Folder Include="src\actions\" />
     <Folder Include="src\components\" />
-    <Folder Include="src\components\Admin\" />
     <Folder Include="src\components\Genre\" />
-    <Folder Include="src\components\Home\" />
+    <Folder Include="src\components\Feed\" />
     <Folder Include="src\components\List\" />
     <Folder Include="src\components\NavLink\" />
+    <Folder Include="src\components\Spinner\" />
+    <Folder Include="src\components\Post\" />
+    <Folder Include="src\components\Profile\" />
     <Folder Include="src\components\NotFound\" />
     <Folder Include="src\components\Release\" />
     <Folder Include="src\constants\" />

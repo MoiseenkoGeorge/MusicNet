@@ -22,13 +22,12 @@ namespace MusicNet.Services.Services.Users
 			this._uow = uow;
 		}
 
-		public async Task<UserModel> GetUserAsync(string id)
+		public async Task<ProfileModel> GetProfileAsync(string name)
 		{
-			Guard.ArgumentNotNullOrWhiteSpace(id, nameof(id));
+			Guard.ArgumentNotNullOrWhiteSpace(name, nameof(name));
 
-			var userEntity = await this._uow.Users.GetByIdAsync(id);
-			var userModel = this._mapper.Map<User, UserModel>(userEntity);
-			return userModel;
+			var userEntity = await this._uow.Users.GetByPredicateAsync(u => u.Name == name);
+			return userEntity != null ? this._mapper.Map<User, ProfileModel>(userEntity) : null;
 		}
 
 		public async Task<UserModel> LoginAsync(UserModel userModel)
@@ -73,11 +72,11 @@ namespace MusicNet.Services.Services.Users
 			throw new NotImplementedException();
 		}
 
-		public string GetHash(string password)
+		private string GetHash(string password)
 		{
 			var passBytes = new UTF8Encoding().GetBytes(password);
 			byte[] hashBytes;
-			using (var algorithm = new HMACSHA512())
+			using (var algorithm = SHA512.Create())
 			{
 				hashBytes = algorithm.ComputeHash(passBytes);
 			}

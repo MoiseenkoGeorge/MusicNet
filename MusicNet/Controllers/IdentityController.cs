@@ -36,7 +36,7 @@ namespace MusicNet.Controllers
 				UserModel registredUserModel = await this._userService.CreateUserAsync(userModel);
 				if (registredUserModel == null)
 				{
-					this.ModelState.AddModelError("", "User with the same email has registred yet");
+					this.ModelState.AddModelError("Email", "User with the same email has registred yet");
 				}
 				else
 				{
@@ -60,7 +60,7 @@ namespace MusicNet.Controllers
 				UserModel signedInUserModel = await this._userService.LoginAsync(userModel);
 				if (signedInUserModel == null)
 				{
-					this.ModelState.AddModelError("", "Incorrect Login or Password.");
+					this.ModelState.AddModelError("Name", "Incorrect Login or Password.");
 				}
 				else
 				{

@@ -57,6 +57,7 @@ namespace MusicNet.DataAccess.Repositories.User
 		public Entities.User Create(Entities.User entity)
 		{
 			entity.CreationDate = DateTime.Now;
+			entity.ImageUrl = "http://res.cloudinary.com/djb7hr8nk/image/upload/v1466780959/empty_zeehdh.png";
 			var result = this._context.Set<Entities.User>().Add(entity);
 			return result.Entity;
 		}
@@ -64,6 +65,7 @@ namespace MusicNet.DataAccess.Repositories.User
 		public async Task<Entities.User> CreateAsync(Entities.User entity)
 		{
 			entity.CreationDate = DateTime.Now;
+			entity.ImageUrl = "http://res.cloudinary.com/djb7hr8nk/image/upload/v1466780959/empty_zeehdh.png";
 			var result = await this._context.Set<Entities.User>().AddAsync(entity);
 			return result.Entity;
 		}

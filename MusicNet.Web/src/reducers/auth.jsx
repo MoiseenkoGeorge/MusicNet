@@ -6,7 +6,7 @@ import {
 	REGISTER_REQUEST,
 	REGISTER_FAIL,
 	REGISTER_SUCCESS,
-} from '../constants/User'
+} from '../constants/Auth'
 
 import { createReducer } from '../utils';
 

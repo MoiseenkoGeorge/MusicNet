@@ -27,7 +27,7 @@ namespace MusicNet.Common
 		/// <summary>
 		///     The token lifetime in minutes.
 		/// </summary>
-		public const int LIFETIME = 1;
+		public const int LIFETIME = 10000;
 
 		/// <summary>
 		///     Getting SymmetricSecurityKey instance.

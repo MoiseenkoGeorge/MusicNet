@@ -45,6 +45,11 @@ namespace MusicNet.DataAccess.Entities
 		public DateTime CreationDate { get; set; }
 
 		/// <summary>
+		/// The image url for Profile.
+		/// </summary>
+		public string ImageUrl { get; set; }
+
+		/// <summary>
 		///     The User Posts.
 		/// </summary>
 		[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

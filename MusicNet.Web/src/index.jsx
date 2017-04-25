@@ -5,13 +5,14 @@ import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import { routes } from './routes'
-import { loginSuccess } from './actions/UserActions' 
+import { loginSuccess } from './actions/AuthActions' 
 
 const store = configureStore();
 
-let token = localStorage.getItem('token');
+let token = localStorage.getItem('accessToken');
+let userName = localStorage.getItem('userName');
 if (token !== null) {
-	store.dispatch(loginSuccess(token));
+	store.dispatch(loginSuccess({accessToken: token, userName: userName}));
 }
 
 render(

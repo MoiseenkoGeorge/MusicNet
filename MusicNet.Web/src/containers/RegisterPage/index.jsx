@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as UserActions from '../../actions/UserActions'
+import * as AuthActions from '../../actions/AuthActions'
 
 export class RegisterPage extends Component {
 
@@ -79,14 +79,14 @@ export class RegisterPage extends Component {
 
 function mapStateToProps(state) {
 	return {
-		isRegistrating: state.user.isRegistrating,
-		statusText: state.user.statusText
+		isRegistrating: state.auth.isRegistrating,
+		statusText: state.auth.statusText
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(UserActions, dispatch)
+		actions: bindActionCreators(AuthActions, dispatch)
 	}
 }
 

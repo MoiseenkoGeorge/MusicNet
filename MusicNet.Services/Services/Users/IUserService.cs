@@ -9,11 +9,11 @@ namespace MusicNet.Services.Services.Users
 	public interface IUserService
 	{
 		/// <summary>
-		///     Get user async.
+		///     Get profile async.
 		/// </summary>
-		/// <param name="id">The User id.</param>
-		/// <returns>The User model.</returns>
-		Task<UserModel> GetUserAsync(string id);
+		/// <param name="name">The User name.</param>
+		/// <returns>The Profile model.</returns>
+		Task<ProfileModel> GetProfileAsync(string name);
 
 		/// <summary>
 		///     Login User Async.

@@ -26,3 +26,8 @@ export function createReducer(initialState, reducerMap) {
 			: state;
 	};
 }
+
+export function getAuthHeader() {
+	let token = localStorage.getItem("accessToken");
+	return `Bearer ${token}`;
+}

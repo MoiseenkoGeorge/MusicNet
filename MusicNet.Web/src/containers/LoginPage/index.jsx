@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as UserActions from '../../actions/UserActions'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as AuthActions from '../../actions/AuthActions';
 
 export class LoginPage extends Component {
 
@@ -58,14 +58,14 @@ export class LoginPage extends Component {
 
 function mapStateToProps(state) {
 	return {
-		isAuthenticating: state.user.isAuthenticating,
-		statusText: state.user.statusText
+		isAuthenticating: state.auth.isAuthenticating,
+		statusText: state.auth.statusText
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(UserActions, dispatch)
+		actions: bindActionCreators(AuthActions, dispatch)
 	}
 }
 
