@@ -4,9 +4,8 @@ import ProfileHeader from "./ProfileHeader";
 export default class Profile extends Component {
 	render() {
 		return (
-			<div className="col-xs-12">
+			<div className="row">
 				<ProfileHeader userName = {this.props.params.userName}/>
-				The profile
 			</div>
 		);
 	}

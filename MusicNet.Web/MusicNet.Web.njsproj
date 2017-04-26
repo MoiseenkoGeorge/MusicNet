@@ -37,9 +37,7 @@
     <Content Include="src\actions\ProfileActions.jsx">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\Genre\index.jsx" />
     <Content Include="src\components\Feed\index.jsx" />
-    <Content Include="src\components\List\index.jsx" />
     <Content Include="src\components\NavLink\index.jsx" />
     <Content Include="src\components\NotFound\index.jsx" />
     <Content Include="src\components\Post\index.jsx" />
@@ -49,7 +47,6 @@
     <Content Include="src\components\Profile\ProfileHeader.jsx">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\Release\index.jsx" />
     <Content Include="src\components\Spinner\index.jsx">
       <SubType>Code</SubType>
     </Content>
@@ -99,15 +96,12 @@
     <Folder Include="src\" />
     <Folder Include="src\actions\" />
     <Folder Include="src\components\" />
-    <Folder Include="src\components\Genre\" />
     <Folder Include="src\components\Feed\" />
-    <Folder Include="src\components\List\" />
     <Folder Include="src\components\NavLink\" />
     <Folder Include="src\components\Spinner\" />
     <Folder Include="src\components\Post\" />
     <Folder Include="src\components\Profile\" />
     <Folder Include="src\components\NotFound\" />
-    <Folder Include="src\components\Release\" />
     <Folder Include="src\constants\" />
     <Folder Include="src\containers\" />
     <Folder Include="src\containers\App\" />

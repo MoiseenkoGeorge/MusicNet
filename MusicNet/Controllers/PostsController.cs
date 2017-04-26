@@ -24,9 +24,19 @@ namespace MusicNet.Controllers
 			this._postService = postService;
 		}
 
-		// POST api/posts
+		[HttpGet("{userName}")]
+		public async Task<IActionResult> GetPosts(string userName)
+		{
+			Guard.ArgumentNotNullOrWhiteSpace(userName, nameof(userName));
+
+			IEnumerable<PostModel> postModels = await this._postService.GetPostsAsync(userName, 0, 10);
+			IEnumerable<PostViewModel> postViewModels = this._mapper.Map<IEnumerable<PostModel>, IEnumerable<PostViewModel>>(postModels);
+
+			return this.Json(postViewModels);
+		}
+		
 		[HttpPost]
-		public async Task<IActionResult> Post([FromBody]PostViewModel postViewModel)
+		public async Task<IActionResult> AddPost([FromBody]PostViewModel postViewModel)
 		{
 			Guard.ArgumentNotNull(postViewModel, nameof(postViewModel));
 

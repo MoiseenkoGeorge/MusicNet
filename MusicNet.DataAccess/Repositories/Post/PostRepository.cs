@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -77,6 +78,15 @@ namespace MusicNet.DataAccess.Repositories.Post
 		public Task<Entities.Post> UpdateAsync(Entities.Post entity)
 		{
 			throw new NotImplementedException();
+		}
+
+		public async Task<IEnumerable<Entities.Post>> GetPostsByPredicateAsync(Expression<Func<Entities.Post, bool>> p, int position, int count)
+		{
+			var result = await this._context.Set<Entities.Post>().Where(p)
+																.Skip(position)
+																.Take(count)
+																.ToListAsync();
+			return result;
 		}
 	}
 }

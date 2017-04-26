@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using MusicNet.Common;
 using MusicNet.DataAccess.Entities;
 using MusicNet.DataAccess.UoWs;
@@ -26,6 +29,16 @@ namespace MusicNet.Services.Services.Posts
 			Post postEntity = this._mapper.Map<PostModel, Post>(postModel);
 			await this._uow.Posts.CreateAsync(postEntity);
 			this._uow.Commit();
+		}
+
+		public async Task<IEnumerable<PostModel>> GetPostsAsync(string userName, int startIndex, int count)
+		{
+			Guard.ArgumentNotNullOrWhiteSpace(userName, nameof(userName));
+			Guard.ArgumentNotNull(count, nameof(count));
+
+			IEnumerable<Post> posts = await this._uow.Posts.GetPostsByPredicateAsync(post => post.User.Name == userName, startIndex, count);
+			IEnumerable<PostModel> postModels = this._mapper.Map<IEnumerable<Post>, IEnumerable<PostModel>>(posts.ToList());
+			return postModels;
 		}
 	}
 }

@@ -40,14 +40,22 @@ export class ProfileHeader extends Component {
 						</div>
 						<div className="row">
 							<div className="col-xs-4 col-md-4">
-								<span>{this.props.postsCount}</span>
-								posts
+								<h4>
+									<span>{this.props.postsCount} </span>
+									posts
+								</h4>
 							</div>
 							<div className="col-xs-4 col-md-4">
-								<span>{this.props.subscribers}</span>
-								followers
+								<h4>
+									<span>{this.props.subscribers} </span>
+									followers
+								</h4>
 							</div>
 							<div className="col-xs-4 col-md-4">
+								<h4>
+									<span>0 </span>
+									following
+								</h4>
 							</div>
 						</div>
 					</div>
