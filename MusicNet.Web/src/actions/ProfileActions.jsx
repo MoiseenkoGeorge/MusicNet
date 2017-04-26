@@ -58,7 +58,8 @@ export function profileRequestSuccess(response) {
 			userName: response.name,
 			subscribers: response.subscribers,
 			subscribes: response.subscribes,
-			imageUrl: response.imageUrl
+			imageUrl: response.imageUrl,
+			postsCount: response.postsCount
 		}
 	}
 }

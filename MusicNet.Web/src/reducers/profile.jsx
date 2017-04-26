@@ -12,7 +12,7 @@ const initialState = {
 	subscribers: 0,
 	profileRequsting: false,
 	isMyProfile: false,
-	hasPosts: false
+	postsCount: 0
 };
 
 export default createReducer(initialState, {
@@ -32,7 +32,8 @@ export default createReducer(initialState, {
 			subscribes: payload.subscribes,
 			subscribers: payload.subscribers,
 			isMyProfile: payload.userName === localStorage.userName,
-			profileImg: payload.imageUrl
+			profileImg: payload.imageUrl,
+			postsCount: payload.postsCount
 		});
 	}
 })

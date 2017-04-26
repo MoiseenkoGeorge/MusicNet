@@ -9,5 +9,7 @@
 		public int Subscribes { get; set; }
 
 		public int Subscribers { get; set; }
+
+		public int PostsCount { get; set; }
 	}
 }

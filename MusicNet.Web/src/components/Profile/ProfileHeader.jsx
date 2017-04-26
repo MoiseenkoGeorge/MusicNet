@@ -19,14 +19,40 @@ export class ProfileHeader extends Component {
 		let template;
 		if (this.props.profileRequesting === true) {
 			template = (
-				<Spinner/>
+				<div className="row">
+					<Spinner />
+				</div>
 			);
 		} else {
 			template = (
-				<div className="col-xs-12">
-					<img src={this.props.profileImg} className="img-circle" alt="Profile image" />
+				<div className="row">
+					<div className="col-xs-3 col-md-3 col-xs-offset-1 col-md-offset-1">
+						<img src={this.props.profileImg} className="img-circle" alt="Profile image" />
+					</div>
+					<div className="col-xs-8 col-md-8">
+						<div className="row">
+							<div className="col-xs-8 col-md-8">
+								<h2>{this.props.userName}</h2>
+							</div>
+							<div className="col-xs-4 col-md-4">
+								There must be edit Profile button
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-xs-4 col-md-4">
+								<span>{this.props.postsCount}</span>
+								posts
+							</div>
+							<div className="col-xs-4 col-md-4">
+								<span>{this.props.subscribers}</span>
+								followers
+							</div>
+							<div className="col-xs-4 col-md-4">
+							</div>
+						</div>
+					</div>
 				</div>
-					);
+			);
 		}
 		return template;
 	}
@@ -38,7 +64,8 @@ function mapStateToProps(state) {
 		subscribes: state.profile.subscribes,
 		subscribers: state.profile.subscribers,
 		isMyProfile: state.profile.isMyProfile,
-		profileRequesting: state.profile.profileRequsting
+		profileRequesting: state.profile.profileRequsting,
+		postsCount: state.profile.postsCount
 	}
 }
 

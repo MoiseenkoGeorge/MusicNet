@@ -12,5 +12,7 @@ namespace MusicNet.Services.Models
 
 		public int Subscribers { get; set; }
 
+		public int PostsCount { get; set; }
+
 	}
 }

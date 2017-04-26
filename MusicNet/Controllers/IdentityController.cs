@@ -36,7 +36,7 @@ namespace MusicNet.Controllers
 				UserModel registredUserModel = await this._userService.CreateUserAsync(userModel);
 				if (registredUserModel == null)
 				{
-					this.ModelState.AddModelError("Email", "User with the same email has registred yet");
+					this.ModelState.AddModelError("Email", "User with the same name has registred yet");
 				}
 				else
 				{

@@ -18,6 +18,7 @@ namespace MusicNet.DataAccess.Entities
 		{
 			this.Posts = new HashSet<Post>();
 			this.Subscriptions = new HashSet<Subscription>();
+			this.Comments = new HashSet<Comment>();
 		}
 
 		/// <summary>
