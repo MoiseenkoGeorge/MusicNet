@@ -30,6 +30,7 @@ namespace MusicNet
 		{
 			this.CreateMap<PostViewModel, PostModel>();
 			this.CreateMap<PostModel, PostViewModel>();
+			this.CreateMap<AddPostViewModel, PostModel>();
 		}
 
 		private void RegisterTrackModels()

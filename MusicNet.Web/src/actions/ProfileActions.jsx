@@ -1,31 +1,28 @@
 ﻿import {
 	PROFILE_REQUEST,
-	PROFILE_SUCCESS_RESPONSE,
-	PROFILE_FAIL_RESPONSE
+	PROFILE_REQUEST_SUCCESS,
+	PROFILE_REQUEST_FAIL,
+	PROFILE_POSTS_REQUEST,
+	PROFILE_POSTS_REQUEST_SUCCESS,
+	PROFILE_POSTS_REQUEST_FAIL
 } from '../constants/Profile'
 
 import { checkHttpStatus, parseJSON, buildURL, getAuthHeader } from "../utils";
 import * as authActions from "./AuthActions";
 
-export function profileRequest() {
-	return {
-		type: PROFILE_REQUEST
-	}
-}
-
 export function getUserProfile(userName) {
 	return (dispatch) => {
 		dispatch(profileRequest());
 		return fetch(buildURL("api/users/" + userName),
-				{
-					method: "get",
-					credentials: "include",
-					headers: {
-						"Accept": "application/json",
-						"Content-Type": "application/json",
-						'Authorization': getAuthHeader()
-					}
-				})
+			{
+				method: "get",
+				credentials: "include",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+					'Authorization': getAuthHeader()
+				}
+			})
 			.then(checkHttpStatus)
 			.then(parseJSON)
 			.then(response => {
@@ -45,15 +42,21 @@ export function getUserProfile(userName) {
 	}
 }
 
+export function profileRequest() {
+	return {
+		type: PROFILE_REQUEST
+	}
+}
+
 export function profileRequestFail() {
 	return {
-		type: PROFILE_FAIL_RESPONSE
+		type: PROFILE_REQUEST_FAIL
 	}
 }
 
 export function profileRequestSuccess(response) {
 	return {
-		type: PROFILE_SUCCESS_RESPONSE,
+		type: PROFILE_REQUEST_SUCCESS,
 		payload: {
 			userName: response.name,
 			subscribers: response.subscribers,
@@ -61,5 +64,57 @@ export function profileRequestSuccess(response) {
 			imageUrl: response.imageUrl,
 			postsCount: response.postsCount
 		}
+	}
+}
+
+export function getUserProfilePosts(userName) {
+	return (dispatch) => {
+		dispatch(profilePostsRequest());
+		return fetch((buildURL("api/posts/" + userName)),
+			{
+				method: "get",
+				credentials: "include",
+				headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+					'Authorization': getAuthHeader()
+				}
+			})
+			.then(checkHttpStatus)
+			.then(parseJSON)
+			.then(response => {
+				dispatch(profilePostsRequestSuccess(response));
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					dispatch(profilePostsRequestFail);
+					dispatch(authActions.loginUserFailure(error));
+					dispatch(pushState(null, '/login'));
+				} else if (error.response.status === 404) {
+					dispatch(profilePostsRequestFail);
+					// ... not found
+				}
+			});
+	}
+}
+
+export function profilePostsRequest() {
+	return {
+		type: PROFILE_POSTS_REQUEST
+	}
+}
+
+export function profilePostsRequestSuccess(response) {
+	return {
+		type: PROFILE_POSTS_REQUEST_SUCCESS,
+		payload: {
+			posts: response.posts
+		}
+	}
+}
+
+export function profilePostsRequestFail(response) {
+	return {
+		type: PROFILE_POSTS_REQUEST_FAIL
 	}
 }

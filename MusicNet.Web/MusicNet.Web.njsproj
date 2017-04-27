@@ -39,12 +39,21 @@
     </Content>
     <Content Include="src\components\Feed\index.jsx" />
     <Content Include="src\components\NavLink\index.jsx" />
+    <Content Include="src\components\NewPost\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\NotFound\index.jsx" />
+    <Content Include="src\components\PostFeed\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Post\index.jsx" />
     <Content Include="src\components\Profile\index.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Profile\ProfileHeader.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\Profile\ProfilePostsFeed.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Spinner\index.jsx">
@@ -98,6 +107,8 @@
     <Folder Include="src\components\" />
     <Folder Include="src\components\Feed\" />
     <Folder Include="src\components\NavLink\" />
+    <Folder Include="src\components\NewPost\" />
+    <Folder Include="src\components\PostFeed\" />
     <Folder Include="src\components\Spinner\" />
     <Folder Include="src\components\Post\" />
     <Folder Include="src\components\Profile\" />

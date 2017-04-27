@@ -1,6 +1,9 @@
 ﻿import React, { Component } from 'react'
 
 export default class Footer extends Component {
+	shouldComponentUpdate() {
+		return false;
+	}
 	render() {
 		return (
 				<footer id="footer" className="footer navbar-fixed-bottom">

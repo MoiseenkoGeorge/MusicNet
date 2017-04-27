@@ -5,9 +5,9 @@ export default class Post extends Component {
 		return (
 			<div className="row">
 				<div>
-					<p>{this.props.postText}</p>
+					<p>{this.props.info.postText}</p>
 				</div>
 			</div>
-			);
+		);
 	}
 }

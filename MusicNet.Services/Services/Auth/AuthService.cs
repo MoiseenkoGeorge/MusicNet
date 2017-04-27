@@ -32,6 +32,7 @@ namespace MusicNet.Services.Services.Auth
 		{
 			var claims = new List<Claim>
 			{
+				new Claim(ClaimTypes.NameIdentifier, userModel.Id),
 				new Claim(ClaimsIdentity.DefaultNameClaimType, userModel.Name)
 			};
 

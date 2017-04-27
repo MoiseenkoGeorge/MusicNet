@@ -19,7 +19,7 @@ export class ProfileHeader extends Component {
 		let template;
 		if (this.props.profileRequesting === true) {
 			template = (
-				<div className="row">
+				<div className="col-xs-4 col-md-4 col-xs-offset-4 col-md-offset-4">
 					<Spinner />
 				</div>
 			);
@@ -35,7 +35,6 @@ export class ProfileHeader extends Component {
 								<h2>{this.props.userName}</h2>
 							</div>
 							<div className="col-xs-4 col-md-4">
-								There must be edit Profile button
 							</div>
 						</div>
 						<div className="row">
