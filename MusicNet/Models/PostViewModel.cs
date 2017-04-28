@@ -4,7 +4,9 @@ namespace MusicNet.Models
 {
 	public class PostViewModel
 	{
-		public string PostText { get; set; }
+		public string Id { get; set; }
+
+		public string Text { get; set; }
 
 		public string ImageUrl { get; set; }
 

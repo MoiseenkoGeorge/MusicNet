@@ -14,7 +14,7 @@ namespace MusicNet
 				.UseStartup<Startup>()
 				.UseApplicationInsights()
 				.Build();
-
+             
 			host.Run();
 		}
 	}

@@ -41,7 +41,7 @@ namespace MusicNet.Services.Services.Users
 				return null;
 
 			userModel.Password = this.GetHash(userModel.Password);
-			return string.Equals(userModel.Password, user.Password, StringComparison.OrdinalIgnoreCase) ? userModel : null;
+			return string.Equals(userModel.Password, user.Password, StringComparison.OrdinalIgnoreCase) ? this._mapper.Map<User, UserModel>(user) : null;
 		}
 
 		public async Task<UserModel> CreateUserAsync(UserModel user)

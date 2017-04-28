@@ -8,7 +8,9 @@ export default class Profile extends Component {
 		return (
 			<div className="row">
 				<ProfileHeader userName={this.props.params.userName} />
-				<NewPost />
+				<div className="row">
+					<NewPost />
+				</div>
 				<ProfilePostsFeed userName={this.props.params.userName} />
 			</div>
 		);

@@ -4,7 +4,10 @@
 	PROFILE_REQUEST_FAIL,
 	PROFILE_POSTS_REQUEST,
 	PROFILE_POSTS_REQUEST_SUCCESS,
-	PROFILE_POSTS_REQUEST_FAIL
+	PROFILE_POSTS_REQUEST_FAIL,
+	PROFILE_ADD_POST_REQUEST,
+	PROFILE_ADD_POST_REQUEST_SUCCESS,
+	PROFILE_ADD_POST_REQUEST_FAIL
 } from '../constants/Profile'
 
 import { createReducer } from '../utils';
@@ -17,7 +20,8 @@ const initialState = {
 	isMyProfile: false,
 	postsCount: 0,
 	profilePostsRequesting: false,
-	profilePosts: []
+	profilePosts: [],
+	addPostRequesting: false
 };
 
 export default createReducer(initialState, {
@@ -55,6 +59,21 @@ export default createReducer(initialState, {
 		return Object.assign({}, state, {
 			profilePostsRequesting: false,
 			profilePosts: payload.posts
+		});
+	},
+	PROFILE_ADD_POST_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: true
+		});
+	},
+	PROFILE_ADD_POST_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: false
+		});
+	},
+	PROFILE_ADD_POST_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: false
 		});
 	}
 })

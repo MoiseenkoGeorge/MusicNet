@@ -11,7 +11,7 @@ namespace MusicNet.Services.Models
 
 		public DateTime CreationDate { get; set; }
 
-		public string PostText { get; set; }
+		public string Text { get; set; }
 
 		public string ImageUrl { get; set; }
 

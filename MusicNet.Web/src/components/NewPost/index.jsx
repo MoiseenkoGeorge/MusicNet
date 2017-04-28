@@ -29,8 +29,9 @@ export class NewPost extends Component {
 					onChange={this.postTextChanged.bind(this)} />
 				<input type='button'
 					className='btn btn-lg'
+					value="Send"
 					disabled={this.props.addPostRequesting}
-					onClick={this.handleSubmit.bind(this)}>Sign in</input>
+					onClick={this.handleSubmit.bind(this)} />
 			</div>
 		);
 	}
@@ -48,4 +49,4 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

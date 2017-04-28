@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicNet.Common;
+using MusicNet.Infrastructure.Extensions;
 using MusicNet.Models;
 using MusicNet.Services.Models;
 using MusicNet.Services.Services.Posts;
@@ -28,6 +29,7 @@ namespace MusicNet.Controllers
 		public async Task<IActionResult> GetPosts(string userName)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(userName, nameof(userName));
+
 			IEnumerable<PostModel> postModels = await this._postService.GetPostsAsync(userName, 0, 10);
 			IEnumerable<PostViewModel> postViewModels = this._mapper.Map<IEnumerable<PostModel>, IEnumerable<PostViewModel>>(postModels);
 
@@ -38,7 +40,9 @@ namespace MusicNet.Controllers
 		public async Task<IActionResult> AddPost([FromBody]AddPostViewModel postViewModel)
 		{
 			Guard.ArgumentNotNull(postViewModel, nameof(postViewModel));
+
 			PostModel postModel = this._mapper.Map<AddPostViewModel, PostModel>(postViewModel);
+			postModel.UserId = this.User.Identity.GetUserId<string>();
 			this._postService.AddPost(postModel);
 
 			return this.NoContent();
