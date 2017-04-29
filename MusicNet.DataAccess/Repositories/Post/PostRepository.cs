@@ -82,7 +82,7 @@ namespace MusicNet.DataAccess.Repositories.Post
 
 		public async Task<IEnumerable<Entities.Post>> GetPostsByPredicateAsync(Expression<Func<Entities.Post, bool>> p, int position, int count)
 		{
-			var result = await this._context.Set<Entities.Post>().Where(p)
+			var result = await this._context.Set<Entities.Post>().Include(post => post.User).Where(p)
 																.Skip(position)
 																.Take(count)
 																.ToListAsync();

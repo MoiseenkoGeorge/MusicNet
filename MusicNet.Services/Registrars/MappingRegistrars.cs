@@ -27,7 +27,9 @@ namespace MusicNet.Services.Registrars
 		private void RegisterPostModels()
 		{
 			this.CreateMap<PostModel, Post>();
-			this.CreateMap<Post, PostModel>();
+			this.CreateMap<Post, PostModel>()
+				.ForMember(dest => dest.UserName, src => src.MapFrom(post => post.User.Name))
+				.ForMember(dest => dest.UserImgUrl, src => src.MapFrom(post => post.User.ImageUrl));
 		}
 
 		private void RegisterTrackModels()

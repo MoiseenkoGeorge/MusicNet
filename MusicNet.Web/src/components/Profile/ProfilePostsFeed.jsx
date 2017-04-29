@@ -31,7 +31,7 @@ export class ProfilePostsFeed extends Component {
 			);
 		} else {
 			template = (
-				<div className="row">
+				<div className="col-xs-12 col-md-12">
 					<PostFeed posts={this.props.profilePosts} />
 				</div>
 			);

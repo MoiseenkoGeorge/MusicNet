@@ -13,7 +13,7 @@ export default class PostFeed extends Component {
 			<div className="row">
 				{
 					this.props.posts.map((post, i) => {
-						return <Post info={post} />;
+						return <Post info={post} key={post.id}/>;
 					})
 				}
 			</div>

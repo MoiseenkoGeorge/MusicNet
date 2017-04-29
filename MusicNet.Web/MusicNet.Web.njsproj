@@ -47,6 +47,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Post\index.jsx" />
+    <Content Include="src\components\Post\PostHeader.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Profile\index.jsx">
       <SubType>Code</SubType>
     </Content>

@@ -1,9 +1,11 @@
 ﻿import React, { Component } from "react";
+import PostHeader from "./PostHeader";
 
 export default class Post extends Component {
 	render() {
 		return (
-			<div className="row">
+			<div className="col-xs-12 col-md-6 col-md-offset-3">
+				<PostHeader userImgUrl={this.props.info.userImageUrl} userName={this.props.info.userName} postDate={this.props.info.creationDate} />
 				<div>
 					<p>{this.props.info.text}</p>
 				</div>

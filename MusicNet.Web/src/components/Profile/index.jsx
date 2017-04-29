@@ -7,11 +7,15 @@ export default class Profile extends Component {
 	render() {
 		return (
 			<div className="row">
-				<ProfileHeader userName={this.props.params.userName} />
+				<div className="row">
+					<ProfileHeader userName={this.props.params.userName} />
+				</div>
 				<div className="row">
 					<NewPost />
 				</div>
-				<ProfilePostsFeed userName={this.props.params.userName} />
+				<div className="row">
+					<ProfilePostsFeed userName={this.props.params.userName} />
+				</div>
 			</div>
 		);
 	}

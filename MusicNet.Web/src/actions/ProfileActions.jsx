@@ -137,7 +137,6 @@ export function addPost(text) {
 				body: JSON.stringify({ text: text})
 			})
 			.then(checkHttpStatus)
-			.then(parseJSON)
 			.then(() => {
 				dispatch(addPostRequestSuccess());
 			})

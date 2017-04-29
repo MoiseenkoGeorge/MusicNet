@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MusicNet.Models
 {
@@ -10,8 +11,14 @@ namespace MusicNet.Models
 
 		public string ImageUrl { get; set; }
 
+		public string UserImageUrl { get; set; }
+
+		public DateTime CreationDate { get; set; }
+
 		public ICollection<TrackViewModel> Tracks { get; set; }
 
 		public ICollection<CommentViewModel> Comments { get; set; }
+
+		public string UserName { get; set; }
 	}
 }
