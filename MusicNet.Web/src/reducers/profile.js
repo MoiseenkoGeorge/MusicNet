@@ -16,7 +16,7 @@ const initialState = {
 	profileImg: null,
 	subscribes: 0,
 	subscribers: 0,
-	profileRequsting: false,
+	profileRequesting: false,
 	isMyProfile: false,
 	postsCount: 0,
 	profilePostsRequesting: false,
@@ -27,17 +27,17 @@ const initialState = {
 export default createReducer(initialState, {
 	PROFILE_REQUEST: (state, payload) => {
 		return Object.assign({}, state, {
-			profileRequsting: true
+			profileRequesting: true
 		});
 	},
 	PROFILE_REQUEST_FAIL: (state, payload) => {
 		return Object.assign({}, state, {
-			profileRequsting: false
+			profileRequesting: false
 		});
 	},
 	PROFILE_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
-			profileRequsting: false,
+			profileRequesting: false,
 			subscribes: payload.subscribes,
 			subscribers: payload.subscribers,
 			isMyProfile: payload.userName === localStorage.userName,

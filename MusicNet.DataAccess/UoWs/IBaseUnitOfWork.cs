@@ -1,5 +1,6 @@
 ﻿using MusicNet.DataAccess.Repositories.Comment;
 using MusicNet.DataAccess.Repositories.Post;
+using MusicNet.DataAccess.Repositories.Track;
 using MusicNet.DataAccess.Repositories.User;
 
 namespace MusicNet.DataAccess.UoWs
@@ -23,5 +24,10 @@ namespace MusicNet.DataAccess.UoWs
 		///     The Comments Repository.
 		/// </summary>
 		ICommentRepository Comments { get; }
+
+		/// <summary>
+		/// The Tracks Repository.
+		/// </summary>
+		ITrackRepository Tracks { get; }
 	}
 }

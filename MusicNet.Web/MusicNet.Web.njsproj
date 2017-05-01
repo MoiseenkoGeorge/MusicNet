@@ -33,8 +33,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="src\actions\AuthActions.jsx" />
-    <Content Include="src\actions\ProfileActions.jsx">
+    <Content Include="src\actions\AuthActions.js" />
+    <Content Include="src\actions\ProfileActions.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Feed\index.jsx" />
@@ -62,11 +62,11 @@
     <Content Include="src\components\Spinner\index.jsx">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\constants\Profile.jsx">
+    <Content Include="src\constants\Profile.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\constants\Routing.jsx" />
-    <Content Include="src\constants\Auth.jsx" />
+    <Content Include="src\constants\Routing.js" />
+    <Content Include="src\constants\Auth.js" />
     <Content Include="src\containers\App\App.jsx">
       <SubType>Code</SubType>
     </Content>
@@ -88,9 +88,9 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\middlewares\redirect.jsx" />
-    <Content Include="src\reducers\index.jsx" />
-    <Content Include="src\reducers\auth.jsx" />
-    <Content Include="src\reducers\profile.jsx">
+    <Content Include="src\reducers\index.js" />
+    <Content Include="src\reducers\auth.js" />
+    <Content Include="src\reducers\profile.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routes.jsx" />
@@ -100,6 +100,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\actions\SearchActions.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\constants\Search.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\reducers\search.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="webpack.config.js">
       <SubType>Code</SubType>
     </Compile>

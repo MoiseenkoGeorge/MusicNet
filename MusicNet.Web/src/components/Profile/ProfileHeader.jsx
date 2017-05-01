@@ -6,13 +6,24 @@ import * as ProfileActions from '../../actions/ProfileActions';
 import Spinner from "../Spinner";
 
 export class ProfileHeader extends Component {
-
-	componentWillMount() {
-		this.fetchData();
+	constructor(props) {
+		super(props);
+		this.state = { userName: props.userName }
 	}
 
-	fetchData() {
-		this.props.actions.getUserProfile(this.props.userName);
+	componentDidMount() {
+		this.fetchData(this.state.userName);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.state.userName !== nextProps.userName) {
+			this.setState({ userName: nextProps.userName });
+			this.fetchData(nextProps.userName);
+		}
+	}
+
+	fetchData(userName) {
+		this.props.actions.getUserProfile(userName);
 	}
 
 	render() {
@@ -32,7 +43,7 @@ export class ProfileHeader extends Component {
 					<div className="col-xs-8 col-md-8">
 						<div className="row">
 							<div className="col-xs-8 col-md-8">
-								<h2>{this.props.userName}</h2>
+								<h2>{this.state.userName}</h2>
 							</div>
 							<div className="col-xs-4 col-md-4">
 							</div>
@@ -71,7 +82,7 @@ function mapStateToProps(state) {
 		subscribes: state.profile.subscribes,
 		subscribers: state.profile.subscribers,
 		isMyProfile: state.profile.isMyProfile,
-		profileRequesting: state.profile.profileRequsting,
+		profileRequesting: state.profile.profileRequesting,
 		postsCount: state.profile.postsCount
 	}
 }

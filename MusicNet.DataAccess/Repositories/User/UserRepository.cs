@@ -50,7 +50,10 @@ namespace MusicNet.DataAccess.Repositories.User
 
 		public async Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
 		{
-			var user = await this._context.Set<Entities.User>().SingleOrDefaultAsync(p);
+			var user = await this._context.Set<Entities.User>()
+														.Include(u => u.Posts)
+														.Include(u => u.Subscriptions)
+														.SingleOrDefaultAsync(p);
 			return user;
 		}
 

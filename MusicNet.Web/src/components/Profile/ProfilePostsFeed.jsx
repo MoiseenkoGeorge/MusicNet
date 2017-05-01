@@ -7,12 +7,24 @@ import Spinner from "../Spinner";
 import PostFeed from "../PostFeed";
 
 export class ProfilePostsFeed extends Component {
-	componentWillMount() {
-		this.fetchData();
+	constructor(props) {
+		super(props);
+		this.state = { userName: props.userName }
 	}
 
-	fetchData() {
-		this.props.actions.getUserProfilePosts(this.props.userName);
+	componentDidMount() {
+		this.fetchData(this.state.userName);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.state.userName !== nextProps.userName) {
+			this.setState({ userName: nextProps.userName });
+			this.fetchData(nextProps.userName);
+		}
+	}
+
+	fetchData(userName) {
+		this.props.actions.getUserProfilePosts(userName);
 	}
 
 	render() {

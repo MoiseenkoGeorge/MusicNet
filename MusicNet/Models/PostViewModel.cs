@@ -11,7 +11,7 @@ namespace MusicNet.Models
 
 		public string ImageUrl { get; set; }
 
-		public string UserImageUrl { get; set; }
+		public string UserImgUrl { get; set; }
 
 		public DateTime CreationDate { get; set; }
 
