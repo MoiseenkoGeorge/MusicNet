@@ -11,5 +11,7 @@ namespace MusicNet.DataAccess.Repositories.Post
 	public interface IPostRepository : IRepository<Entities.Post>
 	{
 		Task<IEnumerable<Entities.Post>> GetPostsByPredicateAsync(Expression<Func<Entities.Post, bool>> p, int position, int count);
+
+		Task<int> GetPostsCountForUserAsync(string userId);
 	}
 }

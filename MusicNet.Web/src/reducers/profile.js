@@ -13,9 +13,10 @@
 import { createReducer } from '../utils';
 
 const initialState = {
+	profileId: "",
 	profileImg: null,
-	subscribes: 0,
-	subscribers: 0,
+	following: 0,
+	folllowers: 0,
 	profileRequesting: false,
 	isMyProfile: false,
 	postsCount: 0,
@@ -38,8 +39,9 @@ export default createReducer(initialState, {
 	PROFILE_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
 			profileRequesting: false,
-			subscribes: payload.subscribes,
-			subscribers: payload.subscribers,
+			following: payload.following,
+			followers: payload.followers,
+			profileId: payload.userId,
 			isMyProfile: payload.userName === localStorage.userName,
 			profileImg: payload.imageUrl,
 			postsCount: payload.postsCount

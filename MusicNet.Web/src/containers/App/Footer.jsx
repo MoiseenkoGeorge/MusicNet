@@ -6,7 +6,7 @@ export default class Footer extends Component {
 	}
 	render() {
 		return (
-				<footer id="footer" className="footer navbar-fixed-bottom">
+				<footer id="footer">
 					<hr />
 					<div className="container text-center">
 						<p>&copy; {new Date().getFullYear()} - All Rights Reserved</p>

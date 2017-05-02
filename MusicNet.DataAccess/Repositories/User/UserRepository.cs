@@ -51,15 +51,15 @@ namespace MusicNet.DataAccess.Repositories.User
 		public async Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
 		{
 			var user = await this._context.Set<Entities.User>()
-														.Include(u => u.Posts)
-														.Include(u => u.Subscriptions)
+														.Include(u => u.Followers)
+														.Include(u => u.Following)
 														.SingleOrDefaultAsync(p);
 			return user;
 		}
 
 		public Entities.User Create(Entities.User entity)
 		{
-			entity.CreationDate = DateTime.Now;
+			entity.CreationDate = DateTime.Now.ToUniversalTime();
 			entity.ImageUrl = "http://res.cloudinary.com/djb7hr8nk/image/upload/v1466780959/empty_zeehdh.png";
 			var result = this._context.Set<Entities.User>().Add(entity);
 			return result.Entity;
@@ -67,7 +67,7 @@ namespace MusicNet.DataAccess.Repositories.User
 
 		public async Task<Entities.User> CreateAsync(Entities.User entity)
 		{
-			entity.CreationDate = DateTime.Now;
+			entity.CreationDate = DateTime.Now.ToUniversalTime();
 			entity.ImageUrl = "http://res.cloudinary.com/djb7hr8nk/image/upload/v1466780959/empty_zeehdh.png";
 			var result = await this._context.Set<Entities.User>().AddAsync(entity);
 			return result.Entity;

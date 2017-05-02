@@ -17,7 +17,8 @@ namespace MusicNet.DataAccess.Entities
 		public User()
 		{
 			this.Posts = new HashSet<Post>();
-			this.Subscriptions = new HashSet<Subscription>();
+			this.Followers = new HashSet<Subscription>();
+			this.Following = new HashSet<Subscription>();
 			this.Comments = new HashSet<Comment>();
 		}
 
@@ -53,14 +54,17 @@ namespace MusicNet.DataAccess.Entities
 		/// <summary>
 		///     The User Posts.
 		/// </summary>
-		[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		public ICollection<Post> Posts { get; set; }
 
 		/// <summary>
 		///     The User Subscriptions.
 		/// </summary>
-		[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public ICollection<Subscription> Subscriptions { get; set; }
+		public ICollection<Subscription> Followers { get; set; }
+
+		/// <summary>
+		///     The User Subscribes.
+		/// </summary>
+		public ICollection<Subscription> Following { get; set; }
 
 		/// <summary>
 		///     The User Comments.

@@ -194,6 +194,8 @@ ClientBin/
 *.publishsettings
 bundle.js
 bundle.js.map
+bundle.css
+bundle.css.map
 node_modules/
 orleans.codegen.cs
 

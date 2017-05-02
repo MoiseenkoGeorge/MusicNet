@@ -22,7 +22,7 @@ export class NewPost extends Component {
 
 	render() {
 		return (
-			<div className='col-xs-12 col-md-6 col-md-offset-3'>
+			<div className='col-xs-12 col-md-6 col-md-offset-3 new-post'>
 				<input type='text'
 					className='input-lg'
 					placeholder="What's new"

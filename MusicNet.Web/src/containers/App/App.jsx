@@ -6,12 +6,12 @@ import NavBar from "./NavBar";
 export class App extends Component {
 	render() {
 		return (
-			<div>
+			<div className="wrapper">
 				{this.props.isAuthenticated
 					? <NavBar />
 					: ''
 				}
-				<div className='container'>
+				<div className='container main-container'>
 					<div className='row'>
 						<div className='col-xs-12'>
 							{this.props.children}

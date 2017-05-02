@@ -6,7 +6,7 @@ namespace MusicNet.DataAccess.Entities
 	/// <summary>
 	///     The Subscription
 	/// </summary>
-	public class Subscription
+	public class Subscription : IEntity
 	{
 		/// <summary>
 		///     The Id.

@@ -44,14 +44,24 @@ namespace MusicNet.DataAccess.Entities
 				.HasForeignKey(c => c.UserId);
 
 			modelBuilder.Entity<User>()
-				.HasMany(u => u.Subscriptions)
+				.HasMany(u => u.Followers)
 				.WithOne(s => s.Publisher)
 				.HasForeignKey(s => s.PublisherId);
 
+			modelBuilder.Entity<User>()
+				.HasMany(u => u.Following)
+				.WithOne(s => s.Subscriber)
+				.HasForeignKey(s => s.SubscriberId);
+
 			modelBuilder.Entity<Subscription>()
 				.HasOne(s => s.Publisher)
-				.WithMany(u => u.Subscriptions)
-				.HasForeignKey(u => u.PublisherId);
+				.WithMany(u => u.Followers)
+				.HasForeignKey(s => s.PublisherId);
+
+			modelBuilder.Entity<Subscription>()
+				.HasOne(s => s.Subscriber)
+				.WithMany(u => u.Following)
+				.HasForeignKey(u => u.SubscriberId);
 
 			modelBuilder.Entity<Post>()
 				.HasOne(p => p.User)

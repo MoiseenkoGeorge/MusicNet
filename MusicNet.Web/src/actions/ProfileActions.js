@@ -61,9 +61,10 @@ export function profileRequestSuccess(response) {
 	return {
 		type: PROFILE_REQUEST_SUCCESS,
 		payload: {
+			userId: response.id,
 			userName: response.name,
-			subscribers: response.subscribers,
-			subscribes: response.subscribes,
+			followers: response.followers,
+			following: response.following,
 			imageUrl: response.imageUrl,
 			postsCount: response.postsCount
 		}

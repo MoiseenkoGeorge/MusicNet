@@ -36,7 +36,7 @@ export class ProfileHeader extends Component {
 			);
 		} else {
 			template = (
-				<div className="col-xs-12 col-md-12">
+				<div className="col-xs-12 col-md-12 profile-header">
 					<div className="col-xs-3 col-md-3 col-xs-offset-1 col-md-offset-1">
 						<img src={this.props.profileImg} className="img-circle" alt="Profile image" />
 					</div>
@@ -57,13 +57,13 @@ export class ProfileHeader extends Component {
 							</div>
 							<div className="col-xs-4 col-md-4">
 								<h4>
-									<span>{this.props.subscribers} </span>
+									<span>{this.props.followers} </span>
 									followers
 								</h4>
 							</div>
 							<div className="col-xs-4 col-md-4">
 								<h4>
-									<span>0 </span>
+									<span>{this.props.following} </span>
 									following
 								</h4>
 							</div>
@@ -79,8 +79,8 @@ export class ProfileHeader extends Component {
 function mapStateToProps(state) {
 	return {
 		profileImg: state.profile.profileImg,
-		subscribes: state.profile.subscribes,
-		subscribers: state.profile.subscribers,
+		following: state.profile.following,
+		followers: state.profile.followers,
 		isMyProfile: state.profile.isMyProfile,
 		profileRequesting: state.profile.profileRequesting,
 		postsCount: state.profile.postsCount

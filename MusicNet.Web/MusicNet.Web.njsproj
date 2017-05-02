@@ -95,6 +95,9 @@
     </Content>
     <Content Include="src\routes.jsx" />
     <Content Include="src\store\configureStore.jsx" />
+    <Content Include="src\styles\main.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\utils\index.jsx">
       <SubType>Code</SubType>
     </Content>
@@ -132,6 +135,7 @@
     <Folder Include="src\containers\LoginPage\" />
     <Folder Include="src\containers\RegisterPage\" />
     <Folder Include="src\middlewares\" />
+    <Folder Include="src\styles\" />
     <Folder Include="src\utils\" />
     <Folder Include="src\store\" />
     <Folder Include="src\reducers\" />

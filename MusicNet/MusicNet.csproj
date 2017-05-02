@@ -33,12 +33,5 @@
     <ProjectReference Include="..\MusicNet.Infrastructure\MusicNet.Infrastructure.csproj" />
     <ProjectReference Include="..\MusicNet.Services\MusicNet.Services.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
 
 </Project>

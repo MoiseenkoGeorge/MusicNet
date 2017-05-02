@@ -48,14 +48,14 @@ namespace MusicNet.DataAccess.Repositories.Post
 
 		public Entities.Post Create(Entities.Post entity)
 		{
-			entity.CreationDate = DateTime.Now;
+			entity.CreationDate = DateTime.Now.Date.ToUniversalTime();
 			var result = this._context.Set<Entities.Post>().Add(entity);
 			return result.Entity;
 		}
 
 		public async Task<Entities.Post> CreateAsync(Entities.Post entity)
 		{
-			entity.CreationDate = DateTime.Now;
+			entity.CreationDate = DateTime.Now.ToUniversalTime();
 			var result = await this._context.Set<Entities.Post>().AddAsync(entity);
 			return result.Entity;
 		}
@@ -85,7 +85,16 @@ namespace MusicNet.DataAccess.Repositories.Post
 			var result = await this._context.Set<Entities.Post>().Include(post => post.User).Where(p)
 																.Skip(position)
 																.Take(count)
+																.OrderByDescending(post => post.CreationDate)
 																.ToListAsync();
+
+			result.ForEach((post => post.CreationDate = DateTime.SpecifyKind(post.CreationDate, DateTimeKind.Utc)));
+			return result;
+		}
+
+		public async Task<int> GetPostsCountForUserAsync(string userId)
+		{
+			var result = await this._context.Set<Entities.Post>().CountAsync(post => post.UserId == userId);
 			return result;
 		}
 	}

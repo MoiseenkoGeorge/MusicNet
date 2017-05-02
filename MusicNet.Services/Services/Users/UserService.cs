@@ -27,7 +27,13 @@ namespace MusicNet.Services.Services.Users
 			Guard.ArgumentNotNullOrWhiteSpace(name, nameof(name));
 
 			var userEntity = await this._uow.Users.GetByPredicateAsync(u => u.Name == name);
-			return userEntity != null ? this._mapper.Map<User, ProfileModel>(userEntity) : null;
+			if (userEntity != null)
+			{
+				ProfileModel profileModel = this._mapper.Map<User, ProfileModel>(userEntity);
+				profileModel.PostsCount = await this._uow.Posts.GetPostsCountForUserAsync(userEntity.Id);
+				return profileModel;
+			}
+			return null;
 		}
 
 		public async Task<UserModel> LoginAsync(UserModel userModel)

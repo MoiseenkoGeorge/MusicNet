@@ -1,0 +1,46 @@
+﻿body {
+	background-color: #fafafa;
+	height: 100%;
+}
+
+#footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 80px;
+}
+
+.navbar {
+	background-color: #83B9EF;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
+	color: #fff;
+}
+
+.post, .profile-header, .new-post {
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	padding-top: 1%;
+}
+
+.profile-header, .new-post {
+	padding-bottom: 1%;
+}
+
+.wrapper {
+	position: relative;
+	min-height: 100%;
+}
+
+.main-container {
+	padding-bottom: 40px;
+}
+
+@media (min-width: 640px) {
+	.post, .new-post, .profile-header {
+		margin-bottom: 30px;
+	}
+}
