@@ -10,7 +10,7 @@ import * as authActions from "./AuthActions";
 export function getTracksByTitle(term) {
 	return (dispatch) => {
 		dispatch(searchTracksByTitleRequest());
-		return fetch(buildURL("api/search"),
+		return fetch(buildURL("api/search/tracks?term=" + term),
 				{
 					method: "get",
 					credentials: "include",
@@ -18,8 +18,7 @@ export function getTracksByTitle(term) {
 						"Accept": "application/json",
 						"Content-Type": "application/json",
 						'Authorization': getAuthHeader()
-					},
-					body: JSON.stringify({ term: term })
+					}
 				})
 			.then(checkHttpStatus)
 			.then(parseJSON)

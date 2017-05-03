@@ -10,8 +10,7 @@ using MusicNet.Services.Services.Search;
 
 namespace MusicNet.Controllers
 {
-	[Route("api/[controller]")]
-	[Authorize]
+	[Route("api/search")]
 	public class SearchController : Controller
 	{
 		private readonly IMapper _mapper;
@@ -24,8 +23,8 @@ namespace MusicNet.Controllers
 			_searchService = searchService;
 		}
 
-		[HttpGet("term")]
-		public async Task<IActionResult> Get(string term)
+		[HttpGet("tracks")]
+		public async Task<IActionResult> GetTracks([FromQuery]string term)
 		{
 			Guard.ArgumentNotNull(term, nameof(term));
 

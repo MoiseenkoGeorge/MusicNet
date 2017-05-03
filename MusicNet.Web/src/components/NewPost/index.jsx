@@ -1,14 +1,27 @@
 ﻿import React, { Component } from "react";
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
+
+import MusicAttachModal from "./MusicAttachModal";
 import * as ProfileActions from '../../actions/ProfileActions';
 
 export class NewPost extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			postText: ""
+			postText: "",
+			modalIsOpen: false
 		}
+		this.openModal = this.openModal.bind(this);
+		this.closeModal = this.closeModal.bind(this);
+	}
+
+	openModal() {
+		this.setState({ modalIsOpen: true });
+	}
+
+	closeModal() {
+		this.setState({ modalIsOpen: false });
 	}
 
 	handleSubmit(event) {
@@ -32,6 +45,12 @@ export class NewPost extends Component {
 					value="Send"
 					disabled={this.props.addPostRequesting}
 					onClick={this.handleSubmit.bind(this)} />
+				<input type='button'
+					className='btn btn-lg'
+					value="Attach Music"
+					disabled={this.props.addPostRequesting}
+					onClick={this.openModal} />
+				<MusicAttachModal isOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
 			</div>
 		);
 	}

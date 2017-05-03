@@ -2,6 +2,7 @@
 using MusicNet.DataAccess.Registrars;
 using MusicNet.Services.Services.Auth;
 using MusicNet.Services.Services.Posts;
+using MusicNet.Services.Services.Search;
 using MusicNet.Services.Services.Users;
 
 namespace MusicNet.Services.Registrars
@@ -17,6 +18,7 @@ namespace MusicNet.Services.Registrars
 			container.AddTransient<IUserService, UserService>();
 			container.AddTransient<IAuthService, AuthService>();
 			container.AddTransient<IPostService, PostService>();
+			container.AddTransient<ISearchService, SearchService>();
 		}
 	}
 }

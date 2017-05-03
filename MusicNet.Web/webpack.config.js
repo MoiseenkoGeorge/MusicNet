@@ -10,7 +10,8 @@ const APP_PATH = path.resolve(__dirname, 'app');
 module.exports = {
 	entry: [
 		"./src/index.jsx",
-		"./src/styles/main.css"
+		"./src/styles/main.css",
+		"./src/styles/modal.css"
 	], // входная точка - исходный файл
 	output: {
 		path: BUILD_PATH,     // путь к каталогу выходных файлов
@@ -18,7 +19,7 @@ module.exports = {
 	},
 	devtool: "source-map",
 	resolve: {
-		extensions: [".js", ".jsx"] // расширения для загрузки модулей
+		extensions: [".js", ".jsx", ".svg", ".png"] // расширения для загрузки модулей
 	},
 	module: {
 		loaders: [
@@ -33,6 +34,20 @@ module.exports = {
 			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?sourceMap' })
+			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'url-loader',
+				options: {
+					limit: 25000
+				}
+			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'file-loader',
+				options: {
+					name: './images/[hash].[ext]'
+				}
 			}
 		]
 	},
