@@ -49,6 +49,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\NotFound\index.jsx" />
+    <Content Include="src\components\Player\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\PostFeed\index.jsx">
       <SubType>Code</SubType>
     </Content>
@@ -131,6 +134,7 @@
     <Folder Include="src\components\" />
     <Folder Include="src\components\Feed\" />
     <Folder Include="src\components\NavLink\" />
+    <Folder Include="src\components\Player\" />
     <Folder Include="src\components\NewPost\" />
     <Folder Include="src\components\PostFeed\" />
     <Folder Include="src\components\Spinner\" />

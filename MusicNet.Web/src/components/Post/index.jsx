@@ -9,6 +9,19 @@ export default class Post extends Component {
 				<div>
 					<p>{this.props.info.text}</p>
 				</div>
+				<div>
+					<div>
+						{
+							this.props.info.tracks.map((track, i) => {
+								return (
+									<div key={track.id}>
+										<audio src={track.url} controls="controls"></audio>
+									</div>
+								);
+							})
+						}
+					</div>
+				</div>
 			</div>
 		);
 	}

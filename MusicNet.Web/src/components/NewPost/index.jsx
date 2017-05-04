@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 
 import MusicAttachModal from "./MusicAttachModal";
+import Player from "../Player";
 import * as ProfileActions from '../../actions/ProfileActions';
 
 export class NewPost extends Component {
@@ -10,10 +11,12 @@ export class NewPost extends Component {
 		super(props);
 		this.state = {
 			postText: "",
+			tracks: [],
 			modalIsOpen: false
 		}
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
+		this.onAttachClick = this.onAttachClick.bind(this);
 	}
 
 	openModal() {
@@ -24,13 +27,20 @@ export class NewPost extends Component {
 		this.setState({ modalIsOpen: false });
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
-		this.props.actions.addPost(this.state.postText);
+	handleSubmit(e) {
+		e.preventDefault();
+		this.props.actions.addPost(this.state.postText, this.state.tracks);
 	}
 
-	postTextChanged(event) {
-		this.setState({ postText: event.target.value });
+	postTextChanged(e) {
+		this.setState({ postText: e.target.value });
+	}
+
+	onAttachClick(track) {
+		if (!this.state.tracks.includes(track)) {
+			this.setState({ tracks: [...this.state.tracks, track] });
+			this.closeModal();
+		}
 	}
 
 	render() {
@@ -50,7 +60,18 @@ export class NewPost extends Component {
 					value="Attach Music"
 					disabled={this.props.addPostRequesting}
 					onClick={this.openModal} />
-				<MusicAttachModal isOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
+				<div className="post-music-content">
+					{
+						this.state.tracks.map((track, i) => {
+							return (
+								<div key={track.id}>
+									<audio src={track.url} controls="controls"></audio>
+								</div>
+							);
+						})
+					}
+				</div>
+				<MusicAttachModal isOpen={this.state.modalIsOpen} closeModal={this.closeModal} onAttachClick={this.onAttachClick} />
 			</div>
 		);
 	}

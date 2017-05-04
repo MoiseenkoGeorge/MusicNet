@@ -36,6 +36,15 @@ namespace MusicNet.Services.Registrars
 		{
 			this.CreateMap<TrackModel, Track>();
 			this.CreateMap<Track, TrackModel>();
+
+			this.CreateMap<TrackModel, PostTrack>()
+				.ForMember(dest => dest.TrackId, src => src.MapFrom(tm => tm.Id));
+			this.CreateMap<PostTrack, TrackModel>()
+				.ForMember(dest => dest.Id, src => src.MapFrom(pt => pt.Track.Id))
+				.ForMember(dest => dest.Name, src => src.MapFrom(pt => pt.Track.Name))
+				.ForMember(dest => dest.Album, src => src.MapFrom(pt => pt.Track.Album))
+				.ForMember(dest => dest.Author, src => src.MapFrom(pt => pt.Track.Author))
+				.ForMember(dest => dest.Url, src => src.MapFrom(pt => pt.Track.Url));
 		}
 
 		private void RegisterCommentModels()

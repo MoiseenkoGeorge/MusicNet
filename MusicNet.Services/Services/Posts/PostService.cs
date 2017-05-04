@@ -37,7 +37,7 @@ namespace MusicNet.Services.Services.Posts
 			Guard.ArgumentNotNull(count, nameof(count));
 
 			IEnumerable<Post> posts = await this._uow.Posts.GetPostsByPredicateAsync(post => post.User.Name == userName, startIndex, count);
-			IEnumerable<PostModel> postModels = this._mapper.Map<IEnumerable<Post>, IEnumerable<PostModel>>(posts.ToList());
+			IEnumerable<PostModel> postModels = this._mapper.Map<IEnumerable<Post>, IEnumerable<PostModel>>(posts.OrderByDescending(post => post.CreationDate).ToList());
 			return postModels;
 		}
 	}

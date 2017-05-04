@@ -47,3 +47,8 @@
 	border-radius: 0 0 2px 2px;
 	box-shadow: none;
 }
+
+.btn-attach {
+	background-color: #83B9EF;
+	color: #fff;
+}

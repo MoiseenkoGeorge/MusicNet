@@ -82,10 +82,12 @@ namespace MusicNet.DataAccess.Repositories.Post
 
 		public async Task<IEnumerable<Entities.Post>> GetPostsByPredicateAsync(Expression<Func<Entities.Post, bool>> p, int position, int count)
 		{
-			var result = await this._context.Set<Entities.Post>().Include(post => post.User).Where(p)
+			var result = await this._context.Set<Entities.Post>().Include(post => post.User)
+																.Where(p)
+																.Include(post => post.Tracks).ThenInclude(pt => pt.Track)
 																.Skip(position)
 																.Take(count)
-																.OrderByDescending(post => post.CreationDate)
+																//.OrderBy(x => x.Id)
 																.ToListAsync();
 
 			result.ForEach((post => post.CreationDate = DateTime.SpecifyKind(post.CreationDate, DateTimeKind.Utc)));

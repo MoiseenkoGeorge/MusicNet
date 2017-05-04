@@ -45,6 +45,10 @@ export class MusicAttachModal extends Component {
 		}
 	}
 
+	onAttachClicked(track) {
+		this.props.onAttachClick(track);
+	}
+
 	getModalContent() {
 		let resultTemplate;
 		if (this.props.searchRequesting === true) {
@@ -67,6 +71,7 @@ export class MusicAttachModal extends Component {
 							return (
 								<div key={track.id}>
 									<audio src={track.url} controls="controls"></audio>
+									<input type="button" className="btn btn-lg btn-attach" value="Attach" onClick={this.onAttachClicked.bind(this, track)}/>
 								</div>
 								
 							);

@@ -123,7 +123,7 @@ export function profilePostsRequestFail(response) {
 	}
 }
 
-export function addPost(text) {
+export function addPost(text, tracks) {
 	return (dispatch) => {
 		dispatch(addPostRequest());
 		return fetch((buildURL("api/posts")),
@@ -135,7 +135,7 @@ export function addPost(text) {
 					"Content-Type": "application/json",
 					'Authorization': getAuthHeader()
 				},
-				body: JSON.stringify({ text: text})
+				body: JSON.stringify({ text: text, tracks: tracks })
 			})
 			.then(checkHttpStatus)
 			.then(() => {
