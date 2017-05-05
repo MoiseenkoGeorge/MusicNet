@@ -25,6 +25,16 @@ namespace MusicNet.Controllers
 			this._postService = postService;
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> GetPostsFeed()
+		{
+			string userId = this.User.Identity.GetUserId<string>();
+			IEnumerable<PostModel> postModels = await this._postService.GetPostsFeedAsync(userId, 0, 10);
+			IEnumerable<PostViewModel> postViewModels = this._mapper.Map<IEnumerable<PostModel>, IEnumerable<PostViewModel>>(postModels);
+
+			return this.Json(new {Posts = postViewModels});
+		}
+
 		[HttpGet("{userName}")]
 		public async Task<IActionResult> GetPosts(string userName)
 		{
