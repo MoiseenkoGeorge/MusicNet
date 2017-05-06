@@ -115,10 +115,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\actions\FeedActions.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\actions\SearchActions.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\constants\Feed.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\constants\Search.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\reducers\feed.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\reducers\search.js">

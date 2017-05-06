@@ -47,7 +47,8 @@ namespace MusicNet.Services.Services.Posts
 			Guard.ArgumentNotNull(count, nameof(count));
 
 			IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(user => user.Followers.Any(s => s.SubscriberId == userId));
-			IEnumerable<string> followingUsersIds = followingUsers.Select(user => user.Id);
+			IList<string> followingUsersIds = followingUsers.Select(user => user.Id).ToList();
+			followingUsersIds.Add(userId);
 
 			IEnumerable<Post> posts = await this._uow.Posts.GetPostsByPredicateAsync(post => followingUsersIds.Contains(post.UserId), startIndex, count);
 			IEnumerable<PostModel> postModels = this._mapper.Map<IEnumerable<Post>, IEnumerable<PostModel>>(posts.OrderByDescending(post => post.CreationDate).ToList());

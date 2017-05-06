@@ -32,7 +32,7 @@ namespace MusicNet.Controllers
 			IEnumerable<PostModel> postModels = await this._postService.GetPostsFeedAsync(userId, 0, 10);
 			IEnumerable<PostViewModel> postViewModels = this._mapper.Map<IEnumerable<PostModel>, IEnumerable<PostViewModel>>(postModels);
 
-			return this.Json(new {Posts = postViewModels});
+			return this.Json(new { Posts = postViewModels });
 		}
 
 		[HttpGet("{userName}")]
