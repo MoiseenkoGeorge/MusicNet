@@ -24,6 +24,8 @@ namespace MusicNet
 
 			this.CreateMap<ProfileModel, ProfileViewModel>();
 			this.CreateMap<ProfileViewModel, ProfileModel>();
+
+			this.CreateMap<LightProfileModel, LightProfileViewModel>();
 		}
 
 		private void RegisterPostModels()

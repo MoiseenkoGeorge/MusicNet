@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -50,14 +51,20 @@ namespace MusicNet.DataAccess.Repositories.Subscription
 			throw new NotImplementedException();
 		}
 
-		public Task<Entities.Subscription> CreateAsync(Entities.Subscription entity)
+		public async Task<Entities.Subscription> CreateAsync(Entities.Subscription entity)
 		{
-			throw new NotImplementedException();
+			var result = await this._context.Set<Entities.Subscription>().AddAsync(entity);
+			return result.Entity;
 		}
 
 		public void Delete(string key)
 		{
-			throw new NotImplementedException();
+			Entities.Subscription subscription = new Entities.Subscription()
+			{
+				Id = key
+			};
+			this._context.Set<Entities.Subscription>().Attach(subscription);
+			this._context.Set<Entities.Subscription>().Remove(subscription);
 		}
 
 		public void DeleteAsync(string key)

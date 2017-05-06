@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusicNet.DataAccess.Repositories.Comment;
 using MusicNet.DataAccess.Repositories.Post;
+using MusicNet.DataAccess.Repositories.Subscription;
 using MusicNet.DataAccess.Repositories.Track;
 using MusicNet.DataAccess.Repositories.User;
 
@@ -20,6 +21,8 @@ namespace MusicNet.DataAccess.UoWs
 
 		private IUserRepository _userRepository;
 
+		private ISubscriptionRepository _subscriptionRepository;
+
 		public BaseUnitOfWork(DbContext context)
 		{
 			this._context = context;
@@ -32,6 +35,8 @@ namespace MusicNet.DataAccess.UoWs
 		public ICommentRepository Comments => this._commentRepository ?? (this._commentRepository = new CommentRepository(this._context));
 
 		public ITrackRepository Tracks => this._trackRepository ?? (this._trackRepository = new TrackRepository(this._context));
+
+		public ISubscriptionRepository Subscriptions => this._subscriptionRepository ?? (this._subscriptionRepository = new SubscriptionRepository(this._context));
 
 		public void Commit()
 		{

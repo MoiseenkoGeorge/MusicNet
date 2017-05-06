@@ -12,6 +12,7 @@ namespace MusicNet.Services.Registrars
 			this.RegisterPostModels();
 			this.RegisterTrackModels();
 			this.RegisterCommentModels();
+			this.RegisterSubscriptionModels();
 		}
 
 		private void RegisterUserModels()
@@ -22,6 +23,8 @@ namespace MusicNet.Services.Registrars
 			this.CreateMap<User, ProfileModel>()
 				.ForMember(dest => dest.Followers, src => src.MapFrom(u => u.Followers.Count))
 				.ForMember(dest => dest.Following, src => src.MapFrom(u => u.Following.Count));
+
+			this.CreateMap<User, LightProfileModel>();
 		}
 
 		private void RegisterPostModels()
@@ -51,6 +54,12 @@ namespace MusicNet.Services.Registrars
 		{
 			this.CreateMap<CommentModel, Comment>();
 			this.CreateMap<Comment, CommentModel>();
+		}
+
+		private void RegisterSubscriptionModels()
+		{
+			this.CreateMap<SubscriptionModel, Subscription>();
+			this.CreateMap<Subscription, SubscriptionModel>();
 		}
 	}
 }

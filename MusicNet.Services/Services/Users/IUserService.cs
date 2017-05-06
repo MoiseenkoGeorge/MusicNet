@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MusicNet.Services.Models;
 
 namespace MusicNet.Services.Services.Users
@@ -40,5 +41,13 @@ namespace MusicNet.Services.Services.Users
 		/// </summary>
 		/// <param name="user">The user.</param>
 		void UpdateUser(UserModel user);
+
+		void SubscribeToUser(string subscriberId, string publisherId);
+
+		void UnsubscribeFromUser(string subscriberId, string publisherId);
+
+		Task<IEnumerable<LightProfileModel>> GetUserFollowersAsync(string userName);
+
+		Task<IEnumerable<LightProfileModel>> GetUserFollowingAsync(string userName);
 	}
 }

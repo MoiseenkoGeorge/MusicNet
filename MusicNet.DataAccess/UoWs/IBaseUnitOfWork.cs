@@ -1,5 +1,6 @@
 ﻿using MusicNet.DataAccess.Repositories.Comment;
 using MusicNet.DataAccess.Repositories.Post;
+using MusicNet.DataAccess.Repositories.Subscription;
 using MusicNet.DataAccess.Repositories.Track;
 using MusicNet.DataAccess.Repositories.User;
 
@@ -29,5 +30,10 @@ namespace MusicNet.DataAccess.UoWs
 		/// The Tracks Repository.
 		/// </summary>
 		ITrackRepository Tracks { get; }
+
+		/// <summary>
+		/// The Subscriptions repository.
+		/// </summary>
+		ISubscriptionRepository Subscriptions { get; }
 	}
 }

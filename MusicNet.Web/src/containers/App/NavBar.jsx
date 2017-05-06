@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import NavLink from '../../components/NavLink'
+import { Link } from 'react-router'
 
 export class NavBar extends Component {
 	render() {
@@ -14,14 +14,14 @@ export class NavBar extends Component {
 							<span className="icon-bar"></span>
 							<span className="icon-bar"></span>
 						</button>
-						<NavLink onlyActiveOnIndex={true} to='/' className="navbar-brand">
+						<Link onlyActiveOnIndex={true} to='/' className="navbar-brand">
 							MusicNet
-						</NavLink>
+						</Link>
 					</div>
 
 					<div className="collapse navbar-collapse" id="bs-navbar-collapse">
 						<ul className="nav navbar-nav navbar-right">
-							<li><NavLink to={"/users/" + this.props.userName}>{this.props.userName}</NavLink></li>
+							<li><Link to={"/users/" + this.props.userName}>{this.props.userName}</Link></li>
 						</ul>
 					</div>
 				</div>
