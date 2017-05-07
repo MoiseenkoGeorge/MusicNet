@@ -25,7 +25,7 @@ namespace MusicNet.Services.Services.Users
 			this._uow = uow;
 		}
 
-		public async Task<ProfileModel> GetProfileAsync(string name)
+		public async Task<ProfileModel> GetProfileAsync(string name, string myId)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(name, nameof(name));
 
@@ -34,6 +34,7 @@ namespace MusicNet.Services.Services.Users
 			{
 				ProfileModel profileModel = this._mapper.Map<User, ProfileModel>(userEntity);
 				profileModel.PostsCount = await this._uow.Posts.GetPostsCountForUserAsync(userEntity.Id);
+				profileModel.IsFollowedByMe = profileModel.Followers.Select(x => x.SubscriberId).Contains(myId);
 				return profileModel;
 			}
 			return null;
@@ -81,35 +82,42 @@ namespace MusicNet.Services.Services.Users
 			throw new NotImplementedException();
 		}
 
-		public async void SubscribeToUser(string subscriberId, string publisherId)
+		public async Task SubscribeToUserAsync(string subscriberId, string publisherName)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(subscriberId, nameof(subscriberId));
-			Guard.ArgumentNotNullOrWhiteSpace(publisherId, nameof(publisherId));
+			Guard.ArgumentNotNullOrWhiteSpace(publisherName, nameof(publisherName));
 
-			SubscriptionModel subscriptionModel = new SubscriptionModel()
+			User publisherUser = await this._uow.Users.GetByPredicateAsync(u => u.Name == publisherName);
+			Subscription existingSubscription = await this._uow.Subscriptions.GetByPredicateAsync(s => s.SubscriberId == subscriberId && s.PublisherId == publisherUser.Id);
+			if (existingSubscription == null)
 			{
-				SubscriberId = subscriberId,
-				PublisherId = publisherId
-			};
+				SubscriptionModel subscriptionModel = new SubscriptionModel()
+				{
+					SubscriberId = subscriberId,
+					PublisherId = publisherUser.Id
+				};
 
-			Subscription subscription = this._mapper.Map<SubscriptionModel, Subscription>(subscriptionModel);
-			await this._uow.Subscriptions.CreateAsync(subscription);
-			this._uow.Commit();
-		}
-
-		public async void UnsubscribeFromUser(string subscriberId, string publisherId)
-		{
-			Guard.ArgumentNotNullOrWhiteSpace(subscriberId, nameof(subscriberId));
-			Guard.ArgumentNotNullOrWhiteSpace(publisherId, nameof(publisherId));
-
-			Subscription subscription = await this._uow.Subscriptions.GetByPredicateAsync(s => s.SubscriberId == subscriberId && s.PublisherId == publisherId);
-			if (subscription != null)
-			{
-				this._uow.Subscriptions.Delete(subscription.Id);
+				Subscription subscription = this._mapper.Map<SubscriptionModel, Subscription>(subscriptionModel);
+				await this._uow.Subscriptions.CreateAsync(subscription);
+				this._uow.Commit();
 			}
 		}
 
-		public async Task<IEnumerable<LightProfileModel>> GetUserFollowersAsync(string userName)
+		public async Task UnsubscribeFromUserAsync(string subscriberId, string publisherName)
+		{
+			Guard.ArgumentNotNullOrWhiteSpace(subscriberId, nameof(subscriberId));
+			Guard.ArgumentNotNullOrWhiteSpace(publisherName, nameof(publisherName));
+
+			User publisherUser = await this._uow.Users.GetByPredicateAsync(u => u.Name == publisherName);
+			Subscription subscription = await this._uow.Subscriptions.GetByPredicateAsync(s => s.SubscriberId == subscriberId && s.PublisherId == publisherUser.Id);
+			if (subscription != null)
+			{
+				this._uow.Subscriptions.Delete(subscription.Id);
+				this._uow.Commit();
+			}
+		}
+
+		public async Task<IEnumerable<LightProfileModel>> GetUserFollowersAsync(string userName, string myId)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(userName, nameof(userName));
 
@@ -118,13 +126,18 @@ namespace MusicNet.Services.Services.Users
 			{
 				IEnumerable<User> followerUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Following.Any(u => u.PublisherId == userEntity.Id));
 				IEnumerable<LightProfileModel> lightProfileModels = this._mapper.Map<IEnumerable<User>, IEnumerable<LightProfileModel>>(followerUsers).ToList();
+				foreach (var profile in lightProfileModels)
+				{
+					profile.IsFollowedByMe = profile.Followers.Select(x => x.SubscriberId).Contains(myId);
+				}
+
 				return lightProfileModels;
 			}
 
 			return null;
 		}
 
-		public async Task<IEnumerable<LightProfileModel>> GetUserFollowingAsync(string userName)
+		public async Task<IEnumerable<LightProfileModel>> GetUserFollowingAsync(string userName, string myId)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(userName, nameof(userName));
 
@@ -133,6 +146,11 @@ namespace MusicNet.Services.Services.Users
 			{
 				IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Followers.Any(u => u.SubscriberId == userEntity.Id));
 				IEnumerable<LightProfileModel> lightProfileModels = this._mapper.Map<IEnumerable<User>, IEnumerable<LightProfileModel>>(followingUsers);
+				foreach (var profile in lightProfileModels)
+				{
+					profile.IsFollowedByMe = profile.Followers.Select(x => x.SubscriberId).Contains(myId);
+				}
+
 				return lightProfileModels;
 			}
 

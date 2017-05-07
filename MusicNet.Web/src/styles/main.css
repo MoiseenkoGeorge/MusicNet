@@ -44,6 +44,33 @@ body, html {
 	padding-bottom: 40px;
 }
 
+.img-profile {
+	width: 100%;
+}
+
+.button {
+	background-color: #83B9EF;
+	color: #fff;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 26px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.button-inverse {
+	background-color: #fff;
+	color: #262626;
+}
+
+.button-follow {
+	margin-top: 30px;
+}
+
 @media (min-width: 640px) {
 	.post, .new-post, .profile-header {
 		margin-bottom: 30px;

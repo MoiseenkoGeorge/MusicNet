@@ -41,9 +41,13 @@ namespace MusicNet.DataAccess.Repositories.Subscription
 			throw new NotImplementedException();
 		}
 
-		public Task<Entities.Subscription> GetByPredicateAsync(Expression<Func<Entities.Subscription, bool>> p)
+		public async Task<Entities.Subscription> GetByPredicateAsync(Expression<Func<Entities.Subscription, bool>> p)
 		{
-			throw new NotImplementedException();
+			var result = await this._context.Set<Entities.Subscription>().AsNoTracking()
+																		.Include(x => x.Subscriber)
+																		.Include(x => x.Publisher)
+																		.SingleOrDefaultAsync(p);
+			return result;
 		}
 
 		public Entities.Subscription Create(Entities.Subscription entity)
@@ -63,8 +67,7 @@ namespace MusicNet.DataAccess.Repositories.Subscription
 			{
 				Id = key
 			};
-			this._context.Set<Entities.Subscription>().Attach(subscription);
-			this._context.Set<Entities.Subscription>().Remove(subscription);
+			this._context.Entry(subscription).State = EntityState.Deleted;
 		}
 
 		public void DeleteAsync(string key)
@@ -80,6 +83,11 @@ namespace MusicNet.DataAccess.Repositories.Subscription
 		public Task<Entities.Subscription> UpdateAsync(Entities.Subscription entity)
 		{
 			throw new NotImplementedException();
+		}
+
+		public void Remove(Entities.Subscription entity)
+		{
+			this._context.Set<Entities.Subscription>().Remove(entity);
 		}
 	}
 }

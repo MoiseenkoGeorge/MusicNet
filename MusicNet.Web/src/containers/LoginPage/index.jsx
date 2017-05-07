@@ -8,6 +8,7 @@ export class LoginPage extends Component {
 	constructor(props) {
 		super(props);
 		const redirectRoute = this.props.location.query.next || '/';
+		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
 			login: "",
 			password: "",
@@ -49,7 +50,7 @@ export class LoginPage extends Component {
 					<button type='submit'
 						className='btn btn-lg'
 						disabled={this.props.isAuthenticating}
-						onClick={this.handleSubmit.bind(this)}>Sign in</button>
+						onClick={this.handleSubmit}>Sign in</button>
 				</form>
 			</div>
 		);

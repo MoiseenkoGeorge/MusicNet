@@ -8,10 +8,12 @@
 
 		public string ImageUrl { get; set; }
 
-		public int Following { get; set; }
+		public int FollowingCount { get; set; }
 
-		public int Followers { get; set; }
+		public int FollowersCount { get; set; }
 
 		public int PostsCount { get; set; }
+
+		public bool IsFollowedByMe { get; set; }
 	}
 }

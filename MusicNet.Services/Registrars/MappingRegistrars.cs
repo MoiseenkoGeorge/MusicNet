@@ -20,9 +20,7 @@ namespace MusicNet.Services.Registrars
 			this.CreateMap<UserModel, User>();
 			this.CreateMap<User, UserModel>();
 
-			this.CreateMap<User, ProfileModel>()
-				.ForMember(dest => dest.Followers, src => src.MapFrom(u => u.Followers.Count))
-				.ForMember(dest => dest.Following, src => src.MapFrom(u => u.Following.Count));
+			this.CreateMap<User, ProfileModel>();
 
 			this.CreateMap<User, LightProfileModel>();
 		}

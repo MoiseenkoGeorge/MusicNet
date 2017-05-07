@@ -9,6 +9,7 @@ export class ProfileHeader extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { userName: props.userName }
+		this.onSubscribeClicked = this.onSubscribeClicked.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,7 +27,31 @@ export class ProfileHeader extends Component {
 		this.props.actions.getUserProfile(userName);
 	}
 
-	render() {
+	onSubscribeClicked() {
+		let userName = this.props.userName;
+		let userId = this.props.profileId;
+		if (this.props.isFollowedByMe) {
+			this.props.actions.unsubscribeFromUser(userName, userId);
+		} else {
+			this.props.actions.subscribeToUser(userName, userId);
+		}
+		
+	}
+
+	getFollowButton() {
+		if (!this.props.isMyProfile) {
+			let button = (
+				<button className={this.props.isFollowedByMe ? "button button-inverse button-follow" : "button button-follow"}
+					disabled={this.props.subscriptionRequesting}
+					onClick={this.onSubscribeClicked}>
+					{this.props.isFollowedByMe ? "Unfollow" : "Follow"}
+				</button>);
+			return button;
+		}
+		return '';
+	}
+
+	getTemplate() {
 		let template;
 		if (this.props.profileRequesting === true) {
 			template = (
@@ -38,14 +63,15 @@ export class ProfileHeader extends Component {
 			template = (
 				<div className="col-xs-12 col-md-12 profile-header">
 					<div className="col-xs-3 col-md-3 col-xs-offset-1 col-md-offset-1">
-						<img src={this.props.profileImg} className="img-circle" alt="Profile image" />
+						<img src={this.props.profileImg} className="img-circle img-profile" alt="Profile image" />
 					</div>
 					<div className="col-xs-8 col-md-8">
 						<div className="row">
-							<div className="col-xs-8 col-md-8">
-								<h2>{this.state.userName}</h2>
+							<div className="col-xs-6 col-md-6">
+								<h1>{this.state.userName}</h1>
 							</div>
-							<div className="col-xs-4 col-md-4">
+							<div className="col-xs-3 col-md-3">
+								{this.getFollowButton()}
 							</div>
 						</div>
 						<div className="row">
@@ -74,16 +100,24 @@ export class ProfileHeader extends Component {
 		}
 		return template;
 	}
+
+	render() {
+		let template = this.getTemplate();
+		return template;
+	}
 }
 
 function mapStateToProps(state) {
 	return {
+		profileId: state.profile.profileId,
 		profileImg: state.profile.profileImg,
-		following: state.profile.following,
-		followers: state.profile.followers,
+		following: state.profile.followingCount,
+		followers: state.profile.followersCount,
 		isMyProfile: state.profile.isMyProfile,
 		profileRequesting: state.profile.profileRequesting,
-		postsCount: state.profile.postsCount
+		postsCount: state.profile.postsCount,
+		isFollowedByMe: state.profile.isFollowedByMe,
+		subscriptionRequesting: state.profile.subscriptionRequesting
 	}
 }
 

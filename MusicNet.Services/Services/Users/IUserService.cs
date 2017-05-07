@@ -14,7 +14,7 @@ namespace MusicNet.Services.Services.Users
 		/// </summary>
 		/// <param name="name">The User name.</param>
 		/// <returns>The Profile model.</returns>
-		Task<ProfileModel> GetProfileAsync(string name);
+		Task<ProfileModel> GetProfileAsync(string name, string myId);
 
 		/// <summary>
 		///     Login User Async.
@@ -42,12 +42,12 @@ namespace MusicNet.Services.Services.Users
 		/// <param name="user">The user.</param>
 		void UpdateUser(UserModel user);
 
-		void SubscribeToUser(string subscriberId, string publisherId);
+		Task SubscribeToUserAsync(string subscriberId, string publisherName);
 
-		void UnsubscribeFromUser(string subscriberId, string publisherId);
+		Task UnsubscribeFromUserAsync(string subscriberId, string publisherName);
 
-		Task<IEnumerable<LightProfileModel>> GetUserFollowersAsync(string userName);
+		Task<IEnumerable<LightProfileModel>> GetUserFollowersAsync(string userName, string myId);
 
-		Task<IEnumerable<LightProfileModel>> GetUserFollowingAsync(string userName);
+		Task<IEnumerable<LightProfileModel>> GetUserFollowingAsync(string userName, string myId);
 	}
 }

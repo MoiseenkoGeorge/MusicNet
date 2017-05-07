@@ -38,6 +38,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Feed\index.jsx" />
+    <Content Include="src\components\Modal\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\NavLink\index.jsx" />
     <Content Include="src\components\NewPost\index.jsx">
       <SubType>Code</SubType>
@@ -59,10 +62,16 @@
     <Content Include="src\components\Post\PostHeader.jsx">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Profile\FollowersModal.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Profile\index.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Profile\ProfileHeader.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\Profile\ProfileItem.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\Profile\ProfilePostsFeed.jsx">
@@ -143,6 +152,7 @@
     <Folder Include="src\components\" />
     <Folder Include="src\components\Feed\" />
     <Folder Include="src\components\NavLink\" />
+    <Folder Include="src\components\Modal\" />
     <Folder Include="src\components\Player\" />
     <Folder Include="src\components\NewPost\" />
     <Folder Include="src\components\PostFeed\" />

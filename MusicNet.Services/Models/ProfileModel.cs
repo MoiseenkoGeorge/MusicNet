@@ -1,4 +1,6 @@
-﻿namespace MusicNet.Services.Models
+﻿using System.Collections.Generic;
+
+namespace MusicNet.Services.Models
 {
 	public class ProfileModel
 	{
@@ -8,11 +10,12 @@
 
 		public string ImageUrl { get; set; }
 
-		public int Following { get; set; }
+		public ICollection<SubscriptionModel> Following { get; set; }
 
-		public int Followers { get; set; }
+		public ICollection<SubscriptionModel> Followers { get; set; }
 
 		public int PostsCount { get; set; }
 
+		public bool IsFollowedByMe { get; set; }
 	}
 }

@@ -22,7 +22,9 @@ namespace MusicNet
 			this.CreateMap<RegisterViewModel, UserModel>();
 			this.CreateMap<UserModel, RegisterViewModel>();
 
-			this.CreateMap<ProfileModel, ProfileViewModel>();
+			this.CreateMap<ProfileModel, ProfileViewModel>()
+				.ForMember(dest => dest.FollowersCount, src => src.MapFrom(pm => pm.Followers.Count))
+				.ForMember(dest => dest.FollowingCount, src => src.MapFrom(pm => pm.Following.Count));
 			this.CreateMap<ProfileViewModel, ProfileModel>();
 
 			this.CreateMap<LightProfileModel, LightProfileViewModel>();

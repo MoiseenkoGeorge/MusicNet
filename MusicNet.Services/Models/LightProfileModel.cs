@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MusicNet.Services.Models
 {
@@ -11,5 +9,9 @@ namespace MusicNet.Services.Models
 		public string Name { get; set; }
 
 		public string ImageUrl { get; set; }
+
+		public bool IsFollowedByMe { get; set; }
+
+		public ICollection<SubscriptionModel> Followers { get; set; }
 	}
 }

@@ -51,6 +51,7 @@ namespace MusicNet.DataAccess.Repositories.User
 		public async Task<Entities.User> GetByPredicateAsync(Expression<Func<Entities.User, bool>> p)
 		{
 			var user = await this._context.Set<Entities.User>()
+														.AsNoTracking()
 														.Include(u => u.Followers)
 														.Include(u => u.Following)
 														.SingleOrDefaultAsync(p);
