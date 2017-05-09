@@ -8,7 +8,7 @@ import * as ProfileActions from "../../actions/ProfileActions"
 
 import ProfileItem from "./ProfileItem";
 
-export class FollowersModal extends Component {
+export class FollowingModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -18,45 +18,45 @@ export class FollowersModal extends Component {
 	}
 
 	fetchData(userName) {
-		this.props.actions.getUserFollowers(userName);
+		this.props.actions.getUserFollowing(userName);
 	}
 
 	componentDidMount() {
-		if (!this.props.followersHasBeenRequested && !this.props.followersRequesting) {
+		if (!this.props.followingHasBeenRequested && !this.props.followingRequesting) {
 			this.fetchData(this.props.userName);
 		}
 	}
 
 	onSubscribeClicked(userName, isFollowedByMe) {
 		if (isFollowedByMe) {
-			this.props.actions.unsubscribeFromFollowersUser(userName);
+			this.props.actions.unsubscribeFromFollowingUser(userName);
 		} else {
-			this.props.actions.subscribeToFollowersUser(userName);
+			this.props.actions.subscribeToFollowingUser(userName);
 		}
 	}
-	
+
 	getModalContent() {
 		let resultTemplate;
-		if (this.props.followersRequesting === true) {
+		if (this.props.followingRequesting === true) {
 			resultTemplate = (
 				<div>
 					<Spinner />
 				</div>
 			);
-		} else if (this.props.followers.length === 0) {
+		} else if (this.props.following.length === 0) {
 			resultTemplate = (
 				<div>
-					<h3>No followers yet.</h3>
+					<h3>No following yet.</h3>
 				</div>
 			);
 		} else {
 			resultTemplate = (
 				<ul className="profile-items">
 					{
-						this.props.followers.map((profile, i) => {
+						this.props.following.map((profile, i) => {
 							return (
 								<li key={profile.id}>
-									<ProfileItem data={profile} onSubscribeClick={this.onSubscribeClicked}/>
+									<ProfileItem data={profile} onSubscribeClick={this.onSubscribeClicked} />
 								</li>
 							);
 						})
@@ -74,9 +74,9 @@ export class FollowersModal extends Component {
 			<div>
 				<CustomModal
 					isOpen={this.props.isOpen}
-					contentLabel="Followers"
+					contentLabel="Following"
 					closeModal={this.props.closeModal}
-					modalTitle="Followers"
+					modalTitle="Following"
 				>
 					<div className="modal-content">
 						{content}
@@ -89,9 +89,9 @@ export class FollowersModal extends Component {
 
 function mapStateToProps(state) {
 	return {
-		followersRequesting: state.profile.followersRequesting,
-		followers: state.profile.followers,
-		followersHasBeenRequested: state.profile.followersHasBeenRequested
+		followingRequesting: state.profile.followingRequesting,
+		following: state.profile.following,
+		followingHasBeenRequested: state.profile.followingHasBeenRequested
 	}
 }
 
@@ -101,4 +101,4 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FollowersModal);
+export default connect(mapStateToProps, mapDispatchToProps)(FollowingModal);

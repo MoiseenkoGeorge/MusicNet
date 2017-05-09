@@ -2,14 +2,40 @@
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import * as ProfileActions from '../../actions/ProfileActions';
+import FollowersModal from './FollowersModal';
+import FollowingModal from './FollowingModal';
 
 import Spinner from "../Spinner";
 
 export class ProfileHeader extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { userName: props.userName }
+		this.state = {
+			userName: props.userName,
+			followersModalIsOpen: false,
+			followingModalIsOpen: false
+		}
 		this.onSubscribeClicked = this.onSubscribeClicked.bind(this);
+		this.openFollowersModal = this.openFollowersModal.bind(this);
+		this.openFollowingModal = this.openFollowingModal.bind(this);
+		this.closeFollowersModal = this.closeFollowersModal.bind(this);
+		this.closeFollowingModal = this.closeFollowingModal.bind(this);
+	}
+
+	openFollowersModal() {
+		this.setState({ followersModalIsOpen: true });
+	}
+
+	closeFollowersModal() {
+		this.setState({ followersModalIsOpen: false });
+	}
+
+	openFollowingModal() {
+		this.setState({ followingModalIsOpen: true });
+	}
+
+	closeFollowingModal() {
+		this.setState({ followingModalIsOpen: false });
 	}
 
 	componentDidMount() {
@@ -18,7 +44,11 @@ export class ProfileHeader extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.state.userName !== nextProps.userName) {
-			this.setState({ userName: nextProps.userName });
+			this.setState({
+				userName: nextProps.userName,
+				followersModalIsOpen: false,
+				followingModalIsOpen: false
+			});
 			this.fetchData(nextProps.userName);
 		}
 	}
@@ -47,6 +77,32 @@ export class ProfileHeader extends Component {
 					{this.props.isFollowedByMe ? "Unfollow" : "Follow"}
 				</button>);
 			return button;
+		}
+		return '';
+	}
+
+	getFollowersModal() {
+		if (this.state.followersModalIsOpen) {
+			let modal = (
+				<FollowersModal userName={this.props.userName}
+					isOpen={this.state.followersModalIsOpen}
+					closeModal={this.closeFollowersModal}
+				/>
+			);
+			return modal;
+		}
+		return '';
+	}
+
+	getFollowingModal() {
+		if (this.state.followingModalIsOpen) {
+			let modal = (
+				<FollowingModal userName={this.props.userName}
+					isOpen={this.state.followingModalIsOpen}
+					closeModal={this.closeFollowingModal}
+				/>
+			);
+			return modal;
 		}
 		return '';
 	}
@@ -81,13 +137,13 @@ export class ProfileHeader extends Component {
 									posts
 								</h4>
 							</div>
-							<div className="col-xs-4 col-md-4">
+							<div className="col-xs-4 col-md-4 btn-followers" onClick={this.openFollowersModal}>
 								<h4>
 									<span>{this.props.followers} </span>
 									followers
 								</h4>
 							</div>
-							<div className="col-xs-4 col-md-4">
+							<div className="col-xs-4 col-md-4 btn-following" onClick={this.openFollowingModal}>
 								<h4>
 									<span>{this.props.following} </span>
 									following
@@ -95,6 +151,8 @@ export class ProfileHeader extends Component {
 							</div>
 						</div>
 					</div>
+					{this.getFollowersModal()}
+					{this.getFollowingModal()}
 				</div>
 			);
 		}

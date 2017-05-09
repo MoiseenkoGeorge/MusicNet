@@ -17,9 +17,21 @@
 	PROFILE_FOLLOWERS_REQUEST,
 	PROFILE_FOLLOWERS_REQUEST_SUCCESS,
 	PROFILE_FOLLOWERS_REQUEST_FAIL,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_FAIL,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_FAIL,
 	PROFILE_FOLLOWING_REQUEST,
 	PROFILE_FOLLOWING_REQUEST_SUCCESS,
-	PROFILE_FOLLOWING_REQUEST_FAIL
+	PROFILE_FOLLOWING_REQUEST_FAIL,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_FAIL,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_FAIL,
 	} from '../constants/Profile'
 
 import { createReducer } from '../utils';
@@ -40,7 +52,9 @@ const initialState = {
 	followers: [],
 	following: [],
 	followersRequesting: false,
-	followingRequesting: false
+	followersHasBeenRequested: false,
+	followingRequesting: false,
+	followingHasBeenRequested: false
 };
 
 export default createReducer(initialState, {
@@ -57,7 +71,7 @@ export default createReducer(initialState, {
 	PROFILE_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
 			profileRequesting: false,
-			following: payload.following,
+			followingCount: payload.followingCount,
 			followersCount: payload.followersCount,
 			profileId: payload.userId,
 			isMyProfile: payload.userName === localStorage.userName,
@@ -133,34 +147,152 @@ export default createReducer(initialState, {
 	},
 	PROFILE_FOLLOWERS_REQUEST: (state, payload) => {
 		return Object.assign({}, state, {
-			followersRequesting: true
+			followersRequesting: true,
+			followersHasBeenRequested: false
 		});
 	},
 	PROFILE_FOLLOWERS_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
 			followersRequesting: false,
+			followersHasBeenRequested: true,
 			followers: payload.profiles
 		});
 	},
 	PROFILE_FOLLOWERS_REQUEST_FAIL: (state, payload) => {
 		return Object.assign({}, state, {
-			followersRequesting: false
+			followersRequesting: false,
+			followersHasBeenRequested: true
 		});
 	},
 	PROFILE_FOLLOWING_REQUEST: (state, payload) => {
 		return Object.assign({}, state, {
-			followingRequesting: true
+			followingRequesting: true,
+			followingHasBeenRequested: false
 		});
 	},
 	PROFILE_FOLLOWING_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
 			followingRequesting: false,
+			followingHasBeenRequested: true,
 			following: payload.profiles
 		});
 	},
 	PROFILE_FOLLOWING_REQUEST_FAIL: (state, payload) => {
 		return Object.assign({}, state, {
-			followingRequesting: false
+			followingRequesting: false,
+			followingHasBeenRequested: true
+		});
+	},
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting : true}) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false, isFollowedByMe: true }) :
+				profile
+			),
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { isFollowedByMe: true }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: true }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false, isFollowedByMe: false }) :
+				profile
+			),
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { isFollowedByMe: false }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: true }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false, isFollowedByMe: true }) :
+				profile
+			),
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { isFollowedByMe: true }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: true }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false, isFollowedByMe: false }) :
+				profile
+			),
+			followers: state.followers.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { isFollowedByMe: false }) :
+				profile
+			)
+		});
+	},
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			following: state.following.map(profile => profile.name === payload.userName ?
+				Object.assign({}, profile, { subscribeRequesting: false }) :
+				profile
+			)
 		});
 	}
 })

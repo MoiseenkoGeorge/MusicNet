@@ -29,6 +29,7 @@ body, html {
 	border: 1px solid #e6e6e6;
 	border-radius: 3px;
 	padding-top: 1%;
+	box-shadow: 0 0 1px rgba(0,0,0,0.5)
 }
 
 .profile-header, .new-post {
@@ -69,6 +70,50 @@ body, html {
 
 .button-follow {
 	margin-top: 30px;
+}
+
+a, a:hover {
+	color: #262626;
+	text-decoration: none;
+}
+
+.profile-items li {
+	padding: 8px 16px;
+	border-bottom: solid 1px #efefef;
+	display: block;
+}
+
+.profile-item {
+	display: flex;
+	flex: 1 1 100px;
+	top: 25%;
+}
+
+.profile-item-wrapper {
+	display: flex;
+}
+
+.profile-item-img {
+	margin-right: 10px;
+}
+
+.profile-item-content {
+	font-size: 14px;
+}
+
+.profile-item-content a {
+	position: relative;
+	top: 25%;
+}
+
+.profile-item-follow-wrapper {
+	display: flex;
+	flex: 0 0 80px;
+	margin-left: 15px;
+}
+
+.btn-followers, .btn-following {
+	cursor: pointer;
 }
 
 @media (min-width: 640px) {

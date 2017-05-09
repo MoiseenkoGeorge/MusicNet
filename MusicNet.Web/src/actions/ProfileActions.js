@@ -17,10 +17,22 @@
 	PROFILE_FOLLOWERS_REQUEST,
 	PROFILE_FOLLOWERS_REQUEST_SUCCESS,
 	PROFILE_FOLLOWERS_REQUEST_FAIL,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_FAIL,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_FAIL,
 	PROFILE_FOLLOWING_REQUEST,
 	PROFILE_FOLLOWING_REQUEST_SUCCESS,
-	PROFILE_FOLLOWING_REQUEST_FAIL
-} from '../constants/Profile'
+	PROFILE_FOLLOWING_REQUEST_FAIL,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_FAIL,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_SUCCESS,
+	PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_FAIL,
+	} from '../constants/Profile'
 
 import { checkHttpStatus, parseJSON, buildURL, getAuthHeader } from "../utils";
 import * as authActions from "./AuthActions";
@@ -310,7 +322,8 @@ export function getFollowersRequest() {
 	}
 }
 
-export function getFollowersRequestSuccess() {
+export function getFollowersRequestSuccess(response) {
+	response.profiles.forEach((profile) => { profile.subscribeRequesting = false });
 	return {
 		type: PROFILE_FOLLOWERS_REQUEST_SUCCESS,
 		payload: {
@@ -359,7 +372,8 @@ export function getFollowingRequest() {
 	}
 }
 
-export function getFollowingRequestSuccess() {
+export function getFollowingRequestSuccess(response) {
+	response.profiles.forEach((profile) => { profile.subscribeRequesting = false });
 	return {
 		type: PROFILE_FOLLOWING_REQUEST_SUCCESS,
 		payload: {
@@ -371,5 +385,221 @@ export function getFollowingRequestSuccess() {
 export function getFollowingRequestFail() {
 	return {
 		type: PROFILE_FOLLOWING_REQUEST_FAIL
+	}
+}
+
+export function subscribeToFollowersUser(userName) {
+	return (dispatch) => {
+		dispatch(subscribeFollowersUserRequest(userName));
+		return fetch((buildURL("api/users/" + userName + "/following")),
+				{
+					method: "post",
+					credentials: "include",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+						'Authorization': getAuthHeader()
+					}
+				})
+			.then(checkHttpStatus)
+			.then(() => {
+				dispatch(subscribeFollowersUserRequestSuccess(userName));
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					dispatch(subscribeFollowersUserRequestFail(userName));
+					dispatch(authActions.loginUserFailure(error));
+					dispatch(pushState(null, '/login'));
+				}
+			});
+	}
+}
+
+export function subscribeFollowersUserRequest(userName) {
+	return {
+		type: PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function subscribeFollowersUserRequestSuccess(userName) {
+	return {
+		type: PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_SUCCESS,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function subscribeFollowersUserRequestFail() {
+	return {
+		type: PROFILE_FOLLOWERS_SUBSCRIBE_REQUEST_FAIL,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFromFollowersUser(userName) {
+	return (dispatch) => {
+		dispatch(unsubscribeFollowersUserRequest(userName));
+		return fetch((buildURL("api/users/" + userName + "/following")),
+				{
+					method: "delete",
+					credentials: "include",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+						'Authorization': getAuthHeader()
+					}
+				})
+			.then(checkHttpStatus)
+			.then(() => {
+				dispatch(unsubscribeFollowersUserRequestSuccess(userName));
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					dispatch(unsubscribeFollowersUserRequestFail(userName));
+					dispatch(authActions.loginUserFailure(error));
+					dispatch(pushState(null, '/login'));
+				}
+			});
+	}
+}
+
+export function unsubscribeFollowersUserRequest(userName) {
+	return {
+		type: PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFollowersUserRequestSuccess(userName) {
+	return {
+		type: PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_SUCCESS,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFollowersUserRequestFail() {
+	return {
+		type: PROFILE_FOLLOWERS_UNSUBSCRIBE_REQUEST_FAIL,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function subscribeToFollowingUser(userName) {
+	return (dispatch) => {
+		dispatch(subscribeFollowingUserRequest(userName));
+		return fetch((buildURL("api/users/" + userName + "/following")),
+				{
+					method: "post",
+					credentials: "include",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+						'Authorization': getAuthHeader()
+					}
+				})
+			.then(checkHttpStatus)
+			.then(() => {
+				dispatch(subscribeFollowingUserRequestSuccess(userName));
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					dispatch(subscribeFollowingUserRequestFail(userName));
+					dispatch(authActions.loginUserFailure(error));
+					dispatch(pushState(null, '/login'));
+				}
+			});
+	}
+}
+
+export function subscribeFollowingUserRequest(userName) {
+	return {
+		type: PROFILE_FOLLOWING_SUBSCRIBE_REQUEST,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function subscribeFollowingUserRequestSuccess(userName) {
+	return {
+		type: PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_SUCCESS,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function subscribeFollowingUserRequestFail() {
+	return {
+		type: PROFILE_FOLLOWING_SUBSCRIBE_REQUEST_FAIL,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFromFollowingUser(userName) {
+	return (dispatch) => {
+		dispatch(unsubscribeFollowingUserRequest(userName));
+		return fetch((buildURL("api/users/" + userName + "/following")),
+				{
+					method: "delete",
+					credentials: "include",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+						'Authorization': getAuthHeader()
+					}
+				})
+			.then(checkHttpStatus)
+			.then(() => {
+				dispatch(unsubscribeFollowingUserRequestSuccess(userName));
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					dispatch(unsubscribeFollowingUserRequestFail(userName));
+					dispatch(authActions.loginUserFailure(error));
+					dispatch(pushState(null, '/login'));
+				}
+			});
+	}
+}
+
+export function unsubscribeFollowingUserRequest(userName) {
+	return {
+		type: PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFollowingUserRequestSuccess(userName) {
+	return {
+		type: PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_SUCCESS,
+		payload: {
+			userName: userName
+		}
+	}
+}
+
+export function unsubscribeFollowingUserRequestFail() {
+	return {
+		type: PROFILE_FOLLOWING_UNSUBSCRIBE_REQUEST_FAIL,
+		payload: {
+			userName: userName
+		}
 	}
 }

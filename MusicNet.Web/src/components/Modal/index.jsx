@@ -20,7 +20,8 @@ const customStyles = {
 		width: "560px",
 		height: "600px",
 		padding: "0px",
-		border: "0"
+		border: "0",
+		overflow: "hidden"
 	}
 };
 
