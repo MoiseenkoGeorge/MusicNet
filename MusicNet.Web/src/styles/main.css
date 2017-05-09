@@ -116,6 +116,14 @@ a, a:hover {
 	cursor: pointer;
 }
 
+.audio-item-wrapper {
+	display: flex;
+}
+
+.audio-item-wrapper audio {
+	min-width: 450px;
+}
+
 @media (min-width: 640px) {
 	.post, .new-post, .profile-header {
 		margin-bottom: 30px;

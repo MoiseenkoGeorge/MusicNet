@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
-import * as FeedActions from '../../actions/FeedActions';
+import * as PostActions from '../../actions/PostActions';
+import * as ResetActions from '../../actions/ResetActions';
 
 import Spinner from "../Spinner";
 import PostFeed from "../PostFeed";
@@ -10,6 +11,10 @@ export class Feed extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { posts: props.posts }
+	}
+
+	componentWillMount() {
+		this.props.resetActions.resetFeed();
 	}
 
 	componentDidMount() {
@@ -52,14 +57,15 @@ export class Feed extends Component {
 
 function mapStateToProps(state) {
 	return {
-		postsRequesting: state.feed.feedPostsRequesting,
-		posts: state.feed.feedPosts
+		postsRequesting: state.feed.postsRequesting,
+		posts: state.feed.posts
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(FeedActions, dispatch)
+		actions: bindActionCreators(PostActions, dispatch),
+		resetActions: bindActionCreators(ResetActions, dispatch)
 	}
 }
 

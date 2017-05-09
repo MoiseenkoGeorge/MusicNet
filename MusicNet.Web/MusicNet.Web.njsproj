@@ -127,13 +127,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\actions\FeedActions.js">
+    <Compile Include="src\actions\PostActions.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\actions\ResetActions.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\actions\SearchActions.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\constants\Feed.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\constants\Post.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\constants\Reset.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\constants\Search.js">

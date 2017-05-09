@@ -21,7 +21,7 @@ namespace MusicNet.Services.Services.Posts
 			this._mapper = mapper;
 		}
 
-		public async void AddPost(PostModel postModel)
+		public async Task AddPostAsync(PostModel postModel)
 		{
 			Guard.ArgumentNotNull(postModel, nameof(postModel));
 			Guard.ArgumentNotNull(postModel.UserId, nameof(postModel.UserId));
@@ -53,6 +53,27 @@ namespace MusicNet.Services.Services.Posts
 			IEnumerable<Post> posts = await this._uow.Posts.GetPostsByPredicateAsync(post => followingUsersIds.Contains(post.UserId), startIndex, count);
 			IEnumerable<PostModel> postModels = this._mapper.Map<IEnumerable<Post>, IEnumerable<PostModel>>(posts.OrderByDescending(post => post.CreationDate).ToList());
 			return postModels;
+		}
+
+		public async Task AddCommentToPostAsync(string postId, string userId, string text)
+		{
+			Guard.ArgumentNotNullOrWhiteSpace(postId, nameof(postId));
+			Guard.ArgumentNotNullOrWhiteSpace(userId, nameof(userId));
+			Guard.ArgumentNotNullOrWhiteSpace(text, nameof(text));
+
+			Post post = await this._uow.Posts.GetByIdAsync(postId);
+			if (post != null)
+			{
+				CommentModel commentModel = new CommentModel()
+				{
+					PostId = postId,
+					UserId = userId,
+					Text = text
+				};
+				Comment comment = this._mapper.Map<CommentModel, Comment>(commentModel);
+				await this._uow.Comments.CreateAsync(comment);
+				this._uow.Commit();
+			}
 		}
 	}
 }

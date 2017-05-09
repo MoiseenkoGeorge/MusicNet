@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MusicNet.DataAccess.Repositories.Comment;
 using MusicNet.DataAccess.Repositories.Post;
 using MusicNet.DataAccess.Repositories.Subscription;
@@ -41,6 +42,11 @@ namespace MusicNet.DataAccess.UoWs
 		public void Commit()
 		{
 			this._context?.SaveChanges();
+		}
+
+		public async Task CommitAsync()
+		{
+			await this._context.SaveChangesAsync();
 		}
 
 		public void Dispose()

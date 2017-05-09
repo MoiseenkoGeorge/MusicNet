@@ -47,12 +47,14 @@ namespace MusicNet.DataAccess.Repositories.Comment
 
 		public Entities.Comment Create(Entities.Comment entity)
 		{
-			throw new NotImplementedException();
+			var result = this._context.Set<Entities.Comment>().Add(entity);
+			return result.Entity;
 		}
 
-		public Task<Entities.Comment> CreateAsync(Entities.Comment entity)
+		public async Task<Entities.Comment> CreateAsync(Entities.Comment entity)
 		{
-			throw new NotImplementedException();
+			var result = await this._context.Set<Entities.Comment>().AddAsync(entity);
+			return result.Entity;
 		}
 
 		public void Delete(string key)

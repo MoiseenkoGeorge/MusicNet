@@ -45,7 +45,7 @@ export class MusicAttachModal extends Component {
 					{
 						this.props.tracks.map((track, i) => {
 							return (
-								<div key={track.id}>
+								<div key={track.id} className="audio-item-wrapper">
 									<audio src={track.url} controls="controls"></audio>
 									<input type="button" className="button" value="Attach" onClick={this.onAttachClicked.bind(this, track)}/>
 								</div>

@@ -1,0 +1,1 @@
+﻿export const RESET_FEED_REDUCER = 'RESET_FEED_REDUCER';

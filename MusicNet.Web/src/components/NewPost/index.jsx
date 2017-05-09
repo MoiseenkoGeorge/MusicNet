@@ -37,10 +37,22 @@ export class NewPost extends Component {
 	}
 
 	onAttachClick(track) {
-		if (!this.state.tracks.includes(track)) {
-			this.setState({ tracks: [...this.state.tracks, track] });
+		if (this.state.tracks.length < 10 && !this.state.tracks.includes(track)) {
+			this.setState({ tracks: this.state.tracks.concat(track) });
 			this.closeModal();
 		}
+	}
+
+	getMusicAttachModal() {
+		if (this.state.modalIsOpen) {
+			let modal = (
+				<MusicAttachModal isOpen={this.state.modalIsOpen}
+					closeModal={this.closeModal}
+					onAttachClick={this.onAttachClick} />
+			);
+			return modal;
+		}
+		return '';
 	}
 
 	render() {
@@ -71,7 +83,7 @@ export class NewPost extends Component {
 						})
 					}
 				</div>
-				<MusicAttachModal isOpen={this.state.modalIsOpen} closeModal={this.closeModal} onAttachClick={this.onAttachClick} />
+				{this.getMusicAttachModal()}
 			</div>
 		);
 	}
