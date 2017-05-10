@@ -124,6 +124,29 @@ a, a:hover {
 	min-width: 450px;
 }
 
+.comments-wrapper {
+	border-top: 1px solid #e7e8ec;
+}
+
+.comment-text {
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.add-comments-wrapper {
+	height: 40px;
+}
+
+.add-comment {
+	width: 100%;
+	border: none;
+	font-size: 14px;
+}
+
+.add-comment:focus {
+	border: none;
+}
+
 @media (min-width: 640px) {
 	.post, .new-post, .profile-header {
 		margin-bottom: 30px;

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import MusicAttachModal from "./MusicAttachModal";
 import Player from "../Player";
-import * as ProfileActions from '../../actions/ProfileActions';
+import * as PostActions from '../../actions/PostActions';
 
 export class NewPost extends Component {
 	constructor(props) {
@@ -97,7 +97,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(ProfileActions, dispatch)
+		actions: bindActionCreators(PostActions, dispatch)
 	}
 }
 
