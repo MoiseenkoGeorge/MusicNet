@@ -1,10 +1,17 @@
 ﻿import React, { Component } from "react";
+import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
+
+import * as ResetActions from '../../actions/ResetActions';
 import ProfileHeader from "./ProfileHeader";
 import ProfilePostsFeed from "./ProfilePostsFeed";
 import NewPost from "../NewPost";
 
 export class Profile extends Component {
+	componentWillMount() {
+		this.props.actions.resetFeed();
+	}
+
 	render() {
 		return (
 			<div className="row">
@@ -31,4 +38,10 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(Profile);
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(ResetActions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

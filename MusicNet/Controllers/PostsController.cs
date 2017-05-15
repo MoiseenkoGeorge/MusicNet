@@ -67,7 +67,7 @@ namespace MusicNet.Controllers
 		[HttpPost("{postId}/Comments")]
 		public async Task<IActionResult> AddCommentToPost(string postId, [FromBody]AddCommentViewModel addCommentViewModel)
 		{
-			Guard.ArgumentNotNull(addCommentViewModel.Text, nameof(addCommentViewModel.Text));
+			Guard.ArgumentNotNullOrWhiteSpace(addCommentViewModel.Text, nameof(addCommentViewModel.Text));
 
 			string userId = this.User.Identity.GetUserId<string>();
 			await this._postService.AddCommentToPostAsync(postId, userId, addCommentViewModel.Text);

@@ -1,4 +1,6 @@
-﻿namespace MusicNet.Models
+﻿using System;
+
+namespace MusicNet.Models
 {
 	public class CommentViewModel
 	{
@@ -9,5 +11,7 @@
 		public string UserImgUrl { get; set; }
 
 		public string Text { get; set; }
+
+		public DateTime LastModifiedDate { get; set; }
 	}
 }

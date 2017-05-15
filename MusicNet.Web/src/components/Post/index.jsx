@@ -1,6 +1,8 @@
 ﻿import React, { Component } from "react";
+
 import PostHeader from "./PostHeader";
-import Comment from "./Comment";
+import NewComment from "../NewComment";
+import Comment from "./Comment"
 
 export default class Post extends Component {
 	render() {
@@ -32,9 +34,7 @@ export default class Post extends Component {
 						}
 					</div>
 					<div className="add-comments-wrapper row">
-						<div className="col-xs-12 col-md-12">
-							<input type="text" className="add-comment" placeholder="Leave a comment..."/>
-						</div>
+						<NewComment postId={this.props.info.id} />
 					</div>
 				</div>
 			</div>

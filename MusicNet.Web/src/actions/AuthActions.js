@@ -52,7 +52,8 @@ export function loginSuccess(response) {
 		type: LOGIN_SUCCESS,
 		payload: {
 			token: response.accessToken,
-			userName: response.userName
+			userName: response.userName,
+			userImgUrl: response.userImgUrl
 		}
 	}
 }
@@ -123,7 +124,8 @@ export function registerSuccess(response) {
 		type: REGISTER_SUCCESS,
 		payload: {
 			token: response.accessToken,
-			userName: response.userName
+			userName: response.userName,
+			userImgUrl: response.userImgUrl
 		}
 	}
 }

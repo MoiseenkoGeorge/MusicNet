@@ -42,6 +42,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\NavLink\index.jsx" />
+    <Content Include="src\components\NewComment\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\NewPost\index.jsx">
       <SubType>Code</SubType>
     </Content>
@@ -58,6 +61,7 @@
     <Content Include="src\components\PostFeed\index.jsx">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Post\Comment.jsx" />
     <Content Include="src\components\Post\index.jsx" />
     <Content Include="src\components\Post\PostHeader.jsx">
       <SubType>Code</SubType>
@@ -165,6 +169,7 @@
     <Folder Include="src\components\Feed\" />
     <Folder Include="src\components\NavLink\" />
     <Folder Include="src\components\Modal\" />
+    <Folder Include="src\components\NewComment\" />
     <Folder Include="src\components\Player\" />
     <Folder Include="src\components\NewPost\" />
     <Folder Include="src\components\PostFeed\" />

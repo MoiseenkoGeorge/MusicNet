@@ -38,7 +38,9 @@ export class ProfilePostsFeed extends Component {
 		} else if (this.props.profilePosts.length === 0) {
 			template = (
 				<div className="col-xs-12 col-md-12 text-center profilePostsFeed">
-					<h3>No posts yet.</h3>
+					<div className="zero-results">
+						<h3>No posts yet.</h3>
+					</div>
 				</div>
 			);
 		} else {

@@ -47,12 +47,16 @@ namespace MusicNet.DataAccess.Repositories.Comment
 
 		public Entities.Comment Create(Entities.Comment entity)
 		{
+			entity.CreationDate = DateTime.UtcNow;
+			entity.LastModifiedDate = DateTime.UtcNow;
 			var result = this._context.Set<Entities.Comment>().Add(entity);
 			return result.Entity;
 		}
 
 		public async Task<Entities.Comment> CreateAsync(Entities.Comment entity)
 		{
+			entity.CreationDate = DateTime.UtcNow;
+			entity.LastModifiedDate = DateTime.UtcNow;
 			var result = await this._context.Set<Entities.Comment>().AddAsync(entity);
 			return result.Entity;
 		}

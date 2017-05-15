@@ -128,6 +128,15 @@ a, a:hover {
 	border-top: 1px solid #e7e8ec;
 }
 
+.comment {
+	border-bottom: 1px solid #e7e8ec;
+	padding: 8px 0 10px;
+}
+
+.comment-header {
+	margin: 0;
+}
+
 .comment-text {
 	word-wrap: break-word;
 	overflow: hidden;
@@ -137,15 +146,26 @@ a, a:hover {
 	height: 40px;
 }
 
-.add-comment {
+.add-comment input {
 	width: 100%;
 	border: none;
 	font-size: 14px;
 }
 
-.add-comment:focus {
-	border: none;
+.add-comment input:focus {
+	outline: none;
 }
+
+.time {
+	color: #939393;
+	font-size: 12px;
+}
+
+.zero-results {
+	background-color: #fff;
+	height: 100%;
+}
+
 
 @media (min-width: 640px) {
 	.post, .new-post, .profile-header {

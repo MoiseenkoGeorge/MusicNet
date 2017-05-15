@@ -13,6 +13,7 @@ import { createReducer } from '../utils';
 const initialState = {
 	token: null,
 	userName: null,
+	userImgUrl: null,
 	isAuthenticated: false,
 	isAuthenticating: false,
 	isRegistrating: false,

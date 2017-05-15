@@ -5,7 +5,7 @@ import TimeAgo from 'react-timeago';
 export default class Comment extends Component {
 	render() {
 		return (
-			<div className="col-xs-12 col-md-12">
+			<div className="col-xs-12 col-md-12 comment">
 				<div className="col-xs-2 col-md-2">
 					<Link to={"/users/" + this.props.data.userName}>
 						<img src={this.props.data.userImgUrl} className="img-circle" width="40" height="40" />
@@ -13,19 +13,19 @@ export default class Comment extends Component {
 				</div>
 				<div className="col-xs-10 col-md-10">
 					<div className="row">
-						<h5>
+						<p className="comment-header">
 							<Link to={"/users/" + this.props.data.userName}>
 								{this.props.data.userName}
 							</Link>
-						</h5>
+						</p>
 					</div>
 					<div className="row comment-text">
 						{this.props.data.text}
 					</div>
-					<div className="row">
-						<h6>
-							<TimeAgo date={this.props.data.creationDate} />
-						</h6>
+					<div className="row time">
+						<p>
+							<TimeAgo date={this.props.data.lastModifiedDate} />
+						</p>
 					</div>
 				</div>
 			</div>

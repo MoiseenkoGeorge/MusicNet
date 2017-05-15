@@ -191,7 +191,6 @@ export function addCommentToPost(postId, text) {
 					body: JSON.stringify({ text: text })
 				})
 			.then(checkHttpStatus)
-			.then(parseJSON)
 			.then(() => {
 				dispatch(addCommentRequestSuccess(postId));
 			})
