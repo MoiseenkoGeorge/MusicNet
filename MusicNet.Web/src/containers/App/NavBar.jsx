@@ -5,22 +5,17 @@ import { Link } from 'react-router'
 export class NavBar extends Component {
 	render() {
 		return (
-			<nav className="navbar navbar-default">
+			<nav className="navbar navbar-default navbar-toggleable-md">
 				<div className="container">
-					<div className="navbar-header">
-						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
-							<span className="sr-only">Toggle navigation</span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-						</button>
-						<Link onlyActiveOnIndex={true} to='/' className="navbar-brand">
-							MusicNet
-						</Link>
-					</div>
+					<button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleContainer" aria-controls="navbarsExampleContainer" aria-expanded="false" aria-label="Toggle navigation">
+						<span className="navbar-toggler-icon"></span>
+					</button>
+					<Link onlyActiveOnIndex={true} to='/' className="navbar-brand">
+						MusicNet
+					</Link>
 
-					<div className="collapse navbar-collapse" id="bs-navbar-collapse">
-						<ul className="nav navbar-nav navbar-right">
+					<div className="collapse navbar-collapse" id="navbarsExampleContainer">
+						<ul className="navbar-nav ml-auto">
 							<li><Link to={"/users/" + this.props.userName}>{this.props.userName}</Link></li>
 						</ul>
 					</div>

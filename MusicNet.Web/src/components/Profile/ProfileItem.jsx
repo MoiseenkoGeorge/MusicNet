@@ -25,7 +25,7 @@ export default class ProfileItem extends Component {
 			<div className="profile-item-wrapper">
 				<div className="profile-item">
 					<Link to={"/users/" + this.props.data.name}>
-						<img src={this.props.data.imageUrl} className="img-circle profile-item-img" width="40" height="40" />
+						<img src={this.props.data.imageUrl} className="rounded-circle profile-item-img" width="40" height="40" />
 					</Link>
 					<div className="profile-item-content">
 						<Link to={"/users/" + this.props.data.name}>

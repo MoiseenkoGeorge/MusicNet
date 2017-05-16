@@ -24,12 +24,20 @@ body, html {
 	color: #fff;
 }
 
-.post, .profile-header, .new-post {
+nav {
+	margin-bottom: 1%
+}
+
+.post, .profile-header, .new-post, .register, .login{
 	background-color: #fff;
 	border: 1px solid #e6e6e6;
 	border-radius: 3px;
 	padding-top: 1%;
-	box-shadow: 0 0 1px rgba(0,0,0,0.5)
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.register, .login {
+	padding-bottom: 1%;
 }
 
 .profile-header, .new-post {
@@ -70,6 +78,11 @@ body, html {
 
 .button-follow {
 	margin-top: 30px;
+}
+
+.switch-sign-in a {
+	color: #83b9ef;
+	text-decoration: #83b9ef;
 }
 
 a, a:hover {

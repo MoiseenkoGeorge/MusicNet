@@ -9,7 +9,7 @@ export default class Footer extends Component {
 				<footer id="footer">
 					<hr />
 					<div className="container text-center">
-						<p>&copy; {new Date().getFullYear()} - All Rights Reserved</p>
+						<p>&copy; {new Date().getFullYear()} MusicNet - All Rights Reserved</p>
 					</div>
 				</footer>
 		);

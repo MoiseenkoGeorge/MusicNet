@@ -31,7 +31,7 @@
 	"dependencies": {
 		"css-loader": "^0.28.1",
 		"extract-text-webpack-plugin": "^2.1.0",
-		"jquery": "^2.2.1",
+		"jquery": "3.2.1",
 		"react": "^15.0.1",
 		"react-dom": "^15.0.1",
 		"react-redux": "^4.4.4",
@@ -39,6 +39,8 @@
 		"react-timeago": "3.3.0",
 		"redux": "^3.4.0",
 		"react-modal": "1.7.7",
-		"ya-music": "0.0.2"
+		"ya-music": "0.0.2",
+		"tether": "1.4.0",
+		"bootstrap": "4.0.0-alpha.6"
 	}
 }

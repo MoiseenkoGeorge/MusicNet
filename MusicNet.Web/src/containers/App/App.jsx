@@ -13,10 +13,8 @@ export class App extends Component {
 						: ''
 					}
 					<div className='container'>
-						<div className='row'>
-							<div className='col-xs-12'>
+						<div className='row justify-content-center align-items-center'>
 								{this.props.children}
-							</div>
 						</div>
 					</div>
 				</div>

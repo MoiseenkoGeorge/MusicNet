@@ -9,7 +9,7 @@ export default class PostHeader extends Component {
 				<div className="row">
 					<div className="col-xs-2 col-md-2">
 						<Link to={"/users/" + this.props.userName}>
-							<img src={this.props.userImgUrl} className="img-circle" width="50" height="50" />
+							<img src={this.props.userImgUrl} className="rounded-circle" width="50" height="50" />
 						</Link>
 					</div>
 					<div className="col-xs-10 col-md-10">
