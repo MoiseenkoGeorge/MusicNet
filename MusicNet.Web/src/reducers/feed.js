@@ -38,6 +38,37 @@ export default createReducer(initialState, {
 			posts: state.posts.concat(payload.posts)
 		});
 	},
+	PROFILE_POSTS_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			postsRequesting: true
+		});
+	},
+	PROFILE_POSTS_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			postsRequesting: false
+		});
+	},
+	PROFILE_POSTS_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			postsRequesting: false,
+			posts: state.posts.concat(payload.posts)
+		});
+	},
+	PROFILE_ADD_POST_REQUEST: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: true
+		});
+	},
+	PROFILE_ADD_POST_REQUEST_SUCCESS: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: false
+		});
+	},
+	PROFILE_ADD_POST_REQUEST_FAIL: (state, payload) => {
+		return Object.assign({}, state, {
+			addPostRequesting: false
+		});
+	},
 	ADD_COMMENT_REQUEST: (state, payload) => {
 		return Object.assign({}, state, {
 			posts: state.posts.map(post => post.Id === payload.postId ?

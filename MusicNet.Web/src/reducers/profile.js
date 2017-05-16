@@ -42,8 +42,6 @@ const initialState = {
 	profileRequesting: false,
 	isMyProfile: false,
 	postsCount: 0,
-	profilePostsRequesting: false,
-	profilePosts: [],
 	addPostRequesting: false,
 	isFollowedByMe: false,
 	subscriptionRequesting: false,
@@ -78,37 +76,6 @@ export default createReducer(initialState, {
 			isFollowedByMe: payload.isFollowedByMe,
 			profileImg: payload.imageUrl,
 			postsCount: payload.postsCount
-		});
-	},
-	PROFILE_POSTS_REQUEST: (state, payload) => {
-		return Object.assign({}, state, {
-			profilePostsRequesting: true
-		});
-	},
-	PROFILE_POSTS_REQUEST_FAIL: (state, payload) => {
-		return Object.assign({}, state, {
-			profilePostsRequesting: false
-		});
-	},
-	PROFILE_POSTS_REQUEST_SUCCESS: (state, payload) => {
-		return Object.assign({}, state, {
-			profilePostsRequesting: false,
-			profilePosts: payload.posts
-		});
-	},
-	PROFILE_ADD_POST_REQUEST: (state, payload) => {
-		return Object.assign({}, state, {
-			addPostRequesting: true
-		});
-	},
-	PROFILE_ADD_POST_REQUEST_SUCCESS: (state, payload) => {
-		return Object.assign({}, state, {
-			addPostRequesting: false
-		});
-	},
-	PROFILE_ADD_POST_REQUEST_FAIL: (state, payload) => {
-		return Object.assign({}, state, {
-			addPostRequesting: false
 		});
 	},
 	PROFILE_SUBSCRIBE_REQUEST: (state, payload) => {

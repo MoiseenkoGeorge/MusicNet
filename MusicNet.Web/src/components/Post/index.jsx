@@ -1,5 +1,8 @@
 ﻿import React, { Component } from "react";
+
 import PostHeader from "./PostHeader";
+import NewComment from "../NewComment";
+import Comment from "./Comment"
 
 export default class Post extends Component {
 	render() {
@@ -20,6 +23,18 @@ export default class Post extends Component {
 								);
 							})
 						}
+					</div>
+				</div>
+				<div className="comments">
+					<div className="comments-wrapper row">
+						{
+							this.props.info.comments.map((comment, i) => {
+								return <Comment key={comment.id} data={comment} />;
+							})
+						}
+					</div>
+					<div className="add-comments-wrapper row">
+						<NewComment postId={this.props.info.id} />
 					</div>
 				</div>
 			</div>

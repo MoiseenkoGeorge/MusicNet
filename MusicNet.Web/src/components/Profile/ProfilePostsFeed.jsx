@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
-import * as ProfileActions from '../../actions/ProfileActions';
+import * as PostActions from '../../actions/PostActions';
 
 import Spinner from "../Spinner";
 import PostFeed from "../PostFeed";
@@ -38,7 +38,9 @@ export class ProfilePostsFeed extends Component {
 		} else if (this.props.profilePosts.length === 0) {
 			template = (
 				<div className="col-xs-12 col-md-12 text-center profilePostsFeed">
-					<h3>No posts yet.</h3>
+					<div className="zero-results">
+						<h3>No posts yet.</h3>
+					</div>
 				</div>
 			);
 		} else {
@@ -55,14 +57,14 @@ export class ProfilePostsFeed extends Component {
 
 function mapStateToProps(state) {
 	return {
-		profilePostsRequesting: state.profile.profilePostsRequesting,
-		profilePosts: state.profile.profilePosts
+		profilePostsRequesting: state.feed.postsRequesting,
+		profilePosts: state.feed.posts
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(ProfileActions, dispatch)
+		actions: bindActionCreators(PostActions, dispatch)
 	}
 }
 

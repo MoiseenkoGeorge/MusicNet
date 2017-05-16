@@ -66,7 +66,7 @@ namespace MusicNet.Controllers
 				{
 					string token = this._authService.GetJwtToken(signedInUserModel);
 					return this.Json(
-						new { AccessToken = token, UserName = userModel.Name });
+						new { AccessToken = token, UserName = userModel.Name, UserImgUrl = userModel.UserImgUrl });
 				}
 			}
 

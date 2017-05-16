@@ -31,9 +31,10 @@ namespace MusicNet.DataAccess.Repositories.Post
 			throw new NotImplementedException();
 		}
 
-		public Task<Entities.Post> GetByIdAsync(string key)
+		public async Task<Entities.Post> GetByIdAsync(string key)
 		{
-			throw new NotImplementedException();
+			var result = await this._context.Set<Entities.Post>().SingleOrDefaultAsync(x => x.Id == key);
+			return result;
 		}
 
 		public Entities.Post GetByPredicate(Expression<Func<Entities.Post, bool>> p)
@@ -85,12 +86,15 @@ namespace MusicNet.DataAccess.Repositories.Post
 			var result = await this._context.Set<Entities.Post>().Include(post => post.User)
 																.Where(p)
 																.Include(post => post.Tracks).ThenInclude(pt => pt.Track)
+																.Include(post => post.Comments).ThenInclude(c => c.User)
 																.Skip(position)
 																.Take(count)
 																//.OrderBy(x => x.Id)
 																.ToListAsync();
 
 			result.ForEach((post => post.CreationDate = DateTime.SpecifyKind(post.CreationDate, DateTimeKind.Utc)));
+			result.ForEach(post => post.Comments = post.Comments.OrderBy(x => x.LastModifiedDate).ToList());
+			result.ForEach((post => post.Comments.ToList().ForEach(comment => comment.LastModifiedDate = DateTime.SpecifyKind(comment.LastModifiedDate, DateTimeKind.Utc))));
 			return result;
 		}
 

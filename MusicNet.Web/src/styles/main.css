@@ -137,6 +137,49 @@ a, a:hover {
 	min-width: 450px;
 }
 
+.comments-wrapper {
+	border-top: 1px solid #e7e8ec;
+}
+
+.comment {
+	border-bottom: 1px solid #e7e8ec;
+	padding: 8px 0 10px;
+}
+
+.comment-header {
+	margin: 0;
+}
+
+.comment-text {
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.add-comments-wrapper {
+	height: 40px;
+}
+
+.add-comment input {
+	width: 100%;
+	border: none;
+	font-size: 14px;
+}
+
+.add-comment input:focus {
+	outline: none;
+}
+
+.time {
+	color: #939393;
+	font-size: 12px;
+}
+
+.zero-results {
+	background-color: #fff;
+	height: 100%;
+}
+
+
 @media (min-width: 640px) {
 	.post, .new-post, .profile-header {
 		margin-bottom: 30px;

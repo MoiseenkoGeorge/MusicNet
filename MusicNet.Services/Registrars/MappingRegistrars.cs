@@ -51,7 +51,9 @@ namespace MusicNet.Services.Registrars
 		private void RegisterCommentModels()
 		{
 			this.CreateMap<CommentModel, Comment>();
-			this.CreateMap<Comment, CommentModel>();
+			this.CreateMap<Comment, CommentModel>()
+				.ForMember(dest => dest.UserImgUrl, src => src.MapFrom(c => c.User.ImageUrl))
+				.ForMember(dest => dest.UserName, src => src.MapFrom(c => c.User.Name));
 		}
 
 		private void RegisterSubscriptionModels()
