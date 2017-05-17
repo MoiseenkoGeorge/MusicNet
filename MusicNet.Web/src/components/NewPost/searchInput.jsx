@@ -3,7 +3,7 @@
 export default class SearchInput extends Component {
 	render() {
 		return (
-			<div>
+			<div className="search-input-wrapper">
 				<input
 					type="text"
 					onChange={this.props.onChange}

@@ -2,7 +2,8 @@
 
 import PostHeader from "./PostHeader";
 import NewComment from "../NewComment";
-import Comment from "./Comment"
+import Comment from "./Comment";
+import Track from "../Track";
 
 export default class Post extends Component {
 	render() {
@@ -12,24 +13,24 @@ export default class Post extends Component {
 				<div>
 					<p>{this.props.info.text}</p>
 				</div>
-				<div>
-					<div>
-						{
-							this.props.info.tracks.map((track, i) => {
-								return (
-									<div key={track.id}>
-										<audio src={track.url} controls="controls"></audio>
-									</div>
-								);
-							})
-						}
-					</div>
+				<div className="container">
+					{
+						this.props.info.tracks.map((track, i) => {
+							return (
+								<div className="row track">
+									<Track data={track} key={track.id} />
+								</div>
+							);
+						})
+					}
 				</div>
 				<div className="comments">
-					<div className="comments-wrapper row">
+					<div className="comments-wrapper container">
 						{
 							this.props.info.comments.map((comment, i) => {
-								return <Comment key={comment.id} data={comment} />;
+								return <div className="row" key={comment.id}>
+										<Comment data={comment} />
+								       </div>;
 							})
 						}
 					</div>

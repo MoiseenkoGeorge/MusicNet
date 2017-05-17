@@ -1,8 +1,29 @@
 ﻿import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 
 export class NavBar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			term: ""
+		}
+		this.onSearchSubmit = this.onSearchSubmit.bind(this);
+		this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
+	}
+
+	onSearchSubmit(e) {
+		e.preventDefault();
+		this.props.actions.redirectToSearch(this.state.term);
+		this.setState({ term: "" });
+	}
+
+	onChangeSearchInput(e) {
+		e.preventDefault();
+		this.setState({ term: e.target.value.trim() });
+	}
+
 	render() {
 		return (
 			<nav className="navbar navbar-default navbar-toggleable-md">
@@ -15,6 +36,9 @@ export class NavBar extends Component {
 					</Link>
 
 					<div className="collapse navbar-collapse" id="navbarsExampleContainer">
+						<form className="form-inline my-2 my-md-0" role="form" onSubmit={this.onSearchSubmit}>
+							<input className="form-control mr-sm-2" type="text" placeholder="Search" name="search" onChange={this.onChangeSearchInput}/>
+						</form>
 						<ul className="navbar-nav ml-auto">
 							<li><Link to={"/users/" + this.props.userName}>{this.props.userName}</Link></li>
 						</ul>
@@ -28,6 +52,16 @@ export class NavBar extends Component {
 function mapStateToProps(state) {
 	return {
 		userName: state.auth.userName
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: {
+			redirectToSearch: (term) => {
+				dispatch(pushState(null, '/search/tracks?' + term));
+			}
+		}
 	}
 }
 

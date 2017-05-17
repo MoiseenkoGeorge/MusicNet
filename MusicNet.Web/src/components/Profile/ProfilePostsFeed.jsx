@@ -2,6 +2,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import * as PostActions from '../../actions/PostActions';
+import * as ResetActions from '../../actions/ResetActions';
 
 import Spinner from "../Spinner";
 import PostFeed from "../PostFeed";
@@ -19,6 +20,7 @@ export class ProfilePostsFeed extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.state.userName !== nextProps.userName) {
 			this.setState({ userName: nextProps.userName });
+			this.props.resetActions.resetFeed();
 			this.fetchData(nextProps.userName);
 		}
 	}
@@ -31,7 +33,7 @@ export class ProfilePostsFeed extends Component {
 		let template;
 		if (this.props.profilePostsRequesting === true) {
 			template = (
-				<div className="col-xs-4 col-md-4 col-xs-offset-4 col-md-offset-4">
+				<div className="col-xs-4 col-md-4">
 					<Spinner />
 				</div>
 			);
@@ -64,7 +66,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(PostActions, dispatch)
+		actions: bindActionCreators(PostActions, dispatch),
+		resetActions: bindActionCreators(ResetActions, dispatch)
 	}
 }
 

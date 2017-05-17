@@ -14,17 +14,17 @@ export class Profile extends Component {
 
 	render() {
 		return (
-			<div className="row">
-				<div className="row">
+			<div className="container">
+				<div className="row justify-content-center">
 					<ProfileHeader userName={this.props.params.userName} />
 				</div>
 				{this.props.isMyProfile ?
-					<div className="row">
+					<div className="row justify-content-center">
 						<NewPost />
 					</div>
 					: ''}
 
-				<div className="row">
+				<div className="row justify-content-center">
 					<ProfilePostsFeed userName={this.props.params.userName} />
 				</div>
 			</div>

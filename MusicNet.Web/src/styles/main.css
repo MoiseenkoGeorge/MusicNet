@@ -9,7 +9,7 @@ body, html {
 }
 
 #footer {
-	position: absolute;
+	position: relative;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -28,7 +28,7 @@ nav {
 	margin-bottom: 1%
 }
 
-.post, .profile-header, .new-post, .register, .login{
+.post, .profile-header, .new-post, .register, .login, .search-container{
 	background-color: #fff;
 	border: 1px solid #e6e6e6;
 	border-radius: 3px;
@@ -54,7 +54,8 @@ nav {
 }
 
 .img-profile {
-	width: 100%;
+	width: 250px;
+	height: 250px
 }
 
 .button {
@@ -143,7 +144,7 @@ a, a:hover {
 
 .comment {
 	border-bottom: 1px solid #e7e8ec;
-	padding: 8px 0 10px;
+	padding-top: 10px;
 }
 
 .comment-header {
@@ -153,6 +154,7 @@ a, a:hover {
 .comment-text {
 	word-wrap: break-word;
 	overflow: hidden;
+	display: block
 }
 
 .add-comments-wrapper {
@@ -177,6 +179,36 @@ a, a:hover {
 .zero-results {
 	background-color: #fff;
 	height: 100%;
+}
+
+.track {
+	border: 2px solid #fff;
+	border-bottom-color: #e7e8ec;
+}
+
+.track:hover {
+	border: 2px solid #83b9ef
+}
+
+.track-name {
+	font-size: 14px;
+}
+
+.track audio {
+	width: 100%;
+}
+
+button {
+	cursor: pointer;
+}
+
+.search-header {
+	font-size: 16px;
+	padding-left: 3%;
+}
+
+.search-input-wrapper {
+	width: 100%;
 }
 
 

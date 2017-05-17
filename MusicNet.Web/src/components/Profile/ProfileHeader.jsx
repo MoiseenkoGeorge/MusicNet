@@ -117,7 +117,7 @@ export class ProfileHeader extends Component {
 			);
 		} else {
 			template = (
-				<div className="col-xs-12 col-md-12 profile-header">
+				<div className="col-12 profile-header row">
 					<div className="col-xs-3 col-md-3 col-xs-offset-1 col-md-offset-1">
 						<img src={this.props.profileImg} className="rounded-circle img-profile" alt="Profile image" />
 					</div>

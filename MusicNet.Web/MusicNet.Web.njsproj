@@ -84,7 +84,16 @@
     <Content Include="src\components\Profile\ProfilePostsFeed.jsx">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Search\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\Search\SearchTracksResult.jsx">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Spinner\index.jsx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\Track\index.jsx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\constants\Profile.js">
@@ -170,6 +179,8 @@
     <Folder Include="src\components\NavLink\" />
     <Folder Include="src\components\Modal\" />
     <Folder Include="src\components\NewComment\" />
+    <Folder Include="src\components\Search\" />
+    <Folder Include="src\components\Track\" />
     <Folder Include="src\components\Player\" />
     <Folder Include="src\components\NewPost\" />
     <Folder Include="src\components\PostFeed\" />
