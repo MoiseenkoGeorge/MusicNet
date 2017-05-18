@@ -14,6 +14,10 @@ export class SearchTracksResults extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.fetchData(this.state.term);
+	}
+
 	fetchData(term) {
 		this.props.actions.getTracksByTitle(term);
 	}

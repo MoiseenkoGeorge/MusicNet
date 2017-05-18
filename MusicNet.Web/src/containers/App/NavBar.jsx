@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import { ROUTING } from '../../constants/Routing'
 
 export class NavBar extends Component {
 	constructor(props) {
@@ -15,8 +16,18 @@ export class NavBar extends Component {
 
 	onSearchSubmit(e) {
 		e.preventDefault();
-		this.props.actions.redirectToSearch(this.state.term);
+		this.redirectToSearch(this.state.term);
 		this.setState({ term: "" });
+	}
+
+	redirectToSearch(term) {
+		this.props.dispatch({
+			type: ROUTING,
+			payload: {
+				method: 'replace',
+				nextUrl: '/search/tracks?term' + term
+			}
+		});
 	}
 
 	onChangeSearchInput(e) {
@@ -56,13 +67,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: {
-			redirectToSearch: (term) => {
-				dispatch(pushState(null, '/search/tracks?' + term));
-			}
-		}
-	}
 }
 
 export default connect(mapStateToProps)(NavBar)
