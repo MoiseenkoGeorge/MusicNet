@@ -10,6 +10,6 @@ namespace MusicNet.DataAccess.Repositories.User
 	/// </summary>
 	public interface IUserRepository : IRepository<Entities.User>
 	{
-		Task<IEnumerable<Entities.User>> GetUsersByPredicateAsync(Expression<Func<Entities.User, bool>> p);
+		Task<IEnumerable<Entities.User>> GetUsersByPredicateAsync(Expression<Func<Entities.User, bool>> p, int position, int count);
 	}
 }

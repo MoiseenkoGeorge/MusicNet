@@ -18,6 +18,7 @@ export class NavBar extends Component {
 		e.preventDefault();
 		this.redirectToSearch(this.state.term);
 		this.setState({ term: "" });
+		this.refs.globalSearch.value = "";
 	}
 
 	redirectToSearch(term) {
@@ -25,7 +26,7 @@ export class NavBar extends Component {
 			type: ROUTING,
 			payload: {
 				method: 'replace',
-				nextUrl: '/search/tracks?term' + term
+				nextUrl: '/search/tracks?term=' + term
 			}
 		});
 	}
@@ -48,10 +49,10 @@ export class NavBar extends Component {
 
 					<div className="collapse navbar-collapse" id="navbarsExampleContainer">
 						<form className="form-inline my-2 my-md-0" role="form" onSubmit={this.onSearchSubmit}>
-							<input className="form-control mr-sm-2" type="text" placeholder="Search" name="search" onChange={this.onChangeSearchInput}/>
+							<input className="form-control mr-sm-2" type="text" placeholder="Search" name="search" onChange={this.onChangeSearchInput} ref="globalSearch"/>
 						</form>
 						<ul className="navbar-nav ml-auto">
-							<li><Link to={"/users/" + this.props.userName}>{this.props.userName}</Link></li>
+							<li className="align-self-center"><Link to={"/users/" + this.props.userName}>{this.props.userName}</Link></li>
 						</ul>
 					</div>
 				</div>

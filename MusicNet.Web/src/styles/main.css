@@ -77,10 +77,6 @@ nav {
 	color: #262626;
 }
 
-.button-follow {
-	margin-top: 30px;
-}
-
 .switch-sign-in a {
 	color: #83b9ef;
 	text-decoration: #83b9ef;
@@ -209,6 +205,14 @@ button {
 
 .search-input-wrapper {
 	width: 100%;
+}
+
+input[type="button"] {
+	cursor: pointer;
+}
+
+.new-post textarea {
+	width: 100%!important;
 }
 
 

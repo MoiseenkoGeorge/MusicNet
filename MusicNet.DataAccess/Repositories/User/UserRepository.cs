@@ -98,12 +98,14 @@ namespace MusicNet.DataAccess.Repositories.User
 			throw new NotImplementedException();
 		}
 
-		public async Task<IEnumerable<Entities.User>> GetUsersByPredicateAsync(Expression<Func<Entities.User, bool>> p)
+		public async Task<IEnumerable<Entities.User>> GetUsersByPredicateAsync(Expression<Func<Entities.User, bool>> p, int position, int count)
 		{
 			IEnumerable<Entities.User> users = await this._context.Set<Entities.User>()
 														.Include(u => u.Followers)
 														.Include(u => u.Following)
 														.Where(p)
+														.Skip(position)
+														.Take(count)
 														.ToListAsync();
 			return users;
 		}

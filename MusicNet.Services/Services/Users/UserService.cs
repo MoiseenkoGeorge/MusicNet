@@ -124,7 +124,7 @@ namespace MusicNet.Services.Services.Users
 			var userEntity = await this._uow.Users.GetByPredicateAsync(u => u.Name == userName);
 			if (userEntity != null)
 			{
-				IEnumerable<User> followerUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Following.Any(u => u.PublisherId == userEntity.Id));
+				IEnumerable<User> followerUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Following.Any(u => u.PublisherId == userEntity.Id), 0, 100);
 				IEnumerable<LightProfileModel> lightProfileModels = this._mapper.Map<IEnumerable<User>, IEnumerable<LightProfileModel>>(followerUsers).ToList();
 				foreach (var profile in lightProfileModels)
 				{
@@ -144,7 +144,7 @@ namespace MusicNet.Services.Services.Users
 			var userEntity = await this._uow.Users.GetByPredicateAsync(u => u.Name == userName);
 			if (userEntity != null)
 			{
-				IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Followers.Any(u => u.SubscriberId == userEntity.Id));
+				IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(x => x.Followers.Any(u => u.SubscriberId == userEntity.Id), 0, 100);
 				IEnumerable<LightProfileModel> lightProfileModels = this._mapper.Map<IEnumerable<User>, IEnumerable<LightProfileModel>>(followingUsers);
 				foreach (var profile in lightProfileModels)
 				{

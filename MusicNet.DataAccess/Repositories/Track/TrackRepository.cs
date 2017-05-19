@@ -78,9 +78,12 @@ namespace MusicNet.DataAccess.Repositories.Track
 			throw new NotImplementedException();
 		}
 
-		public async Task<IEnumerable<Entities.Track>> GetTracksByPredicateAsync(Expression<Func<Entities.Track, bool>> p)
+		public async Task<IEnumerable<Entities.Track>> GetTracksByPredicateAsync(Expression<Func<Entities.Track, bool>> p, int position, int count)
 		{
-			var tracks = await this._context.Set<Entities.Track>().Where(p).ToListAsync();
+			var tracks = await this._context.Set<Entities.Track>().Where(p)
+																.Skip(position)
+																.Take(count)
+																.ToListAsync();
 			return tracks;
 		}
 	}

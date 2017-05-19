@@ -2,6 +2,7 @@
 import CustomModal from "../Modal";
 import SearchInput from "./searchInput";
 import Spinner from "../Spinner"
+import Track from "../Track";
 
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
@@ -41,15 +42,18 @@ export class MusicAttachModal extends Component {
 			);
 		} else {
 			resultTemplate = (
-				<div>
+				<div className="container">
 					{
 						this.props.tracks.map((track, i) => {
 							return (
-								<div key={track.id} className="audio-item-wrapper">
-									<audio src={track.url} controls="controls"></audio>
-									<input type="button" className="button" value="Attach" onClick={this.onAttachClicked.bind(this, track)}/>
+								<div className="row track" key={track.id}>
+									<div className="col-9">
+										<Track data={track} />
+									</div>
+									<div className="col-3 align-self-center">
+										<input type="button" className="button" value="Attach" onClick={this.onAttachClicked.bind(this, track)} />
+									</div>
 								</div>
-								
 							);
 						})
 					}

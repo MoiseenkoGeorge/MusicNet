@@ -42,6 +42,15 @@
 	width: 100%;
 }
 
+.attach-music-input {
+	background: url("http://res.cloudinary.com/djb7hr8nk/image/upload/v1495186774/add_music_icon_hodnhs.png") no-repeat;
+	border: none;
+	width: 100%;
+	line-height: 18px;
+	cursor: pointer;
+	height: 20px;
+}
+
 .modal-content {
 	height: 550px;
 	border-radius: 0 0 2px 2px;

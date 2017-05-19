@@ -123,10 +123,10 @@ export class ProfileHeader extends Component {
 					</div>
 					<div className="col-xs-8 col-md-8">
 						<div className="row">
-							<div className="col-xs-6 col-md-6">
+							<div className="col-6">
 								<h1>{this.state.userName}</h1>
 							</div>
-							<div className="col-xs-3 col-md-3">
+							<div className="col-3 align-self-center">
 								{this.getFollowButton()}
 							</div>
 						</div>

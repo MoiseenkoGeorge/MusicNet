@@ -27,7 +27,7 @@ namespace MusicNet.Controllers
 		{
 			Guard.ArgumentNotNull(term, nameof(term));
 
-			IEnumerable<TrackModel> trackModels = await this._searchService.GetTracksByTitle(term);
+			IEnumerable<TrackModel> trackModels = await this._searchService.GetTracksByTitleAsync(term, 0, 20);
 			IEnumerable<TrackViewModel> trackViewModels = this._mapper.Map<IEnumerable<TrackModel>, IEnumerable<TrackViewModel>>(trackModels);
 
 			return this.Json(new {tracks = trackViewModels});
@@ -38,7 +38,7 @@ namespace MusicNet.Controllers
 		{
 			Guard.ArgumentNotNull(term, nameof(term));
 
-			IEnumerable<LightProfileModel> profileModels = await this._searchService.GetUsersByName(term);
+			IEnumerable<LightProfileModel> profileModels = await this._searchService.GetUsersByNameAsync(term, 0, 20);
 			IEnumerable<LightProfileViewModel> profileViewModels = this._mapper.Map<IEnumerable<LightProfileModel>, IEnumerable<LightProfileViewModel>>(profileModels);
 
 			return this.Json(new { users = profileViewModels });
@@ -49,7 +49,7 @@ namespace MusicNet.Controllers
 		{
 			Guard.ArgumentNotNull(term, nameof(term));
 
-			IEnumerable<PostModel> postModels = await this._searchService.GetPosts(term);
+			IEnumerable<PostModel> postModels = await this._searchService.GetPostsAsync(term, 0, 20);
 			IEnumerable<PostViewModel> postViewModels = this._mapper.Map<IEnumerable<PostModel>, IEnumerable<PostViewModel>>(postModels);
 
 			return this.Json(new { posts = postViewModels });

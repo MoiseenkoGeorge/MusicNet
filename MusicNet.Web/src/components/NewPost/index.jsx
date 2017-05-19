@@ -57,33 +57,32 @@ export class NewPost extends Component {
 
 	render() {
 		return (
-			<div className='col-xs-12 col-md-6 col-md-offset-3 new-post'>
-				<input type='text'
-					className='input-lg'
-					placeholder="What's new"
-					onChange={this.postTextChanged.bind(this)} />
-				<input type='button'
-					className='btn btn-lg'
-					value="Send"
-					disabled={this.props.addPostRequesting}
-					onClick={this.handleSubmit.bind(this)} />
-				<input type='button'
-					className='btn btn-lg'
-					value="Attach Music"
-					disabled={this.props.addPostRequesting}
-					onClick={this.openModal} />
-				<div className="post-music-content">
-					{
-						this.state.tracks.map((track, i) => {
-							return (
-								<div key={track.id}>
-									<audio src={track.url} controls="controls"></audio>
-								</div>
-							);
-						})
-					}
-				</div>
-				{this.getMusicAttachModal()}
+			<div className='col-xs-12 col-md-6 new-post'>
+				<form className="form-inline">
+					<div className="form-group col-9">
+						<textarea className="form-control" rows="2" placeholder="What's new" onChange={this.postTextChanged.bind(this)}></textarea>
+					</div>
+					<div className="form-group col-1">
+						<div className="attach-music-input" disabled={this.props.addPostRequesting} onClick={this.openModal}></div>
+					</div>
+					<input type='button'
+						className='btn btn-primary col-2'
+						value="Send"
+						disabled={this.props.addPostRequesting}
+						onClick={this.handleSubmit.bind(this)} />
+				</form>
+					<div className="post-music-content">
+						{
+							this.state.tracks.map((track, i) => {
+								return (
+									<div key={track.id}>
+										<audio src={track.url} controls="controls"></audio>
+									</div>
+								);
+							})
+						}
+					</div>
+					{this.getMusicAttachModal()}
 			</div>
 		);
 	}

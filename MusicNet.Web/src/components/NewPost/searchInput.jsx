@@ -9,6 +9,7 @@ export default class SearchInput extends Component {
 					onChange={this.props.onChange}
 					placeholder="Search"
 					className="search-input"
+					value={this.props.initialValue || null}
 					/>
 			</div>
 			);

@@ -46,7 +46,7 @@ namespace MusicNet.Services.Services.Posts
 			Guard.ArgumentNotNullOrWhiteSpace(userId, nameof(userId));
 			Guard.ArgumentNotNull(count, nameof(count));
 
-			IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(user => user.Followers.Any(s => s.SubscriberId == userId));
+			IEnumerable<User> followingUsers = await this._uow.Users.GetUsersByPredicateAsync(user => user.Followers.Any(s => s.SubscriberId == userId), 0, 100);
 			IList<string> followingUsersIds = followingUsers.Select(user => user.Id).ToList();
 			followingUsersIds.Add(userId);
 
