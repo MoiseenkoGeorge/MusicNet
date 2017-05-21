@@ -25,9 +25,14 @@ namespace MusicNet.Common
 		private const string KEY = "mysupersecret_secretkey!3123";
 
 		/// <summary>
-		///     The token lifetime in minutes.
+		///     The refresh token lifetime in minutes.
 		/// </summary>
-		public const int LIFETIME = 10000;
+		public const int ACESS_LIFETIME = 10000;
+
+		/// <summary>
+		///     The refresh token lifetime in minutes.
+		/// </summary>
+		public const int REFRESH_LIFETIME = 10000;
 
 		/// <summary>
 		///     Getting SymmetricSecurityKey instance.

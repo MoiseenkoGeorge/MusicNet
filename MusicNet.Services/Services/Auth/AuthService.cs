@@ -10,7 +10,7 @@ namespace MusicNet.Services.Services.Auth
 {
 	public class AuthService : IAuthService
 	{
-		public string GetJwtToken(UserModel userModel)
+		public string GetAccessJwtToken(UserModel userModel)
 		{
 			Guard.ArgumentNotNull(userModel, nameof(userModel));
 
@@ -21,7 +21,24 @@ namespace MusicNet.Services.Services.Auth
 				AuthOptions.AUDIENCE,
 				notBefore: nowDateTime,
 				claims: identity.Claims,
-				expires: nowDateTime.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+				expires: nowDateTime.Add(TimeSpan.FromMinutes(AuthOptions.ACESS_LIFETIME)),
+				signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512)
+			);
+			var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+			return encodedJwt;
+		}
+		public string GetRefreshJwtToken(UserModel userModel)
+		{
+			Guard.ArgumentNotNull(userModel, nameof(userModel));
+
+			var identity = this.GetIdentity(userModel);
+			var nowDateTime = DateTime.UtcNow;
+			var jwt = new JwtSecurityToken(
+				AuthOptions.ISSUER,
+				AuthOptions.AUDIENCE,
+				notBefore: nowDateTime,
+				claims: identity.Claims,
+				expires: nowDateTime.Add(TimeSpan.FromMinutes(AuthOptions.REFRESH_LIFETIME)),
 				signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512)
 			);
 			var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);

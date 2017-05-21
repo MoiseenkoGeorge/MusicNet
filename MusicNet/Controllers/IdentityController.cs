@@ -40,9 +40,11 @@ namespace MusicNet.Controllers
 				}
 				else
 				{
-					string token = this._authService.GetJwtToken(registredUserModel);
+					string accessToken = this._authService.GetAccessJwtToken(registredUserModel);
+					string refreshToken = this._authService.GetRefreshJwtToken(registredUserModel);
+
 					return this.Json(
-						new { AccessToken = token, UserName = userModel.Name });
+						new { AccessToken = accessToken, RefreshToken = refreshToken, UserName = userModel.Name });
 				}
 			}
 
@@ -64,9 +66,11 @@ namespace MusicNet.Controllers
 				}
 				else
 				{
-					string token = this._authService.GetJwtToken(signedInUserModel);
+					string accessToken = this._authService.GetAccessJwtToken(signedInUserModel);
+					string refreshToken = this._authService.GetRefreshJwtToken(signedInUserModel);
+
 					return this.Json(
-						new { AccessToken = token, UserName = userModel.Name, UserImgUrl = userModel.UserImgUrl });
+						new { AccessToken = accessToken, RefreshToken = refreshToken, UserName = userModel.Name });
 				}
 			}
 

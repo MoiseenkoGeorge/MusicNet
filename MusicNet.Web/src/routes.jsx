@@ -15,7 +15,7 @@ export const routes = (
 	<div>
 		<Route path='/' component={App}>
 			<IndexRoute component={requireAuthentication(Feed)}/>
-			<Route path='/users/:userName' component={Profile}/>
+			<Route path='/users/:userName' component={requireAuthentication(Profile)}/>
 			<Route path='/login' component={LoginPage}/>
 			<Route path='/register' component={RegisterPage} />
 			<Route path="/search/:category" component={Search} />

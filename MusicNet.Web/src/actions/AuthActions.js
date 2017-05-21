@@ -81,6 +81,13 @@ export function redirect(address = "/") {
 
 export function logout() {
 	localStorage.removeItem('accessToken');
+	return (dispatch) => {
+		dispatch(logoutSuccess());
+		dispatch(redirect());
+	}
+}
+
+export function logoutSuccess() {
 	return {
 		type: LOGOUT_SUCCESS
 	}

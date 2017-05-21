@@ -4,6 +4,8 @@ namespace MusicNet.Services.Services.Auth
 {
 	public interface IAuthService
 	{
-		string GetJwtToken(UserModel userModel);
+		string GetAccessJwtToken(UserModel userModel);
+
+		string GetRefreshJwtToken(UserModel userModel);
 	}
 }

@@ -31,8 +31,9 @@ export class LoginPage extends Component {
 		this.setState({ login: event.target.value });
 	}
 
-	passwordChanged(event) {
-		this.setState({ password: event.target.value });
+	passwordChanged(e) {
+		this.setState({ password: e.target.value });
+		this.validatePassword(e);
 	}
 
 	validatePassword(e) {
@@ -84,7 +85,6 @@ export class LoginPage extends Component {
 							className={"form-control " + (this.getInputClass(this.state.isValidPassword))}
 							placeholder='Password'
 							onChange={this.passwordChanged.bind(this)}
-							onBlur={this.validatePassword}
 						/>
 					</div>
 					<div className="row">

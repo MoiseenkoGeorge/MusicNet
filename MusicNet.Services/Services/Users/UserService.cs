@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -89,7 +88,7 @@ namespace MusicNet.Services.Services.Users
 
 			User publisherUser = await this._uow.Users.GetByPredicateAsync(u => u.Name == publisherName);
 			Subscription existingSubscription = await this._uow.Subscriptions.GetByPredicateAsync(s => s.SubscriberId == subscriberId && s.PublisherId == publisherUser.Id);
-			if (existingSubscription == null)
+			if (existingSubscription == null && subscriberId != publisherUser.Id)
 			{
 				SubscriptionModel subscriptionModel = new SubscriptionModel()
 				{
@@ -100,6 +99,10 @@ namespace MusicNet.Services.Services.Users
 				Subscription subscription = this._mapper.Map<SubscriptionModel, Subscription>(subscriptionModel);
 				await this._uow.Subscriptions.CreateAsync(subscription);
 				this._uow.Commit();
+			}
+			else
+			{
+				throw new Exception("User can't subscribe yourself or current subscription is already exists.");
 			}
 		}
 
