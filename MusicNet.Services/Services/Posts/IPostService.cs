@@ -6,7 +6,7 @@ namespace MusicNet.Services.Services.Posts
 {
 	public interface IPostService
 	{
-		Task AddPostAsync(PostModel postModel);
+		Task<PostModel> AddPostAsync(PostModel postModel);
 
 		Task<IEnumerable<PostModel>> GetPostsAsync(string userName, int startIndex, int count);
 

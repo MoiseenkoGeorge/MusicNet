@@ -59,9 +59,10 @@ namespace MusicNet.Controllers
 
 			PostModel postModel = this._mapper.Map<AddPostViewModel, PostModel>(postViewModel);
 			postModel.UserId = this.User.Identity.GetUserId<string>();
-			await this._postService.AddPostAsync(postModel);
+			PostModel createdPostMdoel = await this._postService.AddPostAsync(postModel);
+			PostViewModel createdPostViewModel = this._mapper.Map<PostModel, PostViewModel>(createdPostMdoel);
 
-			return this.NoContent();
+			return this.Json(new { Post = createdPostViewModel });
 		}
 
 		[HttpPost("{postId}/Comments")]

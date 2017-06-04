@@ -142,19 +142,20 @@ export function addPost(text, tracks) {
 					body: JSON.stringify({ text: text, tracks: tracks })
 				})
 			.then(checkHttpStatus)
-			.then(() => {
-				dispatch(addPostRequestSuccess());
+			.then(parseJSON)
+			.then(response => {
+				dispatch(addPostRequestSuccess(response));
 			})
-			.catch(error => {
-				if (error.response.status === 401) {
-					dispatch(profilePostsRequestFail);
-					dispatch(authActions.loginUserFailure(error));
-					dispatch(pushState(null, '/login'));
-				} else if (error.response.status === 404) {
-					dispatch(profilePostsRequestFail);
-					// ... not found
-				}
-			});
+			//.catch(error => {
+			//	if (error.response.status === 401) {
+			//		dispatch(profilePostsRequestFail);
+			//		dispatch(authActions.loginUserFailure(error));
+			//		dispatch(pushState(null, '/login'));
+			//	} else if (error.response.status === 404) {
+			//		dispatch(profilePostsRequestFail);
+			//		// ... not found
+			//	}
+			//});
 	}
 }
 
@@ -166,7 +167,10 @@ export function addPostRequest() {
 
 export function addPostRequestSuccess(response) {
 	return {
-		type: PROFILE_ADD_POST_REQUEST_SUCCESS
+		type: PROFILE_ADD_POST_REQUEST_SUCCESS,
+		payload: {
+			post: response.post
+		}
 	}
 }
 

@@ -21,14 +21,19 @@ namespace MusicNet.Services.Services.Posts
 			this._mapper = mapper;
 		}
 
-		public async Task AddPostAsync(PostModel postModel)
+		public async Task<PostModel> AddPostAsync(PostModel postModel)
 		{
 			Guard.ArgumentNotNull(postModel, nameof(postModel));
 			Guard.ArgumentNotNull(postModel.UserId, nameof(postModel.UserId));
 
 			Post postEntity = this._mapper.Map<PostModel, Post>(postModel);
-			await this._uow.Posts.CreateAsync(postEntity);
+			var result = await this._uow.Posts.CreateAsync(postEntity);
 			this._uow.Commit();
+
+			Post createdPostEntity = await this._uow.Posts.GetByIdAsync(result.Id);
+			PostModel createdPostModel = this._mapper.Map<Post, PostModel>(createdPostEntity);
+
+			return createdPostModel;
 		}
 
 		public async Task<IEnumerable<PostModel>> GetPostsAsync(string userName, int startIndex, int count)

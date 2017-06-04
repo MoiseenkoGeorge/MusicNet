@@ -17,6 +17,7 @@ export class NewPost extends Component {
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.onAttachClick = this.onAttachClick.bind(this);
+		this.resetState = this.resetState.bind(this);
 	}
 
 	openModal() {
@@ -30,6 +31,15 @@ export class NewPost extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		this.props.actions.addPost(this.state.postText, this.state.tracks);
+		this.resetState();
+	}
+
+	resetState() {
+		this.setState({
+			postText: "",
+			tracks: [],
+			modalIsOpen: false
+		});
 	}
 
 	postTextChanged(e) {
@@ -59,11 +69,14 @@ export class NewPost extends Component {
 		return (
 			<div className='col-xs-12 col-md-6 new-post'>
 				<form className="form-inline">
-					<div className="form-group col-9">
+					<div className="form-group col-8">
 						<textarea className="form-control" rows="2" placeholder="What's new" onChange={this.postTextChanged.bind(this)}></textarea>
 					</div>
-					<div className="form-group col-1">
+					<div className="form-group col-1 attach-input-wrapper">
 						<div className="attach-music-input" disabled={this.props.addPostRequesting} onClick={this.openModal}></div>
+					</div>
+					<div className="form-group col-1 attach-input-wrapper">
+						<div className="attach-picture-input" disabled={this.props.addPostRequesting}></div>
 					</div>
 					<input type='button'
 						className='btn btn-primary col-2'

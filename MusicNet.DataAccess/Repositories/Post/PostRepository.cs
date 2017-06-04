@@ -33,7 +33,16 @@ namespace MusicNet.DataAccess.Repositories.Post
 
 		public async Task<Entities.Post> GetByIdAsync(string key)
 		{
-			var result = await this._context.Set<Entities.Post>().SingleOrDefaultAsync(x => x.Id == key);
+			var result = await this._context.Set<Entities.Post>().Include(post => post.User)
+																.Include(post => post.Tracks).ThenInclude(pt => pt.Track)
+																.Include(post => post.Comments).ThenInclude(c => c.User)
+																.SingleOrDefaultAsync(x => x.Id == key);
+			if (result != null) {
+				result.CreationDate = DateTime.SpecifyKind(result.CreationDate, DateTimeKind.Utc);
+				result.Comments = result.Comments.OrderBy(x => x.LastModifiedDate).ToList();
+				result.Comments.ToList().ForEach(comment => comment.LastModifiedDate = DateTime.SpecifyKind(comment.LastModifiedDate, DateTimeKind.Utc));
+			}
+
 			return result;
 		}
 

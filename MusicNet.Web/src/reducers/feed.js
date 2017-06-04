@@ -61,7 +61,8 @@ export default createReducer(initialState, {
 	},
 	PROFILE_ADD_POST_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
-			addPostRequesting: false
+			addPostRequesting: false,
+			posts: [payload.post].concat(state.posts)
 		});
 	},
 	PROFILE_ADD_POST_REQUEST_FAIL: (state, payload) => {

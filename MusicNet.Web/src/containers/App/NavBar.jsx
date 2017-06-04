@@ -45,6 +45,7 @@ export class NavBar extends Component {
 	logout(e) {
 		e.preventDefault();
 		this.props.actions.logout();
+		this.toggleDropdown();
 	}
 
 	render() {
