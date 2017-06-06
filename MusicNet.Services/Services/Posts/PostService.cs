@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -60,7 +61,7 @@ namespace MusicNet.Services.Services.Posts
 			return postModels;
 		}
 
-		public async Task AddCommentToPostAsync(string postId, string userId, string text)
+		public async Task<CommentModel> AddCommentToPostAsync(string postId, string userId, string text)
 		{
 			Guard.ArgumentNotNullOrWhiteSpace(postId, nameof(postId));
 			Guard.ArgumentNotNullOrWhiteSpace(userId, nameof(userId));
@@ -76,9 +77,14 @@ namespace MusicNet.Services.Services.Posts
 					Text = text
 				};
 				Comment comment = this._mapper.Map<CommentModel, Comment>(commentModel);
-				await this._uow.Comments.CreateAsync(comment);
+				var result = await this._uow.Comments.CreateAsync(comment);
 				this._uow.Commit();
+
+				Comment createdComment = await this._uow.Comments.GetByIdAsync(result.Id);
+				CommentModel createdCommentModel = this._mapper.Map<Comment, CommentModel>(createdComment);
+				return createdCommentModel;
 			}
+			throw new Exception();
 		}
 	}
 }

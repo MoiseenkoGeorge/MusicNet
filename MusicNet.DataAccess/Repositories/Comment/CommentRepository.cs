@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MusicNet.Common;
 
 namespace MusicNet.DataAccess.Repositories.Comment
 {
@@ -30,9 +31,12 @@ namespace MusicNet.DataAccess.Repositories.Comment
 			throw new NotImplementedException();
 		}
 
-		public Task<Entities.Comment> GetByIdAsync(string key)
+		public async Task<Entities.Comment> GetByIdAsync(string key)
 		{
-			throw new NotImplementedException();
+			Guard.ArgumentNotNullOrEmpty(key, nameof(key));
+			Entities.Comment comment = await this._context.Set<Entities.Comment>().Include(c => c.User)
+																				.SingleOrDefaultAsync(x => x.Id == key);
+			return comment;
 		}
 
 		public Entities.Comment GetByPredicate(Expression<Func<Entities.Comment, bool>> p)

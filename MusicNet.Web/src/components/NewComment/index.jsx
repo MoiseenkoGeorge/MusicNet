@@ -15,12 +15,12 @@ export class NewComment extends Component {
 	}
 
 	changeComment(e) {
-		this.setState({ commentText: e.target.value.trim() });
+		this.setState({ commentText: e.target.value });
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.actions.addCommentToPost(this.props.postId, this.state.commentText);
+		this.props.actions.addCommentToPost(this.props.postId, this.state.commentText.trim());
 		this.setState({ commentText: "" });
 	}
 

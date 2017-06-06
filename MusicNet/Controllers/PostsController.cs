@@ -71,9 +71,10 @@ namespace MusicNet.Controllers
 			Guard.ArgumentNotNullOrWhiteSpace(addCommentViewModel.Text, nameof(addCommentViewModel.Text));
 
 			string userId = this.User.Identity.GetUserId<string>();
-			await this._postService.AddCommentToPostAsync(postId, userId, addCommentViewModel.Text);
+			CommentModel createdCommentModel = await this._postService.AddCommentToPostAsync(postId, userId, addCommentViewModel.Text);
+			CommentViewModel createdCommentViewModel = this._mapper.Map<CommentModel, CommentViewModel>(createdCommentModel);
 
-			return this.NoContent();
+			return this.Json(new { Comment = createdCommentViewModel });
 		}
 	}
 }

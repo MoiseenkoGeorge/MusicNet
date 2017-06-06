@@ -12,6 +12,6 @@ namespace MusicNet.Services.Services.Posts
 
 		Task<IEnumerable<PostModel>> GetPostsFeedAsync(string userId, int startIndex, int count);
 
-		Task AddCommentToPostAsync(string postId, string userId, string text);
+		Task<CommentModel> AddCommentToPostAsync(string postId, string userId, string text);
 	}
 }

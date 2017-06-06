@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 
 import SearchTracksResults from "./SearchTracksResult";
+import SearchUsersResults from "./SearchUsersResult";
 import SearchInput from "../NewPost/searchInput";
 import Spinner from "../Spinner";
 
@@ -53,6 +54,10 @@ export default class Search extends Component {
 				{this.props.params.category === "tracks" ?
 					<div className="row justify-content-center">
 						<SearchTracksResults term={this.state.term} />
+					</div> :
+				this.props.params.category === "users" ? 
+					<div className="row justify-content-center">
+						<SearchUsersResults term={this.state.term} />
 					</div> :
 					""
 					}

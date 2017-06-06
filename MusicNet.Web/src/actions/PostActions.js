@@ -195,8 +195,9 @@ export function addCommentToPost(postId, text) {
 					body: JSON.stringify({ text: text })
 				})
 			.then(checkHttpStatus)
-			.then(() => {
-				dispatch(addCommentRequestSuccess(postId));
+			.then(parseJSON)
+			.then((response) => {
+				dispatch(addCommentRequestSuccess(postId, response));
 			})
 			.catch(error => {
 				if (error.response.status === 401) {
@@ -217,11 +218,12 @@ export function addCommentRequest(postId) {
 	}
 }
 
-export function addCommentRequestSuccess(postId) {
+export function addCommentRequestSuccess(postId, response) {
 	return {
 		type: ADD_COMMENT_REQUEST_SUCCESS,
 		payload: {
-			postId: postId
+			postId: postId,
+			comment: response.comment
 		}
 	}
 }

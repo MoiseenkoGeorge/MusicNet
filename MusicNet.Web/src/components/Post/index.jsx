@@ -39,7 +39,7 @@ export default class Post extends Component {
 							this.props.info.comments.map((comment, i) => {
 								return <div className="row" key={comment.id}>
 										<Comment data={comment} />
-								       </div>;
+										</div>;
 							})
 						}
 					</div>

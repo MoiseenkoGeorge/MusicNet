@@ -72,7 +72,7 @@ export default createReducer(initialState, {
 	},
 	ADD_COMMENT_REQUEST: (state, payload) => {
 		return Object.assign({}, state, {
-			posts: state.posts.map(post => post.Id === payload.postId ?
+			posts: state.posts.map(post => post.id === payload.postId ?
 				Object.assign({}, post, { addCommentRequesting: true }) :
 				post
 			)
@@ -80,15 +80,15 @@ export default createReducer(initialState, {
 	},
 	ADD_COMMENT_REQUEST_SUCCESS: (state, payload) => {
 		return Object.assign({}, state, {
-			posts: state.posts.map(post => post.Id === payload.postId ?
-				Object.assign({}, post, { addCommentRequesting: false }) :
+			posts: state.posts.map(post => post.id === payload.postId ?
+				Object.assign({}, post, { addCommentRequesting: false, comments: post.comments.concat(payload.comment) }) :
 				post
 			)
 		});
 	},
 	ADD_COMMENT_REQUEST_FAIL: (state, payload) => {
 		return Object.assign({}, state, {
-			posts: state.posts.map(post => post.Id === payload.postId ?
+			posts: state.posts.map(post => post.id === payload.postId ?
 				Object.assign({}, post, { addCommentRequesting: false }) :
 				post
 			)
